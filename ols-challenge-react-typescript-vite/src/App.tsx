@@ -1,7 +1,20 @@
-import styles from "./app.module.scss";
+import { Route, Routes } from 'react-router-dom';
+import styles from './app.module.scss';
+import { AppRouter } from './Router';
 
-function App() {
-  return <div className={styles.app}>Hola Mundo</div>;
-}
+const App = (): JSX.Element => {
+  return (
+    <Routes>
+      <Route
+        path={'*'}
+        element={
+          <div className={styles.app}>
+            <AppRouter />
+          </div>
+        }
+      ></Route>
+    </Routes>
+  );
+};
 
 export default App;
