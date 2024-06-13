@@ -1,7 +1,7 @@
 import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ErrorBoundary } from 'react-error-boundary';
 import Login from 'components/login/login';
 import { routes } from './routes';
@@ -10,6 +10,7 @@ import {
   AuthenticationProvider,
   UnauthenticatedTemplate,
 } from 'common/authentication/authentication-provider';
+import NotMatch from 'components/not-match/not-match';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -30,17 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <UnauthenticatedTemplate>
             <Routes>
               <Route path={routes.login.name} element={<Login />} />
-              <Route
-                path={'*'}
-                element={
-                  <Navigate
-                    to={{ pathname: routes.login.name }}
-                    state={{
-                      redirectUrl: window.location.href,
-                    }}
-                  />
-                }
-              />
+              <Route path="*" element={<NotMatch />} />
             </Routes>
           </UnauthenticatedTemplate>
         </AuthenticationProvider>
