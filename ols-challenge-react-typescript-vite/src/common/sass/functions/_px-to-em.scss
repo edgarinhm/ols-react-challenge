@@ -1,0 +1,17 @@
+@use "common/sass/styles/_variables.scss" as v;
+@use "common/sass/functions/_strip-unit.scss" as strip;
+@use "sass:math";
+
+// Convert pixels to ems
+// eg. for a relational value of 12px write em(12) when the parent is 16px
+// if the parent is another value say 24px write em(12, 24)
+
+@function em($pxval, $base: v.$em-base) {
+  @if not math.is-unitless($pxval) {
+    $pxval: strip.strip-units($pxval);
+  }
+  @if not math.is-unitless($base) {
+    $base: strip.strip-units($base);
+  }
+  @return math.div($pxval, $base) * 1em;
+}

@@ -1,0 +1,76 @@
+@use "common/sass/styles/colors.module.scss" as *;
+@use "common/sass/styles/base-style-and-scale.module.scss" as *;
+@use "common/sass/styles/fonts.module.scss" as *;
+
+@mixin body {
+  color: $base-font-color;
+  font-family: $base-font-family;
+  font-feature-settings: "kern", "liga", "pnum";
+  font-size: $base-font-size;
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: $base-line-height;
+}
+
+@mixin h1 {
+  font-family: $base-font-family;
+  font-size: $font-size-largest;
+  font-weight: 400;
+  line-height: $h1-line-height;
+}
+
+@mixin h2 {
+  font-size: $font-size-larger;
+  line-height: $h2-line-height;
+  margin-top: $h2-margin-top;
+  margin-bottom: $h2-margin-bottom;
+  font-family: $base-font-family;
+  color: $body-grey;
+  font-weight: 700;
+}
+@mixin h3 {
+  font-size: $font-size-large;
+  font-weight: 700;
+  line-height: $h3-line-height;
+  margin-top: $h3-margin-top;
+  margin-bottom: $h3-margin-bottom;
+}
+@mixin h4 {
+  font-size: $font-size-base;
+  font-weight: 700;
+  line-height: $h4-line-height;
+  margin-top: $h4-margin-top;
+  margin-bottom: $h4-margin-bottom;
+}
+
+@mixin h6 {
+  font-size: $font-size-smaller;
+}
+
+@mixin smallLabel {
+  text-transform: uppercase;
+  font-size: $font-size-smaller;
+  font-weight: 400;
+  font-family: $base-font-family;
+  color: $dark-grey;
+}
+
+@mixin CTA {
+  font-family: $base-font-family;
+  font-style: normal;
+  font-weight: bold;
+  font-size: $font-size-small;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@mixin smallBody {
+  font-family: $base-font-family;
+  font-style: normal;
+  font-weight: normal;
+  font-size: $font-size-small;
+  line-height: 16px;
+}

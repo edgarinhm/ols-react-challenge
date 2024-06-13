@@ -1,0 +1,123 @@
+@use "common/sass/styles/colors.module.scss";
+@use "common/sass/functions/modular-scale.scss" as scale;
+@use "common/sass/styles/_variables.scss" as var;
+@use "common/sass/styles/z-index.module.scss" as z;
+@use "sass:math";
+
+$base-font-size: var.$em-base;
+$base-scaler: scale.$major-second;
+
+// Line height
+$base-line-height: 1.5; //24px
+
+// Other Sizes
+$base-border-radius: 4px;
+$border-radius-large: 6px;
+$base-spacing: calc($base-line-height * 1em / 2); //12px
+$large-spacing: $base-line-height * 1em; //24px
+$small-spacing: calc($base-spacing / 2); //6px;
+$base-z-index: z.$z-base;
+
+// Font Colors
+$base-font-color: colors.$body-grey;
+$action-color: colors.$es-blue;
+$close-color: colors.$black;
+
+// Font Scale
+$font-size-smaller: scale.modular-scale(-2, $ratio: $base-scaler); //12px
+$font-size-small: scale.modular-scale(-1, $ratio: $base-scaler); //14px
+$font-size-base: scale.modular-scale(0, $ratio: $base-scaler); //16px
+$font-size-large: scale.modular-scale(1, $ratio: $base-scaler); //18px
+$font-size-larger: scale.modular-scale(2, $ratio: $base-scaler); //20px
+$font-size-largest: scale.modular-scale(5, $ratio: $base-scaler); //29px
+$font-size-extra-large: scale.modular-scale(8, $ratio: $base-scaler); //41px
+// Headings
+$h1-line: 1.5rem;
+$h1-lines: 2;
+$h1-line-height: $h1-line * $h1-lines;
+$h1-margin-top: 2 * $h1-line;
+$h1-margin-bottom: 1 * $h1-line;
+
+$h2-line: 1.5rem;
+$h2-lines: 1.5;
+$h2-line-height: $h2-line * $h2-lines;
+$h2-margin-top: 2 * $h2-line;
+$h2-margin-bottom: 1 * $h2-line;
+
+$h3-line: 1.5rem;
+$h3-lines: 1.5;
+$h3-line-height: $h3-line * $h3-lines;
+$h3-margin-top: 1 * $h3-line;
+$h3-margin-bottom: 1 * $h3-line;
+
+$h4-line: 1.5rem;
+$h4-lines: 1;
+$h4-line-height: $h4-line * $h4-lines;
+$h4-margin-top: 1 * $h4-line;
+$h4-margin-bottom: 1 * $h4-line;
+
+// Border
+$base-border-color: colors.$med-grey;
+$base-border: 1px solid $base-border-color;
+
+// Background Colors
+$base-background-color: colors.$bg-grey;
+$secondary-background-color: colors.$ghost-grey;
+$dark-background-color: colors.$dark-grey;
+$side-menu-active: #63666d;
+$page-shadow-color: rgba(0, 0, 0, 0.12);
+$page-overlay-color: rgba(0, 0, 0, 0.4);
+$active-refund-section: rgba(171, 210, 129, 0.1);
+$inactive-refund-section: colors.$bg-grey;
+
+// Forms
+$form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
+$form-box-shadow-focus: $form-box-shadow,
+  0 0 5px adjust-color(colors.$es-green, $lightness: -5%, $alpha: -0.3);
+
+// Animations
+$base-duration: 150ms;
+$base-timing: ease;
+
+// Panels (aka accordians)
+$panel-bg: #fff !default;
+$panel-body-padding: $small-spacing !default;
+$panel-heading-padding: calc($base-line-height * 1em / 2);
+$panel-footer-padding: $panel-heading-padding !default;
+$panel-border-radius: $base-border-radius !default;
+
+//** Border color for elements within panels
+$panel-inner-border: colors.$grey !default;
+$panel-footer-bg: #f5f5f5 !default;
+
+$panel-default-text: colors.$body-grey !default;
+$panel-default-border: colors.$med-grey !default;
+$panel-default-heading-bg: #fff !default;
+
+$panel-primary-text: #fff !default;
+$panel-primary-border: colors.$med-grey !default;
+$panel-primary-heading-bg: #fff !default;
+
+$panel-success-text: colors.$es-green !default;
+$panel-success-border: colors.$es-green !default;
+$panel-success-heading-bg: #fff !default;
+
+$panel-info-text: colors.$grey !default;
+$panel-info-border: colors.$grey !default;
+$panel-info-heading-bg: colors.$med-grey !default;
+
+$panel-warning-heading-bg: #fff !default;
+
+$panel-danger-heading-bg: #fff !default;
+
+// drawer
+$drawerViewPortWidth: 638px;
+$drawerBorderWidth: 1px;
+
+// modal
+$modal-title-padding: 15px !default;
+$modal-title-line-height: $base-line-height !default;
+$modal-backdrop-bg: #000 !default;
+$modal-backdrop-opacity: 0.5;
+
+$line-height-computed: math.floor(($font-size-base * $base-line-height)) !default;

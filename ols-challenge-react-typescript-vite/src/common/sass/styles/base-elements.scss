@@ -1,0 +1,100 @@
+@use "common/sass/mixins/typography.module.scss" as t;
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/fonts.module.scss";
+@use "common/sass/styles/colors.module.scss";
+@use "sass:color";
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: fonts.$base-font-family;
+  line-height: base.$base-line-height;
+  font-weight: 400;
+  b {
+    font-weight: 700;
+  }
+}
+
+p {
+  font-size: base.$font-size-base;
+  margin: 0 0 base.$base-spacing;
+}
+
+hr {
+  border-bottom: base.$base-border;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin: base.$base-spacing 0;
+}
+
+img,
+picture {
+  margin: 0;
+  max-width: 100%;
+}
+
+img {
+  vertical-align: middle;
+}
+
+body {
+  @include t.body;
+  background-color: base.$base-background-color;
+  overflow: hidden;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  font-feature-settings: "kern", "liga", "tnum";
+}
+
+a {
+  color: base.$action-color;
+  text-decoration: none;
+  transition: color base.$base-duration base.$base-timing;
+
+  &:active,
+  &:focus,
+  &:hover {
+    color: color.scale(base.$action-color, $lightness: -25%);
+  }
+
+  &:focus,
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+}
+
+h1 {
+  @include t.h1;
+}
+
+h2 {
+  @include t.h2;
+}
+
+h3 {
+  @include t.h3;
+}
+
+h6 {
+  @include t.h6;
+}

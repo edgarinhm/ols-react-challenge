@@ -1,0 +1,17 @@
+@use "common/sass/functions/_font-source-declaration.scss" as declaration;
+
+@mixin font-face(
+  $font-family,
+  $file-path,
+  $weight: normal,
+  $style: normal,
+  $file-formats: eot woff2 woff ttf svg
+) {
+  @font-face {
+    font-family: $font-family;
+    font-style: $style;
+    font-weight: $weight;
+
+    src: declaration.font-source-declaration($font-family, $file-path, $file-formats);
+  }
+}

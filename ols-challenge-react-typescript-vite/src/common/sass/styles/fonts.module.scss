@@ -1,0 +1,19 @@
+@use "common/fonts/lato.scss" as *;;
+@use "common/sass/functions/_font-face.scss" as face;
+
+// Typography
+@include face.font-face("Lato", "common/fonts/lato-light", 300, $file-formats: eot woff2 woff ttf);
+@include face.font-face(
+  "Lato",
+  "common/fonts/lato-regular",
+  400,
+  $file-formats: eot woff2 woff ttf
+);
+@include face.font-face("Lato", "common/fonts/lato-bold", 700, $file-formats: eot woff2 woff ttf);
+
+$base-font-family: "Lato", Helvetica, "Lucida Grande", Arial, sans-serif;
+$rama-gothic-e-regular: "rama_gothic_e_regular";
+
+:export {
+  base-font-family: $base-font-family;
+}

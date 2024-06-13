@@ -1,0 +1,299 @@
+@use "common/sass/styles/colors.module.scss" as *;
+@use "common/sass/styles/base-style-and-scale.module.scss" as *;
+@use "common/sass/styles/fonts.module.scss" as *;
+@use "sass:color";
+
+@mixin btn {
+  appearance: none;
+  background-color: $action-color;
+  border: 1px solid $light-blue;
+  border-radius: $base-border-radius;
+  color: $white;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $base-font-family;
+  font-size: $font-size-small;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 700;
+  line-height: 1;
+  padding: $base-spacing $base-spacing * 2;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color $base-duration $base-timing;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($action-color, 15%);
+  }
+
+  &:active,
+  &:active:hover {
+    background-color: lighten($action-color, 15%);
+    border-color: $light-blue;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    outline: none;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    opacity: 0.65;
+    cursor: not-allowed;
+    background-color: $med-grey;
+    border-color: $grey;
+    color: $grey;
+  }
+
+  &.is-active {
+    background-color: lighten($action-color, 15%);
+    border-color: $light-blue;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    outline: none;
+  }
+}
+
+@mixin btn-secondary {
+  background-color: transparent;
+  color: $action-color;
+  border-color: $action-color;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: lighten($action-color, 15%);
+    border-color: lighten($action-color, 15%);
+    outline: none;
+  }
+  &:active,
+  &:active:hover {
+    color: $white;
+  }
+
+  &.is-active {
+    background-color: $es-blue;
+    color: $white;
+    border-color: $es-blue;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+@mixin btn-special {
+  background-color: $es-green;
+  border-color: $bright-green;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($es-green, 15%);
+    border-color: $bright-green;
+    outline: none;
+  }
+  &:active,
+  &:active:hover {
+    background-color: lighten($es-green, 15%);
+    border-color: $bright-green;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    outline: none;
+  }
+  &.is-active {
+    background-color: lighten($es-green, 15%);
+    border-color: $bright-green;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    outline: none;
+  }
+}
+
+@mixin btn-cancel {
+  background-color: $red;
+  border-color: $border-red;
+
+  &:hover,
+  &:focus {
+    background-color: lighten($red, 15%);
+    border-color: $border-red;
+    outline: none;
+  }
+  &:active,
+  &:active:hover {
+    background-color: lighten($red, 15%);
+    border-color: $border-red;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    outline: none;
+  }
+  &.is-active {
+    background-color: lighten($red, 15%);
+    border-color: $border-red;
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    outline: none;
+  }
+}
+
+@mixin btn-tertiary {
+  color: $es-blue;
+  background: none;
+  border: none;
+
+  &:hover,
+  &:focus {
+    color: lighten($action-color, 15%);
+    background: none;
+    border: none;
+    outline: none;
+  }
+  &:active,
+  &:active:hover {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+@mixin btn-close {
+  font-size: $font-size-smaller;
+  color: $dark-grey;
+  background: none;
+  border: none;
+  text-shadow: none;
+  opacity: 1;
+
+  &:hover,
+  &:focus {
+    background: none;
+    border: none;
+    outline: none;
+    color: $close-color;
+    text-decoration: none;
+    opacity: 0.5;
+  }
+  &:active,
+  &:active:hover {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+
+  &:disabled,
+  &:disabled:hover {
+    cursor: not-allowed;
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+@mixin btn-custom(
+  $font-size: $font-size-base,
+  $color: $dark-grey,
+  $hover-color: color.scale($color, $lightness: 20%)
+) {
+  font-size: $font-size;
+  color: $color;
+  background: none;
+  border: none;
+  text-shadow: none;
+
+  &:hover,
+  &:focus {
+    background: none;
+    border: none;
+    outline: none;
+    color: $hover-color;
+    text-decoration: none;
+  }
+  &:active,
+  &:active:hover {
+    background: none;
+    border: none;
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+@mixin btn-small {
+  font-size: $font-size-smaller;
+  padding: $small-spacing $base-spacing;
+}
+
+@mixin btn-appear-disable {
+  cursor: not-allowed;
+  background-color: $med-grey;
+  border-color: $grey;
+  color: $grey;
+
+  &:hover {
+    cursor: not-allowed;
+    background-color: $med-grey;
+    border-color: $grey;
+    color: $grey;
+  }
+
+  &:hover:active {
+    cursor: not-allowed;
+    background-color: $med-grey;
+    border-color: $grey;
+    color: $grey;
+  }
+
+  &:active {
+    cursor: not-allowed;
+    background-color: $med-grey;
+    border-color: $grey;
+    color: $grey;
+  }
+
+  &:focus {
+    cursor: not-allowed;
+    background-color: $med-grey;
+    border-color: $grey;
+    color: $grey;
+  }
+}
+
+@mixin btn-disable {
+  &:disabled {
+    @include btn-appear-disable;
+  }
+}
+
+@mixin btn-medium {
+  font-size: $font-size-smaller;
+  padding: $base-spacing $large-spacing;
+}
+
+@mixin btn-border-radius-medium(
+  $font-size: $font-size-base,
+  $color: $light-black,
+  $border: 1px solid $light-black,
+  $border-radius: (
+    $base-border-radius * 10,
+  ),
+  $hover-color: color.scale($color, $lightness: 20%)
+) {
+  font-size: $font-size;
+  color: $color;
+  background: none;
+  border: $border;
+  border-radius: $border-radius;
+  text-shadow: none;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    color: $hover-color;
+    text-decoration: none;
+  }
+
+  &:active,
+  &:active:hover {
+    box-shadow: none;
+    outline: none;
+  }
+}
