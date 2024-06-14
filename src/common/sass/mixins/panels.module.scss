@@ -1,0 +1,56 @@
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/colors.module.scss";
+
+/* Panels
+ *
+ * This file overrides Bootstrap's version
+ *
+*/
+
+// Base class
+@mixin panel {
+  margin-bottom: base.$line-height-computed;
+  border: 1px solid transparent;
+  border-radius: base.$panel-border-radius;
+  background-color: base.$panel-bg;
+}
+
+// Panel contents
+@mixin panel-body {
+  padding: base.$panel-body-padding;
+  border-bottom: 1px solid colors.$grey;
+}
+
+// Optional heading
+@mixin panel-heading {
+  padding: base.$base-spacing;
+  border-bottom: 1px solid colors.$med-grey;
+
+  .dropdown .dropdown-toggle {
+    color: inherit;
+  }
+}
+
+// Within heading, strip any `h*` tag of its default margins for spacing.
+@mixin panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: base.$font-size-base;
+  color: inherit;
+
+  > a,
+  > small,
+  > .small,
+  > small > a,
+  > .small > a {
+    color: inherit;
+  }
+}
+
+// Optional footer (stays gray in every modifier class)
+@mixin panel-footer {
+  padding: base.$panel-footer-padding;
+  background-color: base.$panel-footer-bg;
+  border-top: 1px solid base.$panel-inner-border;
+  border-radius: 0;
+}

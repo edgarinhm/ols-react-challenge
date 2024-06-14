@@ -1,0 +1,244 @@
+@use "common/sass/styles/colors.module.scss" as *;
+@use "common/sass/mixins/typography.module.scss";
+@use "common/sass/styles/fonts.module.scss" as *;
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/mixins/buttons.module.scss";
+@use "common/sass/styles/z-index.module.scss";
+
+$actions-popover-column-width: 55px;
+$status-icon-width: base.$base-spacing;
+$status-width: 85px;
+
+.table {
+  font-family: $base-font-family;
+
+  &:nth-of-type(even) {
+    background: $ghost-grey;
+  }
+
+  .thead {
+    @include typography.smallLabel;
+    border-bottom: 1px solid $med-grey;
+
+    .tr {
+      display: flex;
+      flex-direction: row;
+
+      .headingStatus {
+        justify-content: start;
+        width: $status-width;
+      }
+
+      .headingActions {
+        width: $actions-popover-column-width;
+      }
+
+      .sortable:not(.activeSorter):hover {
+        background: $hover-grey;
+        cursor: pointer;
+      }
+
+      .activeSorter {
+        background: $yellow-orange;
+        cursor: pointer;
+
+        &:hover {
+          background: $orange;
+        }
+      }
+
+      div {
+        height: 32px;
+        display: flex;
+        align-items: center;
+
+        span {
+          margin-left: 12px;
+        }
+
+        i {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  .expandableRow {
+    display: flex;
+    flex-direction: column;
+
+    .heading {
+      display: flex;
+      flex-direction: row;
+      padding: 10px 0px;
+      font-size: base.$font-size-small;
+      font-weight: bold;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        background: $note-blue;
+        .actions {
+          .actionsInnerContainer {
+            display: block;
+          }
+        }
+      }
+    }
+    .column {
+      display: flex;
+      flex-direction: row;
+
+      .content {
+        padding: 3px 12px;
+        width: 100%;
+      }
+
+      .caret {
+        padding: 5px;
+        width: 5px;
+      }
+
+      .levelUpIcon {
+        @extend .caret;
+        transform: rotate(90deg);
+        color: $orange;
+      }
+    }
+
+    &[aria-expanded="false"] {
+      .expandableContainer {
+        max-height: 0px;
+        transition: max-height 0.8s cubic-bezier(0, 1, 0, 1);
+        border-bottom: 1px solid $grey;
+        .row {
+          visibility: hidden;
+          opacity: 0;
+          transition: all 0.8s cubic-bezier(0, 1, 0, 1);
+        }
+      }
+    }
+
+    &[aria-expanded="true"] {
+      .expandableContainer {
+        .row {
+          visibility: visible;
+          opacity: 1;
+          transition: all 0.8s cubic-bezier(0, 1, 0, 1) 200ms;
+        }
+      }
+    }
+  }
+
+  .row {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid $grey;
+
+    .heading {
+      display: flex;
+      flex-direction: row;
+      padding: 10px 0px;
+      font-size: base.$font-size-small;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        background: $note-blue;
+        .actions {
+          .actionsInnerContainer {
+            display: block;
+          }
+        }
+      }
+    }
+    .column {
+      display: flex;
+      flex-direction: row;
+
+      .content {
+        padding: 3px 12px;
+        width: 100%;
+      }
+    }
+  }
+
+  .expandableContainer {
+    font-size: base.$font-size-base;
+    max-height: 1000px;
+    transition: max-height 1s ease-in-out;
+    border-bottom: 1px solid $grey;
+    cursor: pointer;
+
+    .row {
+      display: flex;
+      flex-direction: row;
+      padding: 10px 0px;
+      font-size: base.$font-size-small;
+      align-items: center;
+      cursor: pointer;
+      &:hover {
+        .actions {
+          .actionsInnerContainer {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .actions {
+    font-size: base.$font-size-large;
+    width: $actions-popover-column-width;
+    color: $es-blue;
+
+    .actionsInnerContainer {
+      display: none;
+    }
+  }
+
+  .actionsInnerContainer {
+    padding: 1px 12px;
+  }
+
+  .status {
+    width: $status-width;
+    font-size: base.$font-size-large;
+
+    > i {
+      background: $pinkish-grey;
+      width: $status-icon-width;
+      border-radius: $status-icon-width * 0.5;
+      height: $status-icon-width;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+
+      &.green {
+        background: $es-green;
+      }
+
+      &.yellow {
+        background: $yellow-orange;
+      }
+
+      &.red {
+        background: $red;
+      }
+
+      &.blue {
+        background: $es-blue;
+      }
+
+      &.grey {
+        background: $pinkish-grey;
+      }
+    }
+  }
+
+  .noResultsMessage {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+}

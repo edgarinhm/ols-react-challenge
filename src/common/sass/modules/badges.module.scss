@@ -1,0 +1,66 @@
+@use "common/sass/styles/base-style-and-scale.module.scss" as sizes;
+@use "common/sass/styles/colors.module.scss";
+@use "sass:color";
+
+$gray-light: color.scale(black, $lightness: 46.7%);
+
+$badges: (
+  "warning": colors.$red,
+  "needsAttention": colors.$orange,
+  "inProgress": colors.$yellow-orange,
+  "upcoming": colors.$es-blue,
+  "ready": colors.$bright-green,
+  "active": colors.$es-green,
+  "inactive": colors.$dark-grey,
+  "default": $gray-light,
+);
+
+$badgeTypes: ("square", "rounded");
+
+%base {
+  color: colors.$white;
+  text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+%rounded {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: sizes.$font-size-small;
+  text-align: center;
+  border-radius: 10px;
+}
+
+%square {
+  display: flex;
+  align-items: center;
+  min-width: 183px;
+  height: 36px;
+  padding: 11px;
+  border-radius: sizes.$base-border-radius;
+  font-size: sizes.$font-size-large;
+}
+
+@each $name, $color in $badges {
+  @each $type in $badgeTypes {
+    @if $type == "rounded" {
+      .#{$name}Rounded {
+        @extend %base;
+        @extend %rounded;
+        background-color: $color;
+      }
+    } @else if $type == "square" {
+      .#{$name}Square {
+        @extend %base;
+        @extend %square;
+        background-color: $color;
+      }
+    } @else {
+      @error "Unknown badge type #{$type}";
+    }
+  }
+}

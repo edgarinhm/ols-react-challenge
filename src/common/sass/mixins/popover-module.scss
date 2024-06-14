@@ -1,0 +1,22 @@
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/styles/fonts.module.scss" as fonts;
+@use "common/sass/styles/z-index.module.scss" as z;
+
+@mixin content {
+  display: flex;
+  flex-direction: column;
+  white-space: nowrap;
+  padding: 6px 0;
+  font-family: fonts.$base-font-family;
+  font-size: base.$base-font-size;
+  font-weight: normal;
+  line-height: 1.5;
+  text-align: center;
+  color: colors.$dark-blue;
+  background-color: colors.$white;
+  border: solid 1px colors.$med-grey;
+  border-radius: 4px;
+  box-shadow: 0 5px 10px rgba(colors.$black, 0.25);
+  z-index: z.$z-popover;
+}
