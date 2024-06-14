@@ -59,6 +59,7 @@ $h4-margin-bottom: 1 * $h4-line;
 // Border
 $base-border-color: colors.$med-grey;
 $base-border: 1px solid $base-border-color;
+$base-focus-border: var.$focus-border-color-base;
 
 // Background Colors
 $base-background-color: var.$bg-color-base;
@@ -73,7 +74,7 @@ $inactive-refund-section: var.$bg-color-base;
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
 $form-box-shadow-focus: $form-box-shadow,
-  0 0 5px adjust-color(colors.$es-green, $lightness: -5%, $alpha: -0.3);
+  0 0 5px adjust-color(var.$focus-border-color-base, $lightness: -5%, $alpha: -0.3);
 
 // Animations
 $base-duration: 150ms;

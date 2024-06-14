@@ -13,7 +13,6 @@
 .login{
   .loginButton {
     @include buttons.btn;
-    @include buttons.btn-secondary;
     width: 184px;
   }
 }

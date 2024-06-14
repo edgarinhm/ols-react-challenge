@@ -71,7 +71,7 @@ select[multiple="multiple"] {
   }
 
   &:focus {
-    border-color: colors.$es-green;
+    border-color: base.$base-focus-border;
     box-shadow: base.$form-box-shadow-focus;
     outline: none;
     background: colors.$white;
