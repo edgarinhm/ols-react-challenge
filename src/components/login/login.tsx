@@ -4,15 +4,36 @@ import { FormEvent, useId, useState } from 'react';
 import { FormControl } from 'common/components/form-control/form-control';
 import { Link } from 'react-router-dom';
 
+const initialState = {
+  username: '',
+  password: '',
+  expireSession: false,
+};
+
+type LoginFormFields = typeof initialState;
+
 const Login = (): JSX.Element => {
   const id = useId();
-  const [expireSession, setExpireSession] = useState(false);
+  const [loginFormFields, setLoginFormFields] =
+    useState<LoginFormFields>(initialState);
+
   const handleOnSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    console.log('handleOnSubmit', expireSession);
+    console.log('loginFormFields', loginFormFields);
+  };
+
+  const onUserNameChange = (value: string): void => {
+    setLoginFormFields((state) => ({ ...state, username: value }));
+  };
+
+  const onPasswordChange = (value: string): void => {
+    setLoginFormFields((state) => ({ ...state, password: value }));
   };
   const onCheckboxChange = (): void => {
-    setExpireSession((value) => !value);
+    setLoginFormFields((state) => ({
+      ...state,
+      expireSession: !state.expireSession,
+    }));
   };
   return (
     <div className={styles.container}>
@@ -32,11 +53,13 @@ const Login = (): JSX.Element => {
                 id={`${id}-username`}
                 type="text"
                 placeholder={'Nombre de usuario Ej: nombre.apellido'}
+                onChange={(event) => onPasswordChange(event.target.value)}
                 className={styles.input}
               />
               <FormControl.Input
                 id={`${id}-password`}
                 type="password"
+                onChange={(event) => onUserNameChange(event.target.value)}
                 placeholder={'Aqui va tu constraseña'}
               />
               <button type="submit" className={styles.loginButton}>
@@ -45,7 +68,7 @@ const Login = (): JSX.Element => {
               <div className={styles.actions}>
                 <FormControl.CheckInput
                   type="checkbox"
-                  checked={expireSession}
+                  checked={loginFormFields.expireSession}
                   id={`${id}-expire-session`}
                   label={'Permanecer Conectado'}
                   labelClassName={styles.standardLabel}
