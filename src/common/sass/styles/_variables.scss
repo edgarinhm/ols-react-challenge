@@ -1,1 +1,10 @@
+@use "common/sass/styles/colors.module.scss";
+
 $em-base: 16px;
+$bg-color-base: colors.$white;
+$btn-primary-base: colors.$dark-moderate-blue;
+$btn-primary-active-base: colors.$dark-moderate-blue;
+$btn-secondary-base: colors.$dark-grayish-blue;
+$btn-secondary-active-base: colors.$dark-grayish-blue;
+$btn-link-base: colors.$es-blue;
+$font-color-base: colors.$body-grey;

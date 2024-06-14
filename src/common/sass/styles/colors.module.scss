@@ -49,6 +49,8 @@ $royal-blue: rgb(0, 102, 255);
 $pale-green: rgb(244, 250, 232);
 $light-green: rgb(234, 245, 225);
 $breakline-gray: rgb(206, 206, 206, 1);
+$dark-moderate-blue: rgb(75, 73, 172);
+$dark-grayish-blue: rgb(163, 164, 165);
 :export {
   white: $white;
   black: $black;
@@ -95,4 +97,6 @@ $breakline-gray: rgb(206, 206, 206, 1);
   dark-orange: $dark-orange;
   green: $green;
   medium-light-orange: $medium-light-orange;
+  dark-moderate-blue:$dark-moderate-blue;
+  dark-grayish-blue:$dark-grayish-blue;
 }
