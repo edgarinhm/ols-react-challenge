@@ -1,0 +1,40 @@
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/functions/_functions.scss" as func;
+
+@mixin alert-variant($background, $border, $text-color) {
+  background-color: $background;
+  border-color: $border;
+  color: $text-color;
+}
+
+@mixin alert-variant-success {
+  @include alert-variant(func.tint(colors.$es-green, 85%), colors.$es-green, colors.$es-green);
+}
+
+@mixin alert-variant-info {
+  @include alert-variant(func.tint(colors.$es-blue, 85%), colors.$es-blue, colors.$es-blue);
+}
+
+@mixin alert-variant-warning {
+  @include alert-variant(func.tint(colors.$orange, 85%), colors.$orange, colors.$orange);
+}
+
+@mixin alert-variant-error {
+  @include alert-variant(func.tint(colors.$red, 85%), colors.$red, colors.$red);
+}
+
+@mixin modal-alert {
+  overflow: hidden;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  border: 1px solid;
+  font-size: base.$font-size-base;
+
+  i {
+    font-size: 24px;
+    flex: 1 5%;
+  }
+}

@@ -1,0 +1,21 @@
+@use "common/sass/mixins/buttons.module.scss";
+
+.logo {
+  max-width: 4rem;
+  max-height: 4rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login{
+  .loginButton {
+    @include buttons.btn;
+    @include buttons.btn-special;
+    width: 184px;
+  }
+}
+
+

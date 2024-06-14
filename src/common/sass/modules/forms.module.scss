@@ -1,0 +1,391 @@
+@use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/mixins/buttons.module.scss" as buttons;
+@use "common/sass/mixins/alerts.module.scss";
+@use "common/sass/styles/z-index.module.scss" as z;
+
+.formControl {
+  label {
+    margin-bottom: 0.5em;
+  }
+
+  > span {
+    display: flex;
+    flex-direction: row;
+
+    .inputLeft {
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+
+    .inputRight {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+  }
+
+  textarea::placeholder {
+    color: colors.$med-grey;
+  }
+
+  .timeInput {
+    display: flex;
+    align-items: center;
+    .iconAfter {
+      width: 47px;
+      height: 40.8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .active {
+      background-color: colors.$es-blue;
+      color: colors.$white;
+    }
+    .disabled {
+      cursor: not-allowed;
+    }
+  }
+
+  .checkInput {
+    display: flex;
+    margin-right: 15px;
+    align-items: center;
+
+    input {
+      margin-right: 5px;
+    }
+
+    label {
+      margin: 0px;
+      line-height: normal;
+    }
+  }
+
+  .fileInput {
+    input[type="file"] {
+      display: none;
+    }
+    label {
+      @include buttons.btn;
+      @include buttons.btn-tertiary;
+      border: 1px solid colors.$light-blue;
+      border-radius: base.$base-border-radius;
+      margin-bottom: 0;
+    }
+    label:hover {
+      border: 1px solid colors.$light-blue;
+    }
+  }
+}
+
+.inputDate {
+  input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .container {
+    display: flex;
+  }
+
+  label {
+    margin-bottom: 0.5em;
+  }
+
+  .tooltipIcon {
+    color: colors.$es-blue;
+    margin-left: 4px;
+  }
+
+  .tooltipContent {
+    text-transform: none;
+  }
+
+  p {
+    margin-top: 0;
+  }
+
+  .popper {
+    padding-bottom: 2px;
+  }
+
+  .iconAfter {
+    background-color: colors.$es-blue;
+    color: colors.$white;
+    cursor: pointer;
+  }
+
+  .iconAfterDisabled {
+    background-color: colors.$med-grey;
+    color: colors.$white;
+    cursor: not-allowed;
+  }
+}
+
+.iconBefore {
+  background-color: colors.$pinkish-grey;
+  padding: 0px 12px;
+  border: base.$base-border;
+  border-right: none;
+  border-top-left-radius: base.$base-border-radius;
+  border-bottom-left-radius: base.$base-border-radius;
+  color: colors.$dark-grey;
+  display: flex;
+  align-items: center;
+}
+
+.iconAfter {
+  background-color: colors.$pinkish-grey;
+  padding: 7px 12px;
+  border: base.$base-border;
+  border-left: none;
+  border-top-right-radius: base.$base-border-radius;
+  border-bottom-right-radius: base.$base-border-radius;
+  color: colors.$dark-grey;
+  font-size: 0.9rem;
+}
+
+.datepickerWrapper {
+  width: 100%;
+}
+
+.error {
+  label {
+    color: colors.$red;
+  }
+
+  input,
+  textarea,
+  select,
+  span > .fileInputError {
+    color: colors.$red;
+    border-color: colors.$red;
+    background-color: colors.$light-red;
+
+    &:focus {
+      box-shadow: none;
+      border-color: colors.$red;
+    }
+  }
+
+  p {
+    color: colors.$red;
+    font-size: base.$font-size-smaller;
+    margin-top: 0;
+    padding-left: 0.5em;
+    border-left: 2px solid colors.$red;
+  }
+}
+
+.warning {
+  label {
+    color: colors.$orange;
+  }
+
+  input,
+  textarea,
+  select,
+  span > .fileInputError {
+    @include alerts.alert-variant-warning;
+
+    &:focus {
+      box-shadow: none;
+      border-color: colors.$orange;
+    }
+  }
+
+  p {
+    color: colors.$orange;
+    font-size: base.$font-size-smaller;
+    margin-top: 0;
+    padding-left: 0.5em;
+    border-left: 2px solid colors.$orange;
+  }
+}
+
+.errorBlock {
+  margin-top: 0.5em;
+  color: colors.$red;
+  font-size: 0.8em;
+  border-left: 2px solid colors.$red;
+  text-align: left;
+  padding-left: 0.5em;
+}
+
+.remainingCount {
+  color: colors.$med-grey;
+  font-size: base.$font-size-smaller;
+}
+
+.warningBlock {
+  margin-top: 0.5em;
+  color: colors.$orange;
+  font-size: 0.8em;
+  border-left: 2px solid colors.$orange;
+  text-align: left;
+  padding-left: 0.5em;
+}
+
+// moonshot switch styling
+.switch {
+  appearance: none;
+  position: relative;
+  height: 1.25rem;
+  width: 2rem;
+  border-radius: 1rem;
+  background-color: colors.$inactive-grey;
+  transition: background-color 100ms ease-in-out;
+  outline: none;
+  cursor: pointer;
+}
+
+.switch::after {
+  position: absolute;
+  content: "";
+  background-color: colors.$white;
+  border-radius: 50%;
+  width: 1.125rem;
+  height: 1.125rem;
+  left: 0.0625rem;
+  top: 0.0625rem;
+  transition: left 100ms ease-in-out;
+}
+
+.switch:checked {
+  background-color: colors.$strong-green;
+}
+
+.switch:checked::after {
+  left: calc(2rem - 1.125rem - 0.0625rem);
+}
+
+.autoComplete {
+  min-width: inherit;
+  input {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .autoCompleteOptions {
+    z-index: z.$z-popover;
+    background-color: colors.$white;
+
+    box-shadow: 0px 5px 10px colors.$med-grey;
+    border-radius: 3px;
+    max-height: 400px;
+    overflow-y: auto;
+
+    .renderOption {
+      margin: 3px 0px;
+      padding: 5px;
+      font-size: base.$font-size-small;
+      &:hover {
+        background-color: colors.$med-blue;
+        color: colors.$white;
+      }
+    }
+    .active {
+      background-color: colors.$med-blue;
+      color: colors.$white;
+    }
+  }
+}
+
+.floatingInputContainer {
+  position: relative;
+  .disabledLabel {
+    color: colors.$inactive-grey;
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+  .cross {
+    position: absolute;
+    right: 10px;
+    top: 17px;
+    font-weight: 100;
+    cursor: pointer;
+  }
+  .focused {
+    transform: translate(-7px, -25px) scale(0.8);
+  }
+
+  &:focus-within label {
+    transform: translate(-7px, -25px) scale(0.8);
+    padding: 0 5px;
+  }
+  input {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  input,
+  textarea {
+    border-radius: 4px;
+    border-color: colors.$body-grey;
+    font-size: 16px;
+    background-color: colors.$white;
+    outline: none;
+    box-shadow: none;
+    position: relative;
+    padding: 15px 15px;
+    color: colors.$body-grey;
+    resize: none;
+    &:focus {
+      box-shadow: 0 0 0 1px colors.$body-grey;
+    }
+  }
+
+  input {
+    padding-right: 25px;
+  }
+
+  input:required,
+  textarea:required {
+    border-color: colors.$royal-blue;
+    &:focus {
+      box-shadow: 0 0 0 1px colors.$royal-blue;
+    }
+  }
+
+  input:disabled,
+  textarea:disabled {
+    border-color: colors.$inactive-grey;
+    background-color: colors.$white;
+    &:hover {
+      border-color: colors.$inactive-grey;
+    }
+  }
+
+  label {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    font-size: 15px;
+    text-transform: capitalize;
+    transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+    top: 15px;
+    cursor: text;
+    background-color: colors.$white;
+    padding: 0 5px;
+  }
+
+  p {
+    margin: 5px 0 0 15px;
+    font-size: base.$font-size-smaller;
+    color: colors.$red;
+  }
+}
+
+.floatingInputError {
+  input,
+  textarea {
+    border-color: colors.$red !important;
+    box-shadow: none !important;
+  }
+  label {
+    color: colors.$red;
+  }
+}

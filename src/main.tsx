@@ -11,6 +11,8 @@ import {
   UnauthenticatedTemplate,
 } from 'common/authentication/authentication-provider';
 import NotMatch from 'components/not-match/not-match';
+import 'common/sass/styles/base-elements.scss';
+import 'common/sass/styles/base-inputs.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
