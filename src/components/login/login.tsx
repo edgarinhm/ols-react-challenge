@@ -3,38 +3,55 @@ import styles from './login.module.scss';
 import { FormEvent, useId, useState } from 'react';
 import { FormControl } from 'common/components/form-control/form-control';
 import { Link } from 'react-router-dom';
-
-const initialState = {
-  username: '',
-  password: '',
-  expireSession: false,
-};
-
-type LoginFormFields = typeof initialState;
+import { GetSignInLogin } from 'common/services/login-service';
+import { LoginFieldsModel, loginFields } from './initial-data';
+import { useLoginValidator } from './use-login-validator';
+import { Spinner } from 'common/components/spinner/spinner';
+import { ValidateAuthenticateUser } from 'common/authentication/autentication';
 
 const Login = (): JSX.Element => {
   const id = useId();
-  const [loginFormFields, setLoginFormFields] =
-    useState<LoginFormFields>(initialState);
+  const [loginForm, setLoginForm] = useState<LoginFieldsModel>(loginFields);
+  const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleOnSubmit = (event: FormEvent): void => {
+  const [hasError, errors] = useLoginValidator(loginForm);
+
+  const handleOnSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
-    console.log('loginFormFields', loginFormFields);
+    setSubmitted(true);
+
+    if (!hasError) {
+      setIsLoading(true);
+      try {
+        const isAuthenticated = await ValidateAuthenticateUser(
+          loginForm.username,
+          loginForm.password
+        );
+        if (!isAuthenticated) {
+          console.log('user not valid');
+        }
+      } catch (error) {
+        console.log('error', error);
+      }
+    }
+    setIsLoading(false);
   };
 
   const onUserNameChange = (value: string): void => {
-    setLoginFormFields((state) => ({ ...state, username: value }));
+    setLoginForm((state) => ({ ...state, username: value }));
   };
 
   const onPasswordChange = (value: string): void => {
-    setLoginFormFields((state) => ({ ...state, password: value }));
+    setLoginForm((state) => ({ ...state, password: value }));
   };
   const onCheckboxChange = (): void => {
-    setLoginFormFields((state) => ({
+    setLoginForm((state) => ({
       ...state,
       expireSession: !state.expireSession,
     }));
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.login}>
@@ -53,14 +70,18 @@ const Login = (): JSX.Element => {
                 id={`${id}-username`}
                 type="text"
                 placeholder={'Nombre de usuario Ej: nombre.apellido'}
-                onChange={(event) => onPasswordChange(event.target.value)}
+                onChange={(event) => onUserNameChange(event.target.value)}
                 className={styles.input}
+                errors={errors.userName}
+                showErrors={submitted}
               />
               <FormControl.Input
                 id={`${id}-password`}
                 type="password"
-                onChange={(event) => onUserNameChange(event.target.value)}
+                onChange={(event) => onPasswordChange(event.target.value)}
                 placeholder={'Aqui va tu constraseña'}
+                errors={errors.password}
+                showErrors={submitted}
               />
               <button type="submit" className={styles.loginButton}>
                 {'Ingresar'}
@@ -68,7 +89,7 @@ const Login = (): JSX.Element => {
               <div className={styles.actions}>
                 <FormControl.CheckInput
                   type="checkbox"
-                  checked={loginFormFields.expireSession}
+                  checked={loginForm.expireSession}
                   id={`${id}-expire-session`}
                   label={'Permanecer Conectado'}
                   labelClassName={styles.standardLabel}
@@ -80,6 +101,7 @@ const Login = (): JSX.Element => {
           </div>
         </div>
       </div>
+      <Spinner show={isLoading} />
     </div>
   );
 };

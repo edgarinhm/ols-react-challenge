@@ -1,4 +1,9 @@
 export interface UserModel {
-  userId: number;
-  username: string;
+  id: number;
+  name: string;
+  lastName: string;
+  urlPhoto: string;
+  rol: number;
+  list: string;
+  area: string;
 }

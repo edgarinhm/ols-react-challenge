@@ -1,13 +1,20 @@
 import { UserModel } from 'common/models/user/user-model';
 import { axiosInstance } from './api/api-base';
-import { User } from './api/api-routes';
+import { Login, Users } from './api/api-routes';
+import { loginModel } from 'common/models/user/login-model';
 
-export const GetUser = async (
-  username: string,
+export const GetSignInLogin = async (
+  user: string,
   password: string
-): Promise<UserModel> => {
-  const url = User.get();
+): Promise<loginModel[]> => {
+  const url = Login.get();
   return (
-    await axiosInstance.get<UserModel>(url, { params: { username, password } })
+    await axiosInstance.get<loginModel[]>(url, { params: { user, password } })
   ).data;
+};
+
+export const GetUser = async (userId: number): Promise<UserModel> => {
+  const url = Users.get();
+  return (await axiosInstance.get<UserModel>(url, { params: { id: userId } }))
+    .data;
 };

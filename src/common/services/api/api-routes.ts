@@ -1,3 +1,7 @@
-export const User = {
-  get: (): string => '/user',
+export const Login = {
+  get: (): string => '/login',
+};
+
+export const Users = {
+  get: (): string => `/users`,
 };

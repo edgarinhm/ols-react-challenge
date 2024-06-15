@@ -13,6 +13,7 @@ import {
 import NotMatch from 'components/not-match/not-match';
 import 'common/sass/styles/base-elements.scss';
 import 'common/sass/styles/base-inputs.scss';
+import { ApiBaseProvider } from 'common/services/api/api-base';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -28,13 +29,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       >
         <AuthenticationProvider>
           <AuthenticatedTemplate>
-            <App />
+            <ApiBaseProvider>
+              <App />
+            </ApiBaseProvider>
           </AuthenticatedTemplate>
           <UnauthenticatedTemplate>
-            <Routes>
-              <Route path={routes.login.name} element={<Login />} />
-              <Route path="*" element={<NotMatch />} />
-            </Routes>
+            <ApiBaseProvider>
+              <Routes>
+                <Route path={routes.login.name} element={<Login />} />
+                <Route path="*" element={<NotMatch />} />
+              </Routes>
+            </ApiBaseProvider>
           </UnauthenticatedTemplate>
         </AuthenticationProvider>
       </ErrorBoundary>
