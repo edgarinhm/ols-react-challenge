@@ -11,6 +11,7 @@ export const useAuthentication = (): {
     password: string
   ) => Promise<boolean>;
 } => {
+  const authenticated = sessionStorage.getItem('authenticated');
   const clearStorage = (): void => {
     localStorage.clear();
     sessionStorage.clear();
@@ -28,11 +29,9 @@ export const useAuthentication = (): {
 
   const handleAuthenticatedRedirect = useCallback(
     async (redirectUrl: string): Promise<void> => {
-      return !!sessionStorage.getItem('authenticated')
-        ? OpenWindow(redirectUrl, '_self')
-        : undefined;
+      return !!authenticated ? OpenWindow(redirectUrl, '_self') : undefined;
     },
-    []
+    [authenticated]
   );
 
   const validateAuthenticateUser = useCallback(
@@ -45,7 +44,6 @@ export const useAuthentication = (): {
         const userData = await GetUser(user.id);
         sessionStorage.setItem('user', JSON.stringify(userData));
         sessionStorage.setItem('authenticated', 'true');
-
         return true;
       } else {
         return false;

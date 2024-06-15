@@ -3,13 +3,16 @@
 @use 'common/sass/styles/base-style-and-scale.module.scss' as *;
 @use 'common/sass/mixins/tooltip.module.scss' as *;
 
-.layout {
+@use 'common/sass/styles/z-index.module.scss' as z;
+
+.topBar {
   display: flex;
   flex-direction: row;
   font-family: $base-font-family;
   font-size: $font-size-small;
-  //color: $white;
-  box-shadow: 0 0 10px 0 rgba($black, 0.2);
+  background-color: $white;
+  box-shadow: 0 5px 21px -5px rgba($black, 0.2);
+  z-index: z.$z-background;
 
   &.training {
     background-color: $orange;
@@ -58,7 +61,7 @@
       }
     }
 
-    .menuBtn {
+    .sideBarMenuBtn {
       display: inline-block;
       position: relative;
       transition: transform 2s;
@@ -87,6 +90,34 @@
 
     > * {
       padding-left: 30px;
+    }
+
+    .notification {
+      position: relative;
+      padding: 0;
+      text-align: center;
+      cursor: pointer;
+      svg {
+        font-size: $font-size-larger;
+        margin-right: 0;
+        vertical-align: middle;
+      }
+    }
+
+    .count {
+      position: absolute;
+      left: 36%;
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      top: 1px;
+      display: flex;
+      justify-content: center;
+      font-size: $font-size-smaller;
+    }
+
+    .menuBtn {
+      padding: 0 1.25rem 0 1.25rem;
     }
   }
 }

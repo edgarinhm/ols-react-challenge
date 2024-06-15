@@ -10,7 +10,7 @@ import {
   AuthenticationProvider,
   UnauthenticatedTemplate,
 } from 'common/authentication/authentication-provider';
-import NotMatch from 'components/not-match/not-match';
+import NoMatch from 'components/no-match/no-match';
 import 'common/sass/styles/base-elements.scss';
 import 'common/sass/styles/base-inputs.scss';
 import { ApiBaseProvider } from 'common/services/api/api-base';
@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <ApiBaseProvider>
               <Routes>
                 <Route path={routes.login.name} element={<Login />} />
-                <Route path="*" element={<NotMatch />} />
+                <Route path="*" element={<NoMatch />} />
               </Routes>
             </ApiBaseProvider>
           </UnauthenticatedTemplate>

@@ -5,21 +5,23 @@ import { useAuthentication } from 'common/authentication/autentication';
 import { PopoverActions } from 'common/models/popover-actions';
 import {
   ActionsPopover,
-  GearButton,
+  MenuButton,
 } from 'common/components/popover/actions-popover';
 import { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faBell } from '@fortawesome/free-solid-svg-icons';
+import badgeStyles from 'common/sass/modules/badges.module.scss';
+import Avatar from './avatar';
 
 const TopBar = () => {
   const { Environment } =
     window['environment-config' as keyof typeof window] ?? {};
   const env: string = !Environment ? import.meta.env.MODE : Environment;
   const environment = GetEnvironmentFromLocationUrl();
-  const username = 'Edgar';
 
   const popoverButtonRef = useRef<HTMLDivElement>(null);
 
+  const notifications: string[] = [];
   const { handleLogout } = useAuthentication();
 
   const commonMenuOptions: PopoverActions[] = [
@@ -27,12 +29,16 @@ const TopBar = () => {
   ];
 
   return (
-    <div className={`${styles.layout} ${styles[env.toLowerCase()]}`}>
+    <div className={`${styles.topBar} ${styles[env.toLowerCase()]}`}>
       <div className={styles.userMenuEnvironment}>
         <span className={styles.brand}>
           <img src={logoImg} alt={'logo'} />
         </span>
-        <button className={styles.menuBtn}>
+        <button
+          type="button"
+          className={styles.sideBarMenuBtn}
+          title="sidebar menu"
+        >
           <FontAwesomeIcon icon={faBars} />
         </button>
         <span className={styles.environment}>
@@ -40,16 +46,21 @@ const TopBar = () => {
         </span>
       </div>
       <div className={styles.userMenu}>
-        <span>
-          {'Logged in as '}
-          <strong>{username}</strong>
-        </span>
-        <div className={styles.gear}>
+        <div className={styles.notification}>
+          <FontAwesomeIcon icon={faBell} />
+          {!!notifications?.length && (
+            <span className={`${badgeStyles.warningRounded} ${styles.count}`}>
+              {notifications}
+            </span>
+          )}
+        </div>
+        <Avatar url={''} />
+        <div className={styles.menuBtn}>
           <ActionsPopover
             menuOptions={commonMenuOptions}
             placement={'bottom-end'}
           >
-            <GearButton ref={popoverButtonRef} />
+            <MenuButton ref={popoverButtonRef} />
           </ActionsPopover>
         </div>
       </div>

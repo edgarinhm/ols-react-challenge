@@ -1,0 +1,14 @@
+@use 'common/sass/styles/base-style-and-scale.module.scss' as sizes;
+@use 'common/sass/styles/base-style-and-scale.module.scss' as *;
+
+.avatar {
+  cursor: pointer;
+  img,
+  svg {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    vertical-align: middle;
+    border-style: solid;
+  }
+}

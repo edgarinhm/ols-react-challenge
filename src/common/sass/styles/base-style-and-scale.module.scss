@@ -65,7 +65,7 @@ $base-focus-border: var.$focus-border-color-base;
 $base-background-color: var.$bg-color-base;
 $secondary-background-color: colors.$ghost-grey;
 $dark-background-color: colors.$dark-grey;
-$side-menu-active: #63666d;
+$side-menu-active: var.$side-menu-active-base;
 $page-shadow-color: rgba(0, 0, 0, 0.12);
 $page-overlay-color: rgba(0, 0, 0, 0.4);
 $active-refund-section: rgba(171, 210, 129, 0.1);

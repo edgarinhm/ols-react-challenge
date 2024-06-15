@@ -8,6 +8,12 @@ const routes = {
   dashboard: {
     name: '/dashboard',
   },
+  projects: {
+    name: '/projects',
+  },
+  users: {
+    name: '/users',
+  },
 } as const;
 
 export { routes };

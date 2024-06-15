@@ -1,7 +1,7 @@
 @use 'common/sass/styles/colors.module.scss';
 
 $em-base: 16px;
-$bg-color-base: colors.$white;
+$bg-color-base: colors.$very-pale-white-blue;
 $btn-primary-base: colors.$dark-moderate-blue;
 $btn-primary-active-base: colors.$dark-moderate-blue;
 $btn-secondary-base: colors.$dark-grayish-blue;
@@ -12,3 +12,4 @@ $focus-border-color-base: colors.$es-blue;
 $card-border-color: colors.$very-light-gray;
 $card-title-color: colors.$light-black;
 $card-description-color: colors.$dark-grayish-blue;
+$side-menu-active-base: colors.$dark-moderate-blue;

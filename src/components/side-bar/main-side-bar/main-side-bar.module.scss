@@ -1,0 +1,105 @@
+@use 'common/sass/styles/fonts.module.scss' as *;
+@use 'common/sass/styles/colors.module.scss' as *;
+@use 'common/sass/styles/base-style-and-scale.module.scss' as *;
+
+.mainSideBar {
+  //display: flex;
+  //overflow: hidden;
+  min-height: calc(100vh - 60px);
+  background: $white;
+
+  nav {
+    background-color: $body-grey;
+    box-shadow: 2px 0 6px 0 rgba($dark-grey, 0.5);
+    transition: all 400ms ease-out;
+    display: flex;
+    flex-flow: column nowrap;
+    width: 160px;
+    font-family: $base-font-family;
+    font-size: $font-size-smaller;
+    color: $grey;
+    text-transform: uppercase;
+    align-items: center;
+
+    &.collapsed {
+      width: 84px;
+
+      span {
+        display: none;
+      }
+    }
+  }
+
+  .active {
+    @extend .navItem;
+    background-color: $side-menu-active;
+  }
+
+  nav > * {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+    align-items: center;
+    color: $grey;
+
+    &:first-child {
+      img {
+        margin: 15px 0 19px 0;
+      }
+
+      hr {
+        align-self: stretch;
+        border: none;
+        height: 1px;
+        background-color: $med-grey;
+      }
+    }
+
+    &:last-child {
+      margin: auto 0 48px 0;
+      cursor: pointer;
+      a {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        color: $grey;
+      }
+
+      a > span {
+        padding-left: 6px;
+      }
+
+      a:focus,
+      a:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  nav > a:hover {
+    text-decoration: none;
+  }
+
+  .navItem {
+    padding: 10px 0;
+
+    span {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .active {
+      background-color: $side-menu-active;
+    }
+
+    &:hover {
+      color: $white;
+      background-color: $es-blue;
+      transition: all 200ms ease-out;
+    }
+  }
+
+  i {
+    font-size: 20px;
+  }
+}

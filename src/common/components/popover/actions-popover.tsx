@@ -10,6 +10,7 @@ import {
   faCaretDown,
   faChevronCircleRight,
   faEllipsisVertical,
+  faEllipsis,
 } from '@fortawesome/free-solid-svg-icons';
 export const GearButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
   return (
@@ -50,11 +51,23 @@ export const MenuButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
   return (
     <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
       <div>
-        <FontAwesomeIcon icon={faEllipsisVertical} />
+        <FontAwesomeIcon icon={faEllipsis} />
       </div>
     </div>
   );
 });
+
+export const MenuVerticalButton = forwardRef<HTMLDivElement>(
+  (_, ref): JSX.Element => {
+    return (
+      <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
+        <div>
+          <FontAwesomeIcon icon={faEllipsisVertical} />
+        </div>
+      </div>
+    );
+  }
+);
 
 export const CaretDownButton = forwardRef<HTMLDivElement>(
   (_, ref): JSX.Element => {
