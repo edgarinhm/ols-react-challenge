@@ -1,0 +1,12 @@
+.layout {
+    display: grid;
+    width: 100vw;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: 1fr;
+    overflow: auto;
+  }
+  
+  .content {
+    overflow: auto;
+  }
+  

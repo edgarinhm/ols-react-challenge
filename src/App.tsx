@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import styles from './app.module.scss';
 import { AppRouter } from './Router';
-import { ApiBaseProvider } from 'common/services/api/api-base';
+import TopBar from 'components/topbar/top-bar';
 
 const App = (): JSX.Element => {
   return (
@@ -10,6 +10,7 @@ const App = (): JSX.Element => {
         path={'*'}
         element={
           <div className={styles.app}>
+            <TopBar />
             <AppRouter />
           </div>
         }
