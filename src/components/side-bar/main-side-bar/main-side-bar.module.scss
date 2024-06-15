@@ -1,16 +1,16 @@
 @use 'common/sass/styles/fonts.module.scss' as *;
 @use 'common/sass/styles/colors.module.scss' as *;
 @use 'common/sass/styles/base-style-and-scale.module.scss' as *;
+@use 'common/sass/styles/_variables.scss' as var;
 
 .mainSideBar {
-  //display: flex;
-  //overflow: hidden;
+  display: flex;
+  overflow: hidden;
   min-height: calc(100vh - 60px);
   background: $white;
 
   nav {
-    background-color: $body-grey;
-    box-shadow: 2px 0 6px 0 rgba($dark-grey, 0.5);
+    background-color: $white;
     transition: all 400ms ease-out;
     display: flex;
     flex-flow: column nowrap;
@@ -20,6 +20,9 @@
     color: $grey;
     text-transform: uppercase;
     align-items: center;
+    margin-top: 1.45rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 
     &.collapsed {
       width: 84px;
@@ -33,11 +36,12 @@
   .active {
     @extend .navItem;
     background-color: $side-menu-active;
+    border-radius: 8px;
   }
 
   nav > * {
     display: flex;
-    flex-flow: column nowrap;
+    justify-content: space-around;
     width: 100%;
     align-items: center;
     color: $grey;
@@ -54,26 +58,6 @@
         background-color: $med-grey;
       }
     }
-
-    &:last-child {
-      margin: auto 0 48px 0;
-      cursor: pointer;
-      a {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        color: $grey;
-      }
-
-      a > span {
-        padding-left: 6px;
-      }
-
-      a:focus,
-      a:hover {
-        text-decoration: none;
-      }
-    }
   }
 
   nav > a:hover {
@@ -81,11 +65,11 @@
   }
 
   .navItem {
-    padding: 10px 0;
+    margin-top: 0.2rem;
+    padding: 0.8125rem 1.937rem 0.8125rem 1rem;
 
     span {
-      display: block;
-      margin-top: 10px;
+      display: flex;
     }
 
     .active {
@@ -94,8 +78,9 @@
 
     &:hover {
       color: $white;
-      background-color: $es-blue;
+      background-color: var.$btn-primary-base;
       transition: all 200ms ease-out;
+      border-radius: 8px;
     }
   }
 

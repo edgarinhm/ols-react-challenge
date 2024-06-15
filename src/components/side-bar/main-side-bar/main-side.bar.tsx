@@ -11,6 +11,7 @@ import {
 const MainSideBar = () => {
   const hasAccessToProjectsPage = false;
   const hasAccessToUsersPage = false;
+  const isCollapsed = false;
   const menuItems = [
     {
       text: 'Dashboard',
@@ -32,23 +33,25 @@ const MainSideBar = () => {
   ];
   return (
     <div className={styles.mainSideBar}>
-      {menuItems
-        .filter((item) => !item.isHidden)
-        .map((menuItem) => {
-          return (
-            <NavLink
-              tabIndex={0}
-              key={menuItem.text}
-              className={({ isActive }) =>
-                isActive ? styles.active : styles.navItem
-              }
-              to={menuItem.route}
-            >
-              <FontAwesomeIcon icon={menuItem.iconClass} />
-              <span>{menuItem.text}</span>
-            </NavLink>
-          );
-        })}
+      <nav className={isCollapsed ? styles.collapsed : ''}>
+        {menuItems
+          .filter((item) => !item.isHidden)
+          .map((menuItem) => {
+            return (
+              <NavLink
+                tabIndex={0}
+                key={menuItem.text}
+                className={({ isActive }) =>
+                  isActive ? styles.active : styles.navItem
+                }
+                to={menuItem.route}
+              >
+                <FontAwesomeIcon icon={menuItem.iconClass} />
+                <span>{menuItem.text}</span>
+              </NavLink>
+            );
+          })}
+      </nav>
     </div>
   );
 };
