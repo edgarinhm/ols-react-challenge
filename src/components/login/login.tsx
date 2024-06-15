@@ -20,7 +20,7 @@ const Login = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [hasError, errors] = useLoginValidator(loginForm);
-  const redirectURL = routes.home.name;
+  const redirectURL = routes.dashboard.name;
 
   const handleOnSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
@@ -60,7 +60,7 @@ const Login = (): JSX.Element => {
   };
 
   useEffect(() => {
-    HandleAuthenticatedRedirect(routes.dashboard.name);
+    HandleAuthenticatedRedirect(redirectURL);
   }, []);
 
   return (
