@@ -5,6 +5,9 @@ const routes = {
   home: {
     name: '/',
   },
+  dashboard: {
+    name: '/dashboard',
+  },
 } as const;
 
 export { routes };

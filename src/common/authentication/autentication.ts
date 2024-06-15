@@ -24,7 +24,7 @@ export const HandleLoginRedirect = (redirectUrl: string): void => {
   OpenWindow(redirectUrl, '_self');
 };
 
-export const HandleAuthenticatedRedirect = (redirectUrl: string) => {
+export const HandleAuthenticatedRedirect = (redirectUrl: string): void => {
   return !!sessionStorage.getItem('authenticated')
     ? OpenWindow(redirectUrl, '_self')
     : undefined;

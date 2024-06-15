@@ -60,7 +60,7 @@ const Login = (): JSX.Element => {
   };
 
   useEffect(() => {
-    HandleAuthenticatedRedirect(redirectURL);
+    HandleAuthenticatedRedirect(routes.dashboard.name);
   }, []);
 
   return (
