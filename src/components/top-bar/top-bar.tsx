@@ -30,10 +30,12 @@ const TopBar = () => {
 
   return (
     <div className={`${styles.topBar} ${styles[env.toLowerCase()]}`}>
-      <div className={styles.userMenuEnvironment}>
-        <span className={styles.brand}>
+      <div className={styles.brand}>
+        <a href="#">
           <img src={logoImg} alt={'logo'} />
-        </span>
+        </a>
+      </div>
+      <div className={styles.userMenuEnvironment}>
         <button
           type="button"
           className={styles.sideBarMenuBtn}

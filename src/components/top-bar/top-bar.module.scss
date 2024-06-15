@@ -47,18 +47,32 @@
     align-items: center;
   }
 
+  .brand {
+    display: flex;
+    justify-content: center;
+    width: 235px;
+    height: 60px;
+    text-align: start;
+    a {
+      color: #27367f;
+      font-size: 1.5rem;
+      margin-right: 0;
+      padding: 0.25rem 0;
+    }
+    img {
+      width: 43px;
+      height: 43px;
+    }
+  }
+
   .userMenuEnvironment {
     @extend .innerContainer;
     justify-content: flex-start;
+    width: calc(50% - 235px);
+    height: 60px;
+
     > * {
       padding-right: 30px;
-    }
-
-    .brand {
-      img {
-        width: 43px;
-        height: 43px;
-      }
     }
 
     .sideBarMenuBtn {
@@ -69,7 +83,7 @@
       transform-origin: 42% 41%;
       cursor: pointer;
       border: none;
-      padding: 0 2rem 0 2rem;
+      //padding: 0 2rem 0 2rem;
       background-color: transparent;
     }
   }
