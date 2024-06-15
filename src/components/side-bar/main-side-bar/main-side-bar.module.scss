@@ -42,7 +42,6 @@
 
   nav > * {
     display: flex;
-    justify-content: space-around;
     width: 100%;
     align-items: center;
     color: $grey;
@@ -58,6 +57,9 @@
         height: 1px;
         background-color: $med-grey;
       }
+    }
+    svg {
+      margin-right: 1rem;
     }
   }
 
