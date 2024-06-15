@@ -1,13 +1,17 @@
 import logoImg from '/logo.png';
 import styles from './login.module.scss';
-import { FormEvent, useId, useState } from 'react';
+import { FormEvent, useEffect, useId, useState } from 'react';
 import { FormControl } from 'common/components/form-control/form-control';
 import { Link } from 'react-router-dom';
-import { GetSignInLogin } from 'common/services/login-service';
 import { LoginFieldsModel, loginFields } from './initial-data';
 import { useLoginValidator } from './use-login-validator';
 import { Spinner } from 'common/components/spinner/spinner';
-import { ValidateAuthenticateUser } from 'common/authentication/autentication';
+import {
+  HandleAuthenticatedRedirect,
+  HandleLoginRedirect,
+  ValidateAuthenticateUser,
+} from 'common/authentication/autentication';
+import { routes } from '../../routes';
 
 const Login = (): JSX.Element => {
   const id = useId();
@@ -16,6 +20,7 @@ const Login = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [hasError, errors] = useLoginValidator(loginForm);
+  const redirectURL = routes.home.name;
 
   const handleOnSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
@@ -29,7 +34,9 @@ const Login = (): JSX.Element => {
           loginForm.password
         );
         if (!isAuthenticated) {
-          console.log('user not valid');
+          console.log('user not valid!');
+        } else {
+          HandleLoginRedirect(redirectURL);
         }
       } catch (error) {
         console.log('error', error);
@@ -51,6 +58,10 @@ const Login = (): JSX.Element => {
       expireSession: !state.expireSession,
     }));
   };
+
+  useEffect(() => {
+    HandleAuthenticatedRedirect(redirectURL);
+  }, []);
 
   return (
     <div className={styles.container}>
