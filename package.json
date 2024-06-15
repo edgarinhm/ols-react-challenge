@@ -11,6 +11,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@floating-ui/react-dom-interactions": "^0.13.3",
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "axios": "^1.7.2",
     "change-case": "^5.4.4",
     "happy-dom": "^14.12.0",

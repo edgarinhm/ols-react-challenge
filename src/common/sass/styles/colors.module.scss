@@ -1,4 +1,4 @@
-@use "sass:color";
+@use 'sass:color';
 
 $white: rgb(255, 255, 255);
 $black: rgb(0, 0, 0);
@@ -51,6 +51,7 @@ $light-green: rgb(234, 245, 225);
 $breakline-gray: rgb(206, 206, 206, 1);
 $dark-moderate-blue: rgb(75, 73, 172);
 $dark-grayish-blue: rgb(163, 164, 165);
+$very-light-gray: rgb(227, 227, 227);
 :export {
   white: $white;
   black: $black;
@@ -97,6 +98,7 @@ $dark-grayish-blue: rgb(163, 164, 165);
   dark-orange: $dark-orange;
   green: $green;
   medium-light-orange: $medium-light-orange;
-  dark-moderate-blue:$dark-moderate-blue;
-  dark-grayish-blue:$dark-grayish-blue;
+  dark-moderate-blue: $dark-moderate-blue;
+  dark-grayish-blue: $dark-grayish-blue;
+  very-light-gray: $very-light-gray;
 }

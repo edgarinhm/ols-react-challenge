@@ -1,0 +1,68 @@
+@use 'common/sass/styles/fonts.module.scss' as *;
+@use 'common/sass/styles/colors.module.scss' as *;
+@use 'common/sass/styles/base-style-and-scale.module.scss' as *;
+@use 'common/sass/styles/z-index.module.scss' as *;
+@use 'common/sass/mixins/buttons.module.scss' as buttons;
+@use 'common/sass/mixins/popover.module.scss' as popover;
+
+.actionsPopover {
+  position: relative;
+  cursor: pointer;
+}
+
+.popoverMenuButton {
+  display: flex;
+  flex-direction: row;
+
+  &:hover .gear {
+    transform: rotate(180deg);
+  }
+
+  .gear {
+    transition: transform 2s;
+    transition: 0.8s;
+    transform-origin: 42% 41%;
+  }
+
+  .caretDown {
+    padding-left: 1px;
+  }
+}
+
+.popoverCaretButton {
+  width: 10px;
+  height: 37px;
+  @include buttons.btn;
+  @include buttons.btn-special;
+}
+
+.popoverContent {
+  @include popover.content;
+
+  div {
+    padding: 6px 18px;
+    background-color: $white;
+    color: $dark-blue;
+
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $es-blue;
+      outline: none;
+    }
+  }
+
+  .disabled {
+    color: $med-grey;
+    cursor: not-allowed;
+
+    &:hover,
+    &:focus {
+      background-color: $greyish-brown;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+  }
+}

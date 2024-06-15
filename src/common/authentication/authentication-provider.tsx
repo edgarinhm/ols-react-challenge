@@ -1,19 +1,10 @@
 import { ReactNode } from 'react';
 
-const useAuthentication = (): void => {
-  const isAuthenticated = sessionStorage.getItem('authenticated');
-  if (!isAuthenticated) {
-    localStorage.clear();
-    sessionStorage.clear();
-  }
-};
-
 export const AuthenticationProvider = ({
   children,
 }: {
   children: ReactNode;
 }): JSX.Element => {
-  useAuthentication();
   return <div>{children}</div>;
 };
 

@@ -1,0 +1,39 @@
+@use 'common/sass/styles/colors.module.scss' as *;
+@use 'common/sass/styles/base-style-and-scale.module.scss' as base;
+
+.card {
+  &.transparent {
+    background: transparent;
+  }
+
+  border: none;
+
+  .cardBody {
+    padding: base.$base-card-padding-y base.$base-card-padding-x;
+
+    + .cardBody {
+      padding-top: 1rem;
+    }
+  }
+
+  .cardTitle {
+    color: base.$base-card-title-color;
+    margin-bottom: 1.2rem;
+    text-transform: capitalize;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  .cardSubtitle {
+    color: colors.$grey;
+    font-weight: 400;
+    margin-top: 0.625rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .cardDescription {
+    margin-bottom: 0.875rem;
+    font-weight: 400;
+    color: base.$base-card-description-color;
+  }
+}

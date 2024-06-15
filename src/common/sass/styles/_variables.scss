@@ -1,4 +1,4 @@
-@use "common/sass/styles/colors.module.scss";
+@use 'common/sass/styles/colors.module.scss';
 
 $em-base: 16px;
 $bg-color-base: colors.$white;
@@ -9,3 +9,6 @@ $btn-secondary-active-base: colors.$dark-grayish-blue;
 $btn-link-base: colors.$es-blue;
 $font-color-base: colors.$body-grey;
 $focus-border-color-base: colors.$es-blue;
+$card-border-color: colors.$very-light-gray;
+$card-title-color: colors.$light-black;
+$card-description-color: colors.$dark-grayish-blue;

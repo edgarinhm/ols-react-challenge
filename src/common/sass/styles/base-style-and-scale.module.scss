@@ -1,8 +1,8 @@
-@use "common/sass/styles/colors.module.scss";
-@use "common/sass/functions/modular-scale.scss" as scale;
-@use "common/sass/styles/_variables.scss" as var;
-@use "common/sass/styles/z-index.module.scss" as z;
-@use "sass:math";
+@use 'common/sass/styles/colors.module.scss';
+@use 'common/sass/functions/modular-scale.scss' as scale;
+@use 'common/sass/styles/_variables.scss' as var;
+@use 'common/sass/styles/z-index.module.scss' as z;
+@use 'sass:math';
 
 $base-font-size: var.$em-base;
 $base-scaler: scale.$major-second;
@@ -73,8 +73,10 @@ $inactive-refund-section: var.$bg-color-base;
 
 // Forms
 $form-box-shadow: inset 0 1px 3px rgba(#000, 0.06);
-$form-box-shadow-focus: $form-box-shadow,
-  0 0 5px adjust-color(var.$focus-border-color-base, $lightness: -5%, $alpha: -0.3);
+$form-box-shadow-focus:
+  $form-box-shadow,
+  0 0 5px
+    adjust-color(var.$focus-border-color-base, $lightness: -5%, $alpha: -0.3);
 
 // Animations
 $base-duration: 150ms;
@@ -111,14 +113,26 @@ $panel-warning-heading-bg: #fff !default;
 
 $panel-danger-heading-bg: #fff !default;
 
-// drawer
+// Drawer
 $drawerViewPortWidth: 638px;
 $drawerBorderWidth: 1px;
 
-// modal
+// Modal
 $modal-title-padding: 15px !default;
 $modal-title-line-height: $base-line-height !default;
 $modal-backdrop-bg: #000 !default;
 $modal-backdrop-opacity: 0.5;
 
-$line-height-computed: math.floor(($font-size-base * $base-line-height)) !default;
+$line-height-computed: math.floor(
+  ($font-size-base * $base-line-height)
+) !default;
+
+// Cards
+$base-card-spacing-y: 2.5rem;
+$base-card-padding-y: 1.25rem;
+$base-card-padding-x: 1.25rem;
+$base-card-border-radius: 20px;
+$base-card-box-shadow: none;
+$base-card-border-color: var.$card-border-color;
+$base-card-title-color: var.$card-title-color;
+$base-card-description-color: var.$card-description-color;

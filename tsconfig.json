@@ -21,6 +21,8 @@
       "@/*": ["./src/*"],
       "common/*": ["./common/*"],
       "components/*": ["./components/*"],
+      "routes": ["./routes"],
+      "router": ["./Router"],
     },  
 
     /* Linting */

@@ -1,0 +1,92 @@
+@use 'common/sass/styles/fonts.module.scss' as *;
+@use 'common/sass/styles/colors.module.scss' as *;
+@use 'common/sass/styles/base-style-and-scale.module.scss' as *;
+@use 'common/sass/mixins/tooltip.module.scss' as *;
+
+.layout {
+  display: flex;
+  flex-direction: row;
+  font-family: $base-font-family;
+  font-size: $font-size-small;
+  //color: $white;
+  box-shadow: 0 0 10px 0 rgba($black, 0.2);
+
+  &.training {
+    background-color: $orange;
+  }
+
+  &.dev,
+  &.stage,
+  &.local {
+    background-color: $med-grey;
+  }
+
+  &.prod {
+    background-color: $es-blue;
+  }
+
+  i {
+    cursor: pointer;
+    position: relative;
+    top: 1px;
+  }
+
+  .link {
+    text-decoration: none;
+    color: $white;
+  }
+
+  .innerContainer {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 1px 10px 0px 10px;
+    align-items: center;
+  }
+
+  .userMenuEnvironment {
+    @extend .innerContainer;
+    justify-content: flex-start;
+    > * {
+      padding-right: 30px;
+    }
+
+    .brand {
+      img {
+        width: 43px;
+        height: 43px;
+      }
+    }
+
+    .menuBtn {
+      display: inline-block;
+      position: relative;
+      transition: transform 2s;
+      transition: 0.8s;
+      transform-origin: 42% 41%;
+      cursor: pointer;
+      border: none;
+      padding: 0 2rem 0 2rem;
+      background-color: transparent;
+    }
+  }
+
+  .tooltipBottom {
+    @include tooltipTopArrow;
+  }
+
+  .tooltipVisible {
+    opacity: 1;
+    visibility: visible;
+    width: 1150%;
+  }
+
+  .userMenu {
+    @extend .innerContainer;
+    justify-content: flex-end;
+
+    > * {
+      padding-left: 30px;
+    }
+  }
+}

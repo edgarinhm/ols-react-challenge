@@ -6,12 +6,8 @@ import { Link } from 'react-router-dom';
 import { LoginFieldsModel, loginFields } from './initial-data';
 import { useLoginValidator } from './use-login-validator';
 import { Spinner } from 'common/components/spinner/spinner';
-import {
-  HandleAuthenticatedRedirect,
-  HandleLoginRedirect,
-  ValidateAuthenticateUser,
-} from 'common/authentication/autentication';
-import { routes } from '../../routes';
+import { routes } from 'routes';
+import { useAuthentication } from 'common/authentication/autentication';
 
 const Login = (): JSX.Element => {
   const id = useId();
@@ -22,6 +18,12 @@ const Login = (): JSX.Element => {
   const [hasError, errors] = useLoginValidator(loginForm);
   const redirectURL = routes.dashboard.name;
 
+  const {
+    validateAuthenticateUser,
+    handleLoginRedirect,
+    handleAuthenticatedRedirect,
+  } = useAuthentication();
+
   const handleOnSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     setSubmitted(true);
@@ -29,14 +31,14 @@ const Login = (): JSX.Element => {
     if (!hasError) {
       setIsLoading(true);
       try {
-        const isAuthenticated = await ValidateAuthenticateUser(
+        const isAuthenticated = await validateAuthenticateUser(
           loginForm.username,
           loginForm.password
         );
         if (!isAuthenticated) {
           console.log('user not valid!');
         } else {
-          HandleLoginRedirect(redirectURL);
+          handleLoginRedirect(redirectURL);
         }
       } catch (error) {
         console.log('error', error);
@@ -60,7 +62,7 @@ const Login = (): JSX.Element => {
   };
 
   useEffect(() => {
-    HandleAuthenticatedRedirect(redirectURL);
+    handleAuthenticatedRedirect(redirectURL);
   }, []);
 
   return (
