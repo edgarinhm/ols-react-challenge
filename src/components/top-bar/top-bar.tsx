@@ -1,7 +1,7 @@
 import { GetEnvironmentFromLocationUrl } from "common/functions/environment";
 import styles from "./top-bar.module.scss";
 import logoImg from "/logo.png";
-import { useAuthentication } from "common/authentication/autentication";
+import { useAuthentication } from "common/authentication/authentication";
 import { PopoverActions } from "common/models/popover-actions";
 import { ActionsPopover, MenuButton } from "common/components/popover/actions-popover";
 import { useEffect, useRef } from "react";
