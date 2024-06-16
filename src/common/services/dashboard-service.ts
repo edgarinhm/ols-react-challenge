@@ -1,0 +1,38 @@
+import {
+  DashboardCards,
+  DashboardCpuReport,
+  DashboardReleaseResume,
+  DashboardReportCommits,
+  DashboardTodos,
+} from "./api/api-routes";
+import { axiosInstance } from "./api/api-base";
+import { DashboardCardModel } from "common/models/dashboard-card-model";
+import { DashboardTodoModel } from "common/models/dashboard-todo-model";
+import { DashboardCpuReportModel } from "common/models/dashboard-cpu-report-model";
+import { DashboardReportCommit } from "common/models/dashboard-report-commit-model";
+import { DashboardReleaseResumeModel } from "common/models/dashboard-release-resume-model";
+
+export const GetDashboardCards = async (): Promise<DashboardCardModel> => {
+  const url = DashboardCards.get();
+  return (await axiosInstance.get<DashboardCardModel>(url)).data;
+};
+
+export const GetDashboardTodos = async (): Promise<DashboardTodoModel[]> => {
+  const url = DashboardTodos.get();
+  return (await axiosInstance.get<DashboardTodoModel[]>(url)).data;
+};
+
+export const GetDashboardCpuReport = async (): Promise<DashboardCpuReportModel[]> => {
+  const url = DashboardCpuReport.get();
+  return (await axiosInstance.get<DashboardCpuReportModel[]>(url)).data;
+};
+
+export const GetDashboardReportCommits = async (): Promise<DashboardReportCommit[]> => {
+  const url = DashboardReportCommits.get();
+  return (await axiosInstance.get<DashboardReportCommit[]>(url)).data;
+};
+
+export const GetDashboardReleaseResume = async (): Promise<DashboardReleaseResumeModel> => {
+  const url = DashboardReleaseResume.get();
+  return (await axiosInstance.get<DashboardReleaseResumeModel>(url)).data;
+};

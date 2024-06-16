@@ -1,18 +1,34 @@
 @use "common/sass/styles/_variables.scss" as var;
 
 .dashboard {
-  display: flex;
+  display: grid;
 
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 1.5em 0;
+  grid-template-columns: min-content 2fr;
+  grid-template-rows: 1fr;
+  overflow: auto;
 
   .title {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 1.5em 0;
     h3 {
       margin-bottom: 0px;
     }
     .alertNotification {
       color: var.$btn-primary-base;
     }
+  }
+
+  .activityPanel {
+    grid-template-columns: min-content 2fr;
+    grid-template-rows: 1fr;
+    overflow: auto;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
   }
 }
