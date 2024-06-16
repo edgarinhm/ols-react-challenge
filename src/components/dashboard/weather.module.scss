@@ -1,13 +1,14 @@
 @use "common/sass/styles/colors.module.scss" as *;
-
-.cardBody {
+.weather {
   padding: 1.25rem 1.25rem;
   position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
+  background-color: $white;
   background-clip: border-box;
   border: 1px solid $white;
   border-radius: 20px;
+  justify-content: center;
 }

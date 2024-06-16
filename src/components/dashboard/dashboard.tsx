@@ -87,37 +87,37 @@ const Dashboard = () => {
             <span className={styles.alertNotification}>{`${alertCount} sin leer!`}</span>
           </h6>
         </div>
-        <div className={styles.weather}>
+        <div className={styles.body}>
           <Weather />
-        </div>
-        <div className={styles.activityPanel}>
-          <ActivityCard
-            title={projectsCardData.title}
-            bodyText={projectsCardData.message}
-            count={projectsCardData.count}
-            styleColor={""}
-          />
-          <ActivityCard
-            title={projectsInDevCardData.title}
-            bodyText={projectsInDevCardData.message}
-            count={projectsInDevCardData.count}
-            styleColor={""}
-          />
-          <ActivityCard
-            title={pendingNotificationsCardData.title}
-            bodyText={pendingNotificationsCardData.message}
-            count={pendingNotificationsCardData.count}
-            styleColor={""}
-          />
-          <ActivityCard
-            title={errorsDeployCardData.title}
-            bodyText={errorsDeployCardData.message}
-            count={errorsDeployCardData.count}
-            styleColor={""}
-          />
-        </div>
-        <div className={styles.reports}>
-          <Reports />
+          <div className={styles.activityPanel}>
+            <ActivityCard
+              title={projectsCardData.title}
+              bodyText={projectsCardData.message}
+              count={projectsCardData.count}
+              styleColor={styles.cardTale}
+            />
+            <ActivityCard
+              title={projectsInDevCardData.title}
+              bodyText={projectsInDevCardData.message}
+              count={projectsInDevCardData.count}
+              styleColor={styles.cardDarkBlue}
+            />
+            <ActivityCard
+              title={pendingNotificationsCardData.title}
+              bodyText={pendingNotificationsCardData.message}
+              count={pendingNotificationsCardData.count}
+              styleColor={styles.cardLightBlue}
+            />
+            <ActivityCard
+              title={errorsDeployCardData.title}
+              bodyText={errorsDeployCardData.message}
+              count={errorsDeployCardData.count}
+              styleColor={styles.cardLightDanger}
+            />
+          </div>
+          <div className={styles.reports}>
+            <Reports />
+          </div>
         </div>
       </div>
       <Spinner show={isLoading} text={"Loading Dashboard..."} />

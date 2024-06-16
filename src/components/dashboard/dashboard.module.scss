@@ -1,15 +1,12 @@
+@use "common/sass/styles/colors.module.scss" as *;
 @use "common/sass/styles/_variables.scss" as var;
 
 .dashboard {
   display: grid;
-
-  grid-template-columns: min-content 2fr;
-  grid-template-rows: 1fr;
-  overflow: auto;
+  padding-left: 15px;
+  padding-right: 15px;
 
   .title {
-    padding-left: 15px;
-    padding-right: 15px;
     margin: 1.5em 0;
     h3 {
       margin-bottom: 0px;
@@ -19,10 +16,18 @@
     }
   }
 
+  .body {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15px;
+  }
+
   .activityPanel {
-    grid-template-columns: min-content 2fr;
-    grid-template-rows: 1fr;
-    overflow: auto;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15px;
   }
 
   .row {
@@ -31,4 +36,24 @@
     margin-right: -15px;
     margin-left: -15px;
   }
+}
+
+.cardTale {
+  background: #7da0fa;
+  color: $white;
+}
+
+.cardDarkBlue {
+  background: #4747a1;
+  color: $white;
+}
+
+.cardLightBlue {
+  background: #7978e9;
+  color: $white;
+}
+
+.cardLightDanger {
+  background: #f3797e;
+  color: $white;
 }

@@ -1,5 +1,5 @@
-@use 'common/sass/styles/colors.module.scss' as *;
-@use 'common/sass/styles/base-style-and-scale.module.scss' as base;
+@use "common/sass/styles/colors.module.scss" as *;
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
 
 .card {
   &.transparent {
@@ -25,7 +25,7 @@
   }
 
   .cardSubtitle {
-    color: colors.$grey;
+    color: $grey;
     font-weight: 400;
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
@@ -35,5 +35,10 @@
     margin-bottom: 0.875rem;
     font-weight: 400;
     color: base.$base-card-description-color;
+  }
+
+  .cardTale {
+    background: #7da0fa;
+    color: $white;
   }
 }

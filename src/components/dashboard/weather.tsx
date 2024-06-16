@@ -1,6 +1,7 @@
 import { WeatherModel } from "common/models/weather-model";
 import { GetWeatherByCity } from "common/services/weather-service";
 import { useEffect, useState } from "react";
+import styles from "./weather.module.scss";
 
 const Weather = (): JSX.Element => {
   const [weather, setWeather] = useState<WeatherModel>();
@@ -21,7 +22,7 @@ const Weather = (): JSX.Element => {
   const weatherCity = weather?.list[0].name;
 
   return (
-    <div>
+    <div className={styles.weather}>
       {"WEATHER: "}
       {`${weatherCity}, ${weatherCondition}`}
       <div>

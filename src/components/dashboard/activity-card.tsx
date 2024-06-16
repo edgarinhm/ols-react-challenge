@@ -1,4 +1,5 @@
 import styles from "./activity-card.module.scss";
+
 interface ActivityCardProps {
   title: string;
   bodyText: string;
@@ -13,7 +14,7 @@ const ActivityCard = ({
   styleColor = "white",
 }: ActivityCardProps): JSX.Element => {
   return (
-    <div className={`${styles.card} ${styleColor}`}>
+    <div className={`${styles.cardBody} ${styleColor}`}>
       <div>{title}</div>
       <div>{count}</div>
       <div>{bodyText}</div>
