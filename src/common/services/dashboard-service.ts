@@ -8,7 +8,7 @@ import {
 import { axiosInstance } from "./api/api-base";
 import { DashboardCardModel } from "common/models/dashboard-card-model";
 import { DashboardTodoModel } from "common/models/dashboard-todo-model";
-import { DashboardServerReportModel } from "common/models/dashboard-cpu-report-model";
+import { DashboardServerReportModel } from "common/models/dashboard-server-report-model";
 import { DashboardReportCommit } from "common/models/dashboard-report-commit-model";
 import { DashboardReleaseResumeModel } from "common/models/dashboard-release-resume-model";
 
