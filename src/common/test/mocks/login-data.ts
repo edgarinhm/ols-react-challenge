@@ -1,11 +1,13 @@
-import { UserModel } from 'common/models/user/user-model';
-
-export const UserData: UserModel = {
-  id: 102,
-  name: 'test-name',
-  lastName: 'test-lastname',
-  urlPhoto: 'test-url-photo',
-  rol: 1,
-  list: 'VueJS|Angular|React',
-  area: 'test-soporte',
+export const LoginData = {
+  username: "test-username",
+  password: "Admin!12345",
 };
+
+export const LoginResponseData = [
+  {
+    id: 1,
+    userId: 1,
+    user: "test-username",
+    password: "Admin!12345",
+  },
+];

@@ -8,7 +8,7 @@ export const GetSignInLogin = async (user: string, password: string): Promise<lo
   return (await axiosInstance.get<loginModel[]>(url, { params: { user, password } })).data;
 };
 
-export const GetUser = async (userId: number): Promise<UserModel> => {
+export const GetUser = async (userId: number): Promise<UserModel[]> => {
   const url = Users.get();
-  return (await axiosInstance.get<UserModel[]>(url, { params: { id: userId } })).data[0];
+  return (await axiosInstance.get<UserModel[]>(url, { params: { id: userId } })).data;
 };

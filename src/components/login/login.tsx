@@ -35,6 +35,8 @@ const Login = (): JSX.Element => {
         if (!isAuthenticated) {
           console.log("user not valid!");
         } else {
+          console.log("logged In!");
+
           handleLoginRedirect(redirectURL);
         }
       } catch (error) {
@@ -92,6 +94,7 @@ const Login = (): JSX.Element => {
                 placeholder={"Aqui va tu constraseña"}
                 errors={errors.password}
                 showErrors={submitted}
+                data-qa={"password"}
               />
               <button type="submit" className={styles.loginButton}>
                 {"Ingresar"}
