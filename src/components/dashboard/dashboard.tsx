@@ -7,16 +7,16 @@ import { useEffect, useState } from "react";
 import { GetNotifications } from "common/services/notification-service";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { shallow } from "zustand/shallow";
-import { GetDashboardCards } from "common/services/dashboard-service";
+import { GetDashboardCards, GetDashboardServerReport } from "common/services/dashboard-service";
 import { Spinner } from "common/components/spinner/spinner";
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const name = useSharedStorage((state) => state.user?.name);
-  const { setDashboardState, notifications, dashboardCard } = useDashboardStorage(
+  const { setDashboardState, notifications, cards } = useDashboardStorage(
     (state) => ({
       notifications: state.notifications,
-      dashboardCard: state.dashboardCard,
+      cards: state.cards,
       setDashboardState: state.setState,
     }),
     shallow
@@ -26,13 +26,13 @@ const Dashboard = () => {
   const projectsCardData = {
     title: "Projectos Registrados",
     message: "Ultimo proyecto registrado hace 15 días",
-    count: dashboardCard?.projects,
+    count: cards?.projects,
   };
 
   const projectsInDevCardData = {
     title: "Projectos en Desarrollo",
     message: "Total de avance 22.00%",
-    count: dashboardCard?.projectsDev,
+    count: cards?.projectsDev,
   };
 
   const pendingNotificationsCardData = {
@@ -44,7 +44,7 @@ const Dashboard = () => {
   const errorsDeployCardData = {
     title: "Cantidad de Errores",
     message: "Último error hace 2 horas",
-    count: dashboardCard?.errorsDeploy,
+    count: cards?.errorsDeploy,
   };
 
   useEffect(() => {
@@ -64,17 +64,32 @@ const Dashboard = () => {
     const loadDashboardCardsData = async () => {
       setIsLoading(true);
       try {
-        const dashboardCard = await GetDashboardCards();
+        const cards = await GetDashboardCards();
         setDashboardState((state) => {
-          state.dashboardCard = dashboardCard;
+          state.cards = cards;
         });
       } catch (error) {
         console.log(error);
       }
       setIsLoading(false);
     };
+
+    const loadServerReportData = async () => {
+      setIsLoading(true);
+      try {
+        const serverReport = await GetDashboardServerReport();
+        setDashboardState((state) => {
+          state.serverReport = serverReport;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+      setIsLoading(false);
+    };
+
     loadNotificationsData();
     loadDashboardCardsData();
+    loadServerReportData();
   }, []);
 
   return (

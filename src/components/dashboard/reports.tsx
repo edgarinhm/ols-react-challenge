@@ -1,5 +1,11 @@
+import ServerReport from "./server-report";
+
 const Reports = (): JSX.Element => {
-  return <div>Reports</div>;
+  return (
+    <div>
+      <ServerReport />
+    </div>
+  );
 };
 
 export default Reports;

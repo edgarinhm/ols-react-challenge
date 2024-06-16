@@ -8,7 +8,7 @@ import {
 import { axiosInstance } from "./api/api-base";
 import { DashboardCardModel } from "common/models/dashboard-card-model";
 import { DashboardTodoModel } from "common/models/dashboard-todo-model";
-import { DashboardCpuReportModel } from "common/models/dashboard-cpu-report-model";
+import { DashboardServerReportModel } from "common/models/dashboard-cpu-report-model";
 import { DashboardReportCommit } from "common/models/dashboard-report-commit-model";
 import { DashboardReleaseResumeModel } from "common/models/dashboard-release-resume-model";
 
@@ -22,9 +22,9 @@ export const GetDashboardTodos = async (): Promise<DashboardTodoModel[]> => {
   return (await axiosInstance.get<DashboardTodoModel[]>(url)).data;
 };
 
-export const GetDashboardCpuReport = async (): Promise<DashboardCpuReportModel[]> => {
+export const GetDashboardServerReport = async (): Promise<DashboardServerReportModel> => {
   const url = DashboardCpuReport.get();
-  return (await axiosInstance.get<DashboardCpuReportModel[]>(url)).data;
+  return (await axiosInstance.get<DashboardServerReportModel>(url)).data;
 };
 
 export const GetDashboardReportCommits = async (): Promise<DashboardReportCommit[]> => {

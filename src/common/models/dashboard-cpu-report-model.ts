@@ -1,4 +1,4 @@
-export interface DashboardCpuReportModel {
+export interface DashboardServerReportModel {
   percentajeTime: number;
   deploys: number;
   time: [
