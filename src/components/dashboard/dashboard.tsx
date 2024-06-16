@@ -3,11 +3,21 @@ import styles from "./dashboard.module.scss";
 import ActivityCard from "./activity-card";
 import Weather from "./weather";
 import Reports from "./reports";
+import { useEffect } from "react";
+import { GetNotifications } from "common/services/notification-service";
+import { useDashboardStorage } from "common/state-management/dashboard-storage";
+import { shallow } from "zustand/shallow";
 
 const Dashboard = () => {
   const name = useSharedStorage((state) => state.user?.name);
-
-  const alertCount = 3;
+  const { setDashboardState, notifications } = useDashboardStorage(
+    (state) => ({
+      notifications: state.notifications,
+      setDashboardState: state.setState,
+    }),
+    shallow
+  );
+  const alertCount = notifications?.length;
 
   const projectsCardData = {
     title: "Projectos Registrados",
@@ -32,6 +42,20 @@ const Dashboard = () => {
     message: "Último error hace 2 horas",
     count: 502,
   };
+
+  useEffect(() => {
+    const loadNotificationsData = async () => {
+      try {
+        const notificacions = await GetNotifications();
+        setDashboardState((state) => {
+          state.notifications = notificacions;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadNotificationsData();
+  }, []);
 
   return (
     <div className={styles.dashboard}>

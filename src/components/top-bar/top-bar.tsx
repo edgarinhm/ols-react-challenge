@@ -12,6 +12,7 @@ import Avatar from "./avatar";
 import { useSharedStorage } from "common/state-management/shared-storage";
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { shallow } from "zustand/shallow";
+import { useDashboardStorage } from "common/state-management/dashboard-storage";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
@@ -20,7 +21,7 @@ const TopBar = () => {
 
   const popoverButtonRef = useRef<HTMLDivElement>(null);
 
-  const notifications: string[] = [];
+  const notifications = useDashboardStorage((state) => state.notifications);
   const { handleLogout } = useAuthentication();
 
   const commonMenuOptions: PopoverActions[] = [{ text: "Log Out", action: () => handleLogout() }];
@@ -66,7 +67,9 @@ const TopBar = () => {
         <div className={styles.notification}>
           <FontAwesomeIcon icon={faBell} />
           {!!notifications?.length && (
-            <span className={`${badgeStyles.warningRounded} ${styles.count}`}>{notifications}</span>
+            <span className={`${badgeStyles.warningRounded} ${styles.count}`}>
+              {notifications.length}
+            </span>
           )}
         </div>
         <Avatar url={""} />
