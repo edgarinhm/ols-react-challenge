@@ -36,7 +36,6 @@ const Login = (): JSX.Element => {
           console.log("user not valid!");
         } else {
           console.log("logged In!");
-
           handleLoginRedirect(redirectURL);
         }
       } catch (error) {

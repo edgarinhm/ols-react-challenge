@@ -1,7 +1,18 @@
-.layout {
+@use "common/sass/styles/_variables.scss" as var;
+
+.dashboard {
   display: flex;
 
   padding-left: 15px;
   padding-right: 15px;
   margin: 1.5em 0;
+
+  .title {
+    h3 {
+      margin-bottom: 0px;
+    }
+    .alertNotification {
+      color: var.$btn-primary-base;
+    }
+  }
 }
