@@ -1,18 +1,21 @@
 const routes = {
   login: {
-    name: '/login',
+    name: "/login",
   },
   home: {
-    name: '/',
+    name: "/",
   },
   dashboard: {
-    name: '/dashboard',
+    name: "/dashboard",
   },
   projects: {
-    name: '/projects',
+    name: "/projects",
   },
   users: {
-    name: '/users',
+    name: "/users",
+  },
+  roles: {
+    name: "/roles",
   },
 } as const;
 

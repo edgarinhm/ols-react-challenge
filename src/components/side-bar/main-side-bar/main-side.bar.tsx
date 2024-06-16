@@ -2,12 +2,13 @@ import { routes } from "routes";
 import styles from "./main-side-bar.module.scss";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDashboard, faListCheck, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faDashboard, faListCheck, faUsersGear, faIdCard } from "@fortawesome/free-solid-svg-icons";
 import { useSharedStorage } from "common/state-management/shared-storage";
 
 const MainSideBar = () => {
   const hasAccessToProjectsPage = false;
   const hasAccessToUsersPage = false;
+  const hasAccessToRolesPage = false;
 
   const isCollapsed = useSharedStorage((state) => state.isMainSidebarCollapsed);
 
@@ -25,9 +26,15 @@ const MainSideBar = () => {
     },
     {
       text: "Usuarios",
-      iconClass: faUser,
+      iconClass: faUsersGear,
       route: routes.users.name,
       isHidden: hasAccessToUsersPage,
+    },
+    {
+      text: "Roles",
+      iconClass: faIdCard,
+      route: routes.roles.name,
+      isHidden: hasAccessToRolesPage,
     },
   ];
 

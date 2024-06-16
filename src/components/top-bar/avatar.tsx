@@ -1,7 +1,7 @@
-import styles from './avatar.module.scss';
+import styles from "./avatar.module.scss";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 interface AvatarProps {
   url: string;
@@ -10,11 +10,7 @@ interface AvatarProps {
 const Avatar = ({ url }: AvatarProps) => {
   return (
     <div className={styles.avatar}>
-      {url ? (
-        <img src={url} alt={'Avatar'} />
-      ) : (
-        <FontAwesomeIcon icon={faUser} />
-      )}
+      {url ? <img src={url} alt={"User Avatar"} /> : <FontAwesomeIcon icon={faCircleUser} />}
     </div>
   );
 };

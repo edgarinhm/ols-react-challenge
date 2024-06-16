@@ -1,13 +1,14 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from "react-router-dom";
 
-import { lazy, Suspense } from 'react';
-import { routes } from './routes';
-import { Spinner } from 'common/components/spinner/spinner';
+import { lazy, Suspense } from "react";
+import { routes } from "./routes";
+import { Spinner } from "common/components/spinner/spinner";
 
-const Home = lazy(() => import('./components/home/home'));
-const Dashboard = lazy(() => import('./components/dashboard/dashboard'));
-const Project = lazy(() => import('./components/body/project/project'));
-const User = lazy(() => import('./components/body/user/user'));
+const Home = lazy(() => import("./components/home/home"));
+const Dashboard = lazy(() => import("./components/dashboard/dashboard"));
+const Project = lazy(() => import("./components/body/project/project"));
+const User = lazy(() => import("./components/body/user/user"));
+const Role = lazy(() => import("./components/body/role/role"));
 
 export const HomeRoutes = (): JSX.Element => {
   const defaultRoute = routes.dashboard.name;
@@ -18,7 +19,7 @@ export const HomeRoutes = (): JSX.Element => {
       <Route
         path={routes.projects.name}
         element={
-          <Suspense fallback={<Spinner show={true} text={'Loading...'} />}>
+          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
             <Project />
           </Suspense>
         }
@@ -26,8 +27,16 @@ export const HomeRoutes = (): JSX.Element => {
       <Route
         path={routes.users.name}
         element={
-          <Suspense fallback={<Spinner show={true} text={'Loading...'} />}>
+          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
             <User />
+          </Suspense>
+        }
+      />
+      <Route
+        path={routes.roles.name}
+        element={
+          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
+            <Role />
           </Suspense>
         }
       />
@@ -42,7 +51,7 @@ export const AppRouter = (): JSX.Element => {
       <Route
         path={`${routes.home.name}*`}
         element={
-          <Suspense fallback={<Spinner show={true} text={'Loading...'} />}>
+          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
             <Home />
           </Suspense>
         }
