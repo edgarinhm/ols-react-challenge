@@ -1,39 +1,39 @@
-import { routes } from 'routes';
-import styles from './main-side-bar.module.scss';
-import { NavLink } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faDashboard,
-  faListCheck,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { routes } from "routes";
+import styles from "./main-side-bar.module.scss";
+import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDashboard, faListCheck, faUser } from "@fortawesome/free-solid-svg-icons";
+import { useSharedStorage } from "common/state-management/shared-storage";
 
 const MainSideBar = () => {
   const hasAccessToProjectsPage = false;
   const hasAccessToUsersPage = false;
-  const isCollapsed = false;
+
+  const isCollapsed = useSharedStorage((state) => state.isMainSidebarCollapsed);
+
   const menuItems = [
     {
-      text: 'Dashboard',
+      text: "Dashboard",
       iconClass: faDashboard,
       route: routes.dashboard.name,
     },
     {
-      text: 'Proyectos',
+      text: "Proyectos",
       iconClass: faListCheck,
       route: routes.projects.name,
       isHidden: hasAccessToProjectsPage,
     },
     {
-      text: 'Usuarios',
+      text: "Usuarios",
       iconClass: faUser,
       route: routes.users.name,
       isHidden: hasAccessToUsersPage,
     },
   ];
+
   return (
     <div className={styles.mainSideBar}>
-      <nav className={isCollapsed ? styles.collapsed : ''}>
+      <nav className={isCollapsed ? styles.collapsed : ""}>
         {menuItems
           .filter((item) => !item.isHidden)
           .map((menuItem) => {
@@ -41,9 +41,7 @@ const MainSideBar = () => {
               <NavLink
                 tabIndex={0}
                 key={menuItem.text}
-                className={({ isActive }) =>
-                  isActive ? styles.active : styles.navItem
-                }
+                className={({ isActive }) => (isActive ? styles.active : styles.navItem)}
                 to={menuItem.route}
               >
                 <FontAwesomeIcon icon={menuItem.iconClass} />
