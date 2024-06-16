@@ -44,15 +44,8 @@ export const useAuthentication = (): {
 
   const validateAuthenticateUser = useCallback(
     async (username: string, password: string): Promise<boolean> => {
-      console.log("validateAuthenticateUser-username", username);
       const loginData = await GetSignInLogin(username, password);
-
-      console.log("validateAuthenticateUser-loginData", loginData);
-
       const user = loginData.find((user) => user.password === password && user.user === username);
-
-      console.log("validateAuthenticateUser-user", user);
-
       if (user) {
         const userData = await GetUser(user.id);
         updateStorage(LocalStorageKeys.user, userData[0]);
