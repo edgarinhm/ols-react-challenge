@@ -18,11 +18,10 @@
     /* Base directory to resolve non-absolute module names. */
     "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"],
       "common/*": ["./common/*"],
       "components/*": ["./components/*"],
       "routes": ["./routes"],
-      "router": ["./Router"],
+      "router": ["./router"],
     },  
 
     /* Linting */
