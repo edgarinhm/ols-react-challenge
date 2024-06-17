@@ -1,14 +1,21 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { lazy, Suspense } from "react";
+import { lazy, ReactNode, Suspense } from "react";
 import { routes } from "./routes";
 import { Spinner } from "common/components/spinner/spinner";
+const { Environment } = window["environment-config" as keyof typeof window] ?? {};
+const isLocal = Environment === "local";
 
 const Home = lazy(() => import("./components/home/home"));
 const Dashboard = lazy(() => import("./components/dashboard/dashboard"));
 const Project = lazy(() => import("./components/body/project/project"));
 const User = lazy(() => import("./components/body/user/user"));
 const Role = lazy(() => import("./components/body/role/role"));
+const NoMatch = lazy(() => import("./components/no-match/no-match"));
+
+const SuspenseWrapper = ({ children }: { children: ReactNode }): JSX.Element => {
+  return <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>{children}</Suspense>;
+};
 
 export const HomeRoutes = (): JSX.Element => {
   const defaultRoute = routes.dashboard.name;
@@ -19,26 +26,30 @@ export const HomeRoutes = (): JSX.Element => {
       <Route
         path={routes.projects.name}
         element={
-          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
+          <SuspenseWrapper>
             <Project />
-          </Suspense>
+          </SuspenseWrapper>
         }
       />
       <Route
         path={routes.users.name}
         element={
-          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
+          <SuspenseWrapper>
             <User />
-          </Suspense>
+          </SuspenseWrapper>
         }
       />
       <Route
         path={routes.roles.name}
         element={
-          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
+          <SuspenseWrapper>
             <Role />
-          </Suspense>
+          </SuspenseWrapper>
         }
+      />
+      <Route
+        path={"*"}
+        element={isLocal ? <Navigate to={{ pathname: defaultRoute }} /> : <NoMatch />}
       />
     </Routes>
   );
@@ -51,9 +62,9 @@ export const AppRouter = (): JSX.Element => {
       <Route
         path={`${routes.home.name}*`}
         element={
-          <Suspense fallback={<Spinner show={true} text={"Loading..."} />}>
+          <SuspenseWrapper>
             <Home />
-          </Suspense>
+          </SuspenseWrapper>
         }
       />
     </Routes>

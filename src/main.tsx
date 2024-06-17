@@ -1,21 +1,20 @@
-import App from './App';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { ErrorBoundary } from 'react-error-boundary';
-import Login from 'components/login/login';
-import { routes } from './routes';
+import App from "./App";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { ErrorBoundary } from "react-error-boundary";
+import Login from "components/login/login";
+import { routes } from "./routes";
 import {
   AuthenticatedTemplate,
   AuthenticationProvider,
   UnauthenticatedTemplate,
-} from 'common/authentication/authentication-provider';
-import NoMatch from 'components/no-match/no-match';
-import 'common/sass/styles/base-elements.scss';
-import 'common/sass/styles/base-inputs.scss';
-import { ApiBaseProvider } from 'common/services/api/api-base';
+} from "common/authentication/authentication-provider";
+import "common/sass/styles/base-elements.scss";
+import "common/sass/styles/base-inputs.scss";
+import { ApiBaseProvider } from "common/services/api/api-base";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>
       <ErrorBoundary
@@ -23,9 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           resetErrorBoundary(error);
           return <></>;
         }}
-        onReset={(error) =>
-          console.error(`Critical Application Error: ${error}`)
-        }
+        onReset={(error) => console.error(`Critical Application Error: ${error}`)}
       >
         <AuthenticationProvider>
           <AuthenticatedTemplate>
@@ -37,7 +34,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <ApiBaseProvider>
               <Routes>
                 <Route path={routes.login.name} element={<Login />} />
-                <Route path="*" element={<NoMatch />} />
+                <Route
+                  path={"*"}
+                  element={
+                    <Navigate
+                      to={{ pathname: routes.login.name }}
+                      state={{
+                        redirectUrl: window.location.href,
+                      }}
+                    />
+                  }
+                />
               </Routes>
             </ApiBaseProvider>
           </UnauthenticatedTemplate>
