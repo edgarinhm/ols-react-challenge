@@ -1,6 +1,6 @@
 import MainSideBar from "components/side-bar/main-side-bar/main-side.bar";
 import styles from "./home.module.scss";
-import { HomeRoutes } from "router";
+import { HomeRoutes } from "router/Router";
 const Home = (): JSX.Element => {
   return (
     <div className={styles.home}>

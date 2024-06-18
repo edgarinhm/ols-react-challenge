@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import styles from "./app.module.scss";
-import { AppRouter } from "./router";
 import TopBar from "components/top-bar/top-bar";
+import { AppRouter } from "router";
 
 const App = (): JSX.Element => {
   return (
