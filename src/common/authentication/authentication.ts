@@ -12,8 +12,6 @@ export const useAuthentication = (): {
   handleLogout: () => void;
   validateAuthenticateUser: (username: string, password: string) => Promise<boolean>;
 } => {
-  const {} = useSharedStorage((state) => (state.user?.id, state.updateStorage), shallow);
-
   const { authenticated, updateStorage } = useSharedStorage(
     (state) => ({
       authenticated: state.user?.id,
