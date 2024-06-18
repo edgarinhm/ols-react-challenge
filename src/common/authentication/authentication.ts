@@ -62,3 +62,13 @@ export const useAuthentication = (): {
     validateAuthenticateUser,
   };
 };
+
+export const useIsAuthenticated = () => {
+  const { authenticated } = useSharedStorage(
+    (state) => ({
+      authenticated: state.user?.id,
+    }),
+    shallow
+  );
+  return !!authenticated;
+};

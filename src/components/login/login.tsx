@@ -8,6 +8,8 @@ import { Spinner } from "common/components/spinner/spinner";
 import { routes } from "routes";
 import { useAuthentication } from "common/authentication/authentication";
 import { Messages } from "common/constants/messages-constants";
+import { useSharedStorage } from "common/state-management/shared-storage";
+import { LocalStorageKeys } from "common/enums/local-storage-keys";
 
 const Login = (): JSX.Element => {
   const id = useId();
@@ -21,6 +23,8 @@ const Login = (): JSX.Element => {
 
   const { validateAuthenticateUser, handleLoginRedirect, handleAuthenticatedRedirect } =
     useAuthentication();
+
+  const updateStorage = useSharedStorage((state) => state.updateStorage);
 
   const handleOnSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
@@ -37,6 +41,7 @@ const Login = (): JSX.Element => {
         if (!isAuthenticated) {
           setValidationMessageError(Messages.LoginAuthenticationError);
         } else {
+          updateStorage(LocalStorageKeys.tokenStartTime, Date.now());
           handleLoginRedirect(redirectURL);
         }
       } catch (error) {

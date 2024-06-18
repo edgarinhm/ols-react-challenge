@@ -9,3 +9,7 @@ interface ImportMeta {
 }
 
 type ValidationResult<T> = [boolean, T];
+
+interface ChildfullComponent {
+  children?: React.ReactNode;
+}
