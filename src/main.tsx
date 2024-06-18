@@ -34,17 +34,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <ApiBaseProvider>
               <Routes>
                 <Route path={routes.login.name} element={<Login />} />
-                <Route
-                  path={"*"}
-                  element={
-                    <Navigate
-                      to={{ pathname: routes.login.name }}
-                      state={{
-                        redirectUrl: window.location.href,
-                      }}
-                    />
-                  }
-                />
               </Routes>
             </ApiBaseProvider>
           </UnauthenticatedTemplate>
