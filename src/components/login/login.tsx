@@ -7,7 +7,7 @@ import { useLoginValidator } from "./use-login-validator";
 import { Spinner } from "common/components/spinner/spinner";
 import { routes } from "routes";
 import { useAuthentication } from "common/authentication/authentication";
-import { Messages } from "common/constants/messages";
+import { Messages } from "common/constants/messages-constants";
 
 const Login = (): JSX.Element => {
   const id = useId();
