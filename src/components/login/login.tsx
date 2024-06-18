@@ -1,4 +1,3 @@
-import logoImg from "/logo.png";
 import styles from "./login.module.scss";
 import { FormEvent, useEffect, useId, useState } from "react";
 import { FormControl } from "common/components/form-control/form-control";
@@ -8,6 +7,7 @@ import { useLoginValidator } from "./use-login-validator";
 import { Spinner } from "common/components/spinner/spinner";
 import { routes } from "routes";
 import { useAuthentication } from "common/authentication/authentication";
+import { Messages } from "common/constants/messages";
 
 const Login = (): JSX.Element => {
   const id = useId();
@@ -17,6 +17,7 @@ const Login = (): JSX.Element => {
 
   const [hasError, errors] = useLoginValidator(loginForm);
   const redirectURL = routes.dashboard.name;
+  const [validationMessageError, setValidationMessageError] = useState("");
 
   const { validateAuthenticateUser, handleLoginRedirect, handleAuthenticatedRedirect } =
     useAuthentication();
@@ -24,6 +25,7 @@ const Login = (): JSX.Element => {
   const handleOnSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     setSubmitted(true);
+    setValidationMessageError("");
 
     if (!hasError) {
       setIsLoading(true);
@@ -33,13 +35,12 @@ const Login = (): JSX.Element => {
           loginForm.password
         );
         if (!isAuthenticated) {
-          console.log("user not valid!");
+          setValidationMessageError(Messages.LoginAuthenticationError);
         } else {
-          console.log("logged In!");
           handleLoginRedirect(redirectURL);
         }
       } catch (error) {
-        console.log("error", error);
+        setValidationMessageError(Messages.UnExpectedNetworkError);
       }
     }
     setIsLoading(false);
@@ -70,17 +71,19 @@ const Login = (): JSX.Element => {
           <div className={styles.loginPanelBody}>
             <header>
               <Link to="#">
-                <img src={logoImg} loading="lazy" alt={"login logo"} />
+                <img src={"/logo.png"} loading="lazy" alt={"login logo"} />
               </Link>
-              <h1>{"Bienvenido al gestor de proyectos!"}</h1>
-              <span>{"Necesitamos tu usuario y contraseña"}</span>
+              <h1>{Messages.LoginTitle}</h1>
+              <span>{Messages.LoginDescription}</span>
             </header>
+
+            {validationMessageError && <div className={styles.alert}>{validationMessageError}</div>}
 
             <form noValidate autoComplete="off" onSubmit={handleOnSubmit}>
               <FormControl.Input
                 id={`${id}-username`}
                 type="text"
-                placeholder={"Nombre de usuario Ej: nombre.apellido"}
+                placeholder={Messages.LoginUsernamePlaceholder}
                 onChange={(event) => onUserNameChange(event.target.value)}
                 className={styles.input}
                 errors={errors.userName}
@@ -90,24 +93,24 @@ const Login = (): JSX.Element => {
                 id={`${id}-password`}
                 type="password"
                 onChange={(event) => onPasswordChange(event.target.value)}
-                placeholder={"Aqui va tu constraseña"}
+                placeholder={Messages.LogingPasswordPlaceholder}
                 errors={errors.password}
                 showErrors={submitted}
                 data-qa={"password"}
               />
               <button type="submit" className={styles.loginButton}>
-                {"Ingresar"}
+                {Messages.LoginSubmitButton}
               </button>
               <div className={styles.actions}>
                 <FormControl.CheckInput
                   type="checkbox"
                   checked={loginForm.expireSession}
                   id={`${id}-expire-session`}
-                  label={"Permanecer Conectado"}
+                  label={Messages.LoginExpireSession}
                   labelClassName={styles.standardLabel}
                   onChange={onCheckboxChange}
                 />
-                <Link to="#">{"Recuperar Contraseña"}</Link>
+                <Link to="#">{Messages.LoginPassworRecover}</Link>
               </div>
             </form>
           </div>
