@@ -2,6 +2,7 @@ import { WeatherModel } from "common/models/weather-model";
 import { GetWeatherByCity } from "common/services/weather-service";
 import { useEffect, useState } from "react";
 import styles from "./weather.module.scss";
+import { Spinner } from "common/components/spinner/spinner";
 
 const Weather = (): JSX.Element => {
   const [weather, setWeather] = useState<WeatherModel>();
@@ -32,6 +33,7 @@ const Weather = (): JSX.Element => {
           alt="Wheater Condition"
         />
       </div>
+      <Spinner show={!weatherCondition} overlay="Component" />
     </div>
   );
 };
