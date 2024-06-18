@@ -1,7 +1,7 @@
 import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ErrorBoundary } from "react-error-boundary";
 import Login from "components/login/login";
 import { routes } from "./routes";
