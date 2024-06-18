@@ -37,7 +37,7 @@ export const useAuthentication = (): {
 
   const handleAuthenticatedRedirect = useCallback(
     async (redirectUrl: string): Promise<void> => {
-      return !!authenticated ? OpenWindow(redirectUrl, "_self") : undefined;
+      return authenticated ? OpenWindow(redirectUrl, "_self") : undefined;
     },
     [authenticated]
   );
