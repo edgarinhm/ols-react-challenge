@@ -24,13 +24,13 @@ const Dashboard = () => {
   const alertCount = notifications?.length;
 
   const projectsCardData = {
-    title: "Projectos Registrados",
+    title: "Proyectos Registrados",
     message: "Ultimo proyecto registrado hace 15 días",
     count: cards?.projects,
   };
 
   const projectsInDevCardData = {
-    title: "Projectos en Desarrollo",
+    title: "Proyectos en Desarrollo",
     message: "Total de avance 22.00%",
     count: cards?.projectsDev,
   };
@@ -102,37 +102,55 @@ const Dashboard = () => {
             <span className={styles.alertNotification}>{`${alertCount} sin leer!`}</span>
           </h6>
         </div>
+        {/* GRID & CHARTS */}
         <div className={styles.body}>
-          <Weather />
-          <div className={styles.activityPanel}>
-            <ActivityCard
-              title={projectsCardData.title}
-              bodyText={projectsCardData.message}
-              count={projectsCardData.count}
-              styleColor={styles.cardTale}
-            />
-            <ActivityCard
-              title={projectsInDevCardData.title}
-              bodyText={projectsInDevCardData.message}
-              count={projectsInDevCardData.count}
-              styleColor={styles.cardDarkBlue}
-            />
-            <ActivityCard
-              title={pendingNotificationsCardData.title}
-              bodyText={pendingNotificationsCardData.message}
-              count={pendingNotificationsCardData.count}
-              styleColor={styles.cardLightBlue}
-            />
-            <ActivityCard
-              title={errorsDeployCardData.title}
-              bodyText={errorsDeployCardData.message}
-              count={errorsDeployCardData.count}
-              styleColor={styles.cardLightDanger}
-            />
+          {/* ROW 1 */}
+          <div className={`${styles.row} ${styles.weatherRow}`}>
+            <Weather />
           </div>
-          <div className={styles.reports}>
-            <Reports />
+          <div className={`${styles.row} ${styles.activityPanelRow}`}>
+            <div className={styles.activityPanelColumn}>
+              <div className={styles.card}>
+                <ActivityCard
+                  title={projectsCardData.title}
+                  bodyText={projectsCardData.message}
+                  count={projectsCardData.count}
+                  styleColor={styles.cardTale}
+                />
+              </div>
+              <div className={styles.card}>
+                <ActivityCard
+                  title={pendingNotificationsCardData.title}
+                  bodyText={pendingNotificationsCardData.message}
+                  count={pendingNotificationsCardData.count}
+                  styleColor={styles.cardLightBlue}
+                />
+              </div>
+            </div>
           </div>
+          <div className={`${styles.row} ${styles.activityPanelRow}`}>
+            <div className={styles.activityPanelColumn}>
+              <div className={styles.card}>
+                <ActivityCard
+                  title={projectsInDevCardData.title}
+                  bodyText={projectsInDevCardData.message}
+                  count={projectsInDevCardData.count}
+                  styleColor={styles.cardDarkBlue}
+                />
+              </div>
+              <div className={styles.card}>
+                <ActivityCard
+                  title={errorsDeployCardData.title}
+                  bodyText={errorsDeployCardData.message}
+                  count={errorsDeployCardData.count}
+                  styleColor={styles.cardLightDanger}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.reports}>
+          <Reports />
         </div>
       </div>
       <Spinner show={isLoading} text={"Loading Dashboard..."} />

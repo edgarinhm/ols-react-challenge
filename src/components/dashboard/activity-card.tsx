@@ -14,10 +14,10 @@ const ActivityCard = ({
   styleColor = "white",
 }: ActivityCardProps): JSX.Element => {
   return (
-    <div className={`${styles.cardBody} ${styleColor}`}>
-      <div>{title}</div>
-      <div>{count}</div>
-      <div>{bodyText}</div>
+    <div className={`${styles.card} ${styleColor}`}>
+      <div className={styles.cardTitle}>{title}</div>
+      <div className={styles.cardCount}>{count}</div>
+      <div className={styles.cardDescription}>{bodyText}</div>
     </div>
   );
 };
