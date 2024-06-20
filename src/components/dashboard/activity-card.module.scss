@@ -12,12 +12,37 @@
   border: 1px solid $white;
   border-radius: 20px;
   font-size: base.$font-size-smaller;
-}
 
-.cardTitle{
-  margin-bottom: 0.5rem;
-}
+  &.title {
+    margin-bottom: 0.5rem;
+  }
 
-.cardCount{
-  font-size: base.$font-size-largest;
+  &.count {
+    font-size: base.$font-size-largest;
+  }
+
+  &.tale {
+    background: $card-tale;
+    color: $white;
+  }
+
+  &.darkBlue {
+    background: $card-dark-blue;
+    color: $white;
+  }
+
+  &.lightBlue {
+    background: $card-light-blue;
+    color: $white;
+  }
+
+  &.lightDanger {
+    background: $card-light-blue;
+    color: $white;
+  }
+
+  &.white {
+    background: $white;
+    color: $black;
+  }
 }

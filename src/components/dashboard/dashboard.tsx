@@ -38,7 +38,7 @@ const Dashboard = () => {
   const pendingNotificationsCardData = {
     title: "NC's sin resolver",
     message: "Última NC regisgtrada hace 1 día",
-    count: 24,
+    count: cards?.pedingNc,
   };
 
   const errorsDeployCardData = {
@@ -115,7 +115,7 @@ const Dashboard = () => {
                   title={projectsCardData.title}
                   bodyText={projectsCardData.message}
                   count={projectsCardData.count}
-                  styleColor={styles.cardTale}
+                  styleColor={"tale"}
                 />
               </div>
               <div className={styles.card}>
@@ -123,7 +123,7 @@ const Dashboard = () => {
                   title={pendingNotificationsCardData.title}
                   bodyText={pendingNotificationsCardData.message}
                   count={pendingNotificationsCardData.count}
-                  styleColor={styles.cardLightBlue}
+                  styleColor={"lightBlue"}
                 />
               </div>
             </div>
@@ -135,7 +135,7 @@ const Dashboard = () => {
                   title={projectsInDevCardData.title}
                   bodyText={projectsInDevCardData.message}
                   count={projectsInDevCardData.count}
-                  styleColor={styles.cardDarkBlue}
+                  styleColor={"darkBlue"}
                 />
               </div>
               <div className={styles.card}>
@@ -143,7 +143,7 @@ const Dashboard = () => {
                   title={errorsDeployCardData.title}
                   bodyText={errorsDeployCardData.message}
                   count={errorsDeployCardData.count}
-                  styleColor={styles.cardLightDanger}
+                  styleColor={"lightDanger"}
                 />
               </div>
             </div>

@@ -8,15 +8,15 @@
 
   border: none;
 
-  .cardBody {
+  .body {
     padding: base.$base-card-padding-y base.$base-card-padding-x;
 
-    + .cardBody {
+    + .body {
       padding-top: 1rem;
     }
   }
 
-  .cardTitle {
+  .title {
     color: base.$base-card-title-color;
     margin-bottom: 1.2rem;
     text-transform: capitalize;
@@ -24,21 +24,36 @@
     font-weight: 600;
   }
 
-  .cardSubtitle {
+  .subtitle {
     color: $grey;
     font-weight: 400;
     margin-top: 0.625rem;
     margin-bottom: 0.625rem;
   }
 
-  .cardDescription {
+  .description {
     margin-bottom: 0.875rem;
     font-weight: 400;
     color: base.$base-card-description-color;
   }
 
-  .cardTale {
-    background: #7da0fa;
+  .tale {
+    background: $card-tale;
+    color: $white;
+  }
+  
+  .darkBlue {
+    background: $card-dark-blue;
+    color: $white;
+  }
+  
+  .lightBlue {
+    background: $card-light-blue;
+    color: $white;
+  }
+  
+  .lightDanger {
+    background: $card-light-blue;
     color: $white;
   }
 }

@@ -53,6 +53,10 @@ $dark-moderate-blue: rgb(75, 73, 172);
 $dark-grayish-blue: rgb(163, 164, 165);
 $very-light-gray: rgb(227, 227, 227);
 $very-pale-white-blue: rgb(245, 247, 255);
+$card-tale:rgb(125, 160, 250);
+$card-dark-blue: rgb(71, 71, 161);
+$card-light-blue: rgb(121, 120, 233);
+$card-light-danger: rgb(243, 121, 126);
 :export {
   white: $white;
   black: $black;
@@ -103,4 +107,8 @@ $very-pale-white-blue: rgb(245, 247, 255);
   dark-grayish-blue: $dark-grayish-blue;
   very-light-gray: $very-light-gray;
   very-pale-white-blue: $very-pale-white-blue;
+  card-tale: $card-tale;
+  card-dark-blue: $card-dark-blue;
+  card-light-blue: $card-light-blue;
+  card-light-danger: $card-light-blue;
 }
