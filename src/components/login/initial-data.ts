@@ -1,7 +1,7 @@
 export const loginFields = {
-  username: '',
-  password: '',
-  expireSession: false,
+  username: "",
+  password: "",
+  noExpireSession: false,
 };
 
 export type LoginFieldsModel = typeof loginFields;

@@ -42,6 +42,7 @@ const Login = (): JSX.Element => {
           setValidationMessageError(Messages.LoginAuthenticationError);
         } else {
           updateStorage(LocalStorageKeys.tokenStartTime, Date.now());
+          updateStorage(LocalStorageKeys.noExpireSession, loginForm.noExpireSession);
           handleLoginRedirect(redirectURL);
         }
       } catch (error) {
@@ -61,7 +62,7 @@ const Login = (): JSX.Element => {
   const onCheckboxChange = (): void => {
     setLoginForm((state) => ({
       ...state,
-      expireSession: !state.expireSession,
+      noExpireSession: !state.noExpireSession,
     }));
   };
 
@@ -109,8 +110,8 @@ const Login = (): JSX.Element => {
               <div className={styles.actions}>
                 <FormControl.CheckInput
                   type="checkbox"
-                  checked={loginForm.expireSession}
-                  id={`${id}-expire-session`}
+                  checked={loginForm.noExpireSession}
+                  id={`${id}-no-expire-session`}
                   label={Messages.LoginExpireSession}
                   labelClassName={styles.standardLabel}
                   onChange={onCheckboxChange}

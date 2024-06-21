@@ -6,12 +6,13 @@ import { ReactNode, useEffect } from "react";
 
 const SessionProvider = ({ children }: { children: ReactNode }) => {
   const tokenStartTime = useSharedStorage((state) => state[LocalStorageKeys.tokenStartTime]);
+  const noExpireSession = useSharedStorage((state) => state[LocalStorageKeys.noExpireSession]);
   const { handleLogout } = useAuthentication();
 
   useEffect(() => {
     if (tokenStartTime) {
       const actualSecondsRemaining = (SESSION_LENGTH - (Date.now() - tokenStartTime)) / 1000;
-      if (actualSecondsRemaining <= 0) {
+      if (actualSecondsRemaining <= 0 && !noExpireSession) {
         handleLogout();
       }
     }
