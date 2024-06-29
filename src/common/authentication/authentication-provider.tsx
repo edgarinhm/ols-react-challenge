@@ -18,7 +18,7 @@ export const AuthenticatedTemplate = ({
   return authenticated ? <div>{children}</div> : null;
 };
 
-export const UnauthenticatedTemplate = ({ children }: { children?: ReactNode }): JSX.Element => {
+export const UnAuthenticatedTemplate = ({ children }: { children?: ReactNode }): JSX.Element => {
   return <>{children}</>;
 };
 

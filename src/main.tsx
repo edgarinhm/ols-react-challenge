@@ -9,7 +9,7 @@ import {
   AuthenticatedTemplate,
   AuthenticationProvider,
   BlockRouteReRenderAfterAuth,
-  UnauthenticatedTemplate,
+  UnAuthenticatedTemplate,
 } from "common/authentication/authentication-provider";
 import "common/sass/styles/base-elements.scss";
 import "common/sass/styles/base-inputs.scss";
@@ -31,7 +31,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               <App />
             </ApiBaseProvider>
           </AuthenticatedTemplate>
-          <UnauthenticatedTemplate>
+          <UnAuthenticatedTemplate>
             <ApiBaseProvider>
               <Routes>
                 <Route path={routes.login.name} element={<Login />} />
@@ -50,7 +50,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 />
               </Routes>
             </ApiBaseProvider>
-          </UnauthenticatedTemplate>
+          </UnAuthenticatedTemplate>
         </AuthenticationProvider>
       </BrowserRouter>
     </ErrorBoundary>
