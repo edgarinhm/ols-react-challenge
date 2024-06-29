@@ -73,54 +73,50 @@ const Login = (): JSX.Element => {
   return (
     <div className={styles.container}>
       <div className={styles.login}>
-        <div className={styles.loginPanel}>
-          <div className={styles.loginPanelBody}>
-            <header>
-              <Link to="#">
-                <img className={styles.logo} src={"/logo.png"} loading="lazy" alt={"login logo"} />
-              </Link>
-              <h1>{Messages.LoginTitle}</h1>
-              <span>{Messages.LoginDescription}</span>
-            </header>
+        <header>
+          <Link to="#">
+            <img className={styles.logo} src={"/logo.png"} loading="lazy" alt={"login logo"} />
+          </Link>
+          <h4>{Messages.LoginTitle}</h4>
+          <h6>{Messages.LoginDescription}</h6>
+        </header>
 
-            {validationMessageError && <div className={styles.alert}>{validationMessageError}</div>}
-
-            <form noValidate autoComplete="off" onSubmit={handleOnSubmit}>
-              <FormControl.Input
-                id={`${id}-username`}
-                type="text"
-                placeholder={Messages.LoginUsernamePlaceholder}
-                onChange={(event) => onUserNameChange(event.target.value)}
-                className={styles.input}
-                errors={errors.userName}
-                showErrors={submitted}
-              />
-              <FormControl.Input
-                id={`${id}-password`}
-                type="password"
-                onChange={(event) => onPasswordChange(event.target.value)}
-                placeholder={Messages.LogingPasswordPlaceholder}
-                errors={errors.password}
-                showErrors={submitted}
-                data-qa={"password"}
-              />
-              <button type="submit" className={styles.loginButton}>
-                {Messages.LoginSubmitButton}
-              </button>
-              <div className={styles.actions}>
-                <FormControl.CheckInput
-                  type="checkbox"
-                  checked={loginForm.noExpireSession}
-                  id={`${id}-no-expire-session`}
-                  label={Messages.LoginExpireSession}
-                  labelClassName={styles.standardLabel}
-                  onChange={onCheckboxChange}
-                />
-                <Link to="#">{Messages.LoginPassworRecover}</Link>
-              </div>
-            </form>
+        {validationMessageError && <div className={styles.alert}>{validationMessageError}</div>}
+        <form noValidate autoComplete="off" onSubmit={handleOnSubmit}>
+          <FormControl.Input
+            id={`${id}-username`}
+            type="text"
+            placeholder={Messages.LoginUsernamePlaceholder}
+            onChange={(event) => onUserNameChange(event.target.value)}
+            className={styles.input}
+            errors={errors.userName}
+            showErrors={submitted}
+          />
+          <FormControl.Input
+            id={`${id}-password`}
+            type="password"
+            placeholder={Messages.LogingPasswordPlaceholder}
+            onChange={(event) => onPasswordChange(event.target.value)}
+            className={styles.input}
+            errors={errors.password}
+            showErrors={submitted}
+            data-qa={"password"}
+          />
+          <button type="submit" className={styles.loginButton}>
+            {Messages.LoginSubmitButton}
+          </button>
+          <div className={styles.actions}>
+            <FormControl.CheckInput
+              type="checkbox"
+              checked={loginForm.noExpireSession}
+              id={`${id}-no-expire-session`}
+              label={Messages.LoginExpireSession}
+              labelClassName={styles.standardLabel}
+              onChange={onCheckboxChange}
+            />
+            <Link to="#">{Messages.LoginPassworRecover}</Link>
           </div>
-        </div>
+        </form>
       </div>
       <Spinner show={isLoading} />
     </div>
