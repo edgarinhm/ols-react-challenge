@@ -24,6 +24,10 @@
         margin: 0px;
       }
     }
+    nav > a:hover,
+    a:focus {
+      border-radius: 0px;
+    }
 
     nav > a > span {
       display: none;
@@ -39,6 +43,10 @@
         margin: 0px;
       }
     }
+
+    .menuArrow {
+      display: none;
+    }
   }
 
   nav {
@@ -48,9 +56,9 @@
     flex-flow: column nowrap;
     width: 196px;
     font-family: $base-font-family;
-    font-size: $font-size-smaller;
+    font-size: $font-size-small;
     color: $grey;
-    text-transform: uppercase;
+    text-transform: capitalize;
     align-items: center;
     margin-top: 1.45rem;
     margin-left: 1rem;
