@@ -1,9 +1,9 @@
-@use 'common/sass/styles/fonts.module.scss' as *;
-@use 'common/sass/styles/colors.module.scss' as *;
-@use 'common/sass/styles/base-style-and-scale.module.scss' as *;
-@use 'common/sass/mixins/tooltip.module.scss' as *;
+@use "common/sass/styles/fonts.module.scss" as *;
+@use "common/sass/styles/colors.module.scss" as *;
+@use "common/sass/styles/base-style-and-scale.module.scss" as *;
+@use "common/sass/mixins/tooltip.module.scss" as *;
 
-@use 'common/sass/styles/z-index.module.scss' as z;
+@use "common/sass/styles/z-index.module.scss" as z;
 
 .topBar {
   display: flex;
@@ -131,5 +131,9 @@
     .menuBtn {
       padding: 0 1.25rem 0 1.25rem;
     }
+  }
+
+  .collapsed {
+    width: 84px;
   }
 }

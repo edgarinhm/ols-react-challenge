@@ -45,7 +45,7 @@ const TopBar = () => {
 
   return (
     <div className={`${styles.topBar} ${styles[env.toLowerCase()]}`}>
-      <div className={styles.brand}>
+      <div className={`${styles.brand} ${isCollapsed ? styles.collapsed : ""}`}>
         <a href="#">
           <img src={logoImg} alt={"logo"} />
         </a>

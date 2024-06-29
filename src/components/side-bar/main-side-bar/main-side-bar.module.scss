@@ -1,21 +1,52 @@
-@use 'common/sass/styles/fonts.module.scss' as *;
-@use 'common/sass/styles/colors.module.scss' as *;
-@use 'common/sass/styles/base-style-and-scale.module.scss' as *;
-@use 'common/sass/styles/_variables.scss' as var;
+@use "common/sass/styles/fonts.module.scss" as *;
+@use "common/sass/styles/colors.module.scss" as *;
+@use "common/sass/styles/base-style-and-scale.module.scss" as *;
+@use "common/sass/styles/_variables.scss" as var;
 
 .mainSideBar {
   display: flex;
   overflow: hidden;
   min-height: calc(100vh - 60px);
   background: $white;
-  width: 235px;
+
+  &.sideBarIconOnly {
+    nav {
+      margin-left: 0px;
+      margin-right: 0px;
+      width: 70px;
+    }
+
+    nav > a {
+      justify-content: center;
+      padding-left: 0px;
+      padding-right: 0px;
+      svg {
+        margin: 0px;
+      }
+    }
+
+    nav > a > span {
+      display: none;
+      padding: 0.5rem;
+    }
+
+    .active {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      border-radius: 0px;
+      justify-content: center;
+      svg {
+        margin: 0px;
+      }
+    }
+  }
 
   nav {
     background-color: $white;
     transition: all 400ms ease-out;
     display: flex;
     flex-flow: column nowrap;
-    width: 160px;
+    width: 196px;
     font-family: $base-font-family;
     font-size: $font-size-smaller;
     color: $grey;
@@ -24,27 +55,24 @@
     margin-top: 1.45rem;
     margin-left: 1rem;
     margin-right: 1rem;
-
-    &.collapsed {
-      width: 84px;
-
-      span {
-        display: none;
-      }
-    }
   }
 
   .active {
     @extend .navItem;
     background-color: $side-menu-active;
     border-radius: 8px;
+    color: $white;
+    .menuItemExpanded {
+      transform: rotate(90deg);
+      transition: all 0.2s ease-in;
+    }
   }
 
   nav > * {
     display: flex;
     width: 100%;
     align-items: center;
-    color: $grey;
+    color: $dark-grey;
 
     &:first-child {
       img {
@@ -58,8 +86,11 @@
         background-color: $med-grey;
       }
     }
-    svg {
+    .menuIcon {
       margin-right: 1rem;
+    }
+    .menuArrow {
+      margin-left: auto;
     }
   }
 
