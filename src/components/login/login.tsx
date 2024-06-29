@@ -77,7 +77,7 @@ const Login = (): JSX.Element => {
           <div className={styles.loginPanelBody}>
             <header>
               <Link to="#">
-                <img src={"/logo.png"} loading="lazy" alt={"login logo"} />
+                <img className={styles.logo} src={"/logo.png"} loading="lazy" alt={"login logo"} />
               </Link>
               <h1>{Messages.LoginTitle}</h1>
               <span>{Messages.LoginDescription}</span>

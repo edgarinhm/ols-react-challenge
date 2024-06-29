@@ -13,6 +13,15 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh; /* vh stands for viewport height */
+  overflow: hidden;
+  padding: 1rem;
+
+  @media (min-width: 576px) {
+    .loginPanel {
+      width: 460px;
+      padding: 2rem 2rem;
+    }
+  }
 }
 
 .containerFluid {
@@ -20,7 +29,7 @@
   padding: 0 15px;
 }
 
-.login{
+.login {
   header {
     padding-bottom: 26px;
     text-align: left;
@@ -30,56 +39,54 @@
     text-align: left;
     line-height: 1;
     font-size: base.$font-size-base;
-    font-weight: bold;  
+    font-weight: bold;
     padding-top: 26px;
   }
 
   .loginPanel {
     @include panels.panel;
-    width: 460px;
     margin: 0 auto;
-    padding: 2rem 2rem;
+
     position: relative;
     border: 1px solid colors.$med-grey;
     box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.2);
 
     .loginPanelBody {
       @include panels.panel-body;
+      padding: 1.5rem;
       border-bottom: none;
       .input {
         position: relative;
       }
     }
   }
-  
+
   .loginButton {
     @include buttons.btn;
     width: 100%;
   }
-
 }
 
-form{
+form {
   > * {
     margin-bottom: 15px;
   }
-  .actions{
+  .actions {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
 
-    .standardLabel{
+    .standardLabel {
       text-transform: capitalize;
       font-size: base.$font-size-smaller;
     }
-    a{
+    a {
       font-size: base.$font-size-smaller;
       text-align: right;
     }
   }
 }
 
-.alert{
-color: colors.$red
+.alert {
+  color: colors.$red;
 }
-

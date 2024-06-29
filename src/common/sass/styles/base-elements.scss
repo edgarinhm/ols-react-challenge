@@ -1,8 +1,8 @@
-@use 'common/sass/mixins/typography.module.scss' as t;
-@use 'common/sass/styles/base-style-and-scale.module.scss' as base;
-@use 'common/sass/styles/fonts.module.scss';
-@use 'common/sass/styles/colors.module.scss';
-@use 'sass:color';
+@use "common/sass/mixins/typography.module.scss" as t;
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/fonts.module.scss";
+@use "common/sass/styles/colors.module.scss";
+@use "sass:color";
 
 * {
   box-sizing: border-box;
@@ -50,13 +50,13 @@ img {
 body {
   @include t.body;
   background-color: base.$base-background-color;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 table {
   border-spacing: 0;
   border-collapse: collapse;
-  font-feature-settings: 'kern', 'liga', 'tnum';
+  font-feature-settings: "kern", "liga", "tnum";
 }
 
 a {
