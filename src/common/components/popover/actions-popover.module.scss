@@ -1,9 +1,9 @@
-@use 'common/sass/styles/fonts.module.scss' as *;
-@use 'common/sass/styles/colors.module.scss' as *;
-@use 'common/sass/styles/base-style-and-scale.module.scss' as *;
-@use 'common/sass/styles/z-index.module.scss' as *;
-@use 'common/sass/mixins/buttons.module.scss' as buttons;
-@use 'common/sass/mixins/popover.module.scss' as popover;
+@use "common/sass/styles/fonts.module.scss" as *;
+@use "common/sass/styles/colors.module.scss" as *;
+@use "common/sass/styles/base-style-and-scale.module.scss" as *;
+@use "common/sass/styles/z-index.module.scss" as *;
+@use "common/sass/mixins/buttons.module.scss" as buttons;
+@use "common/sass/mixins/popover.module.scss" as popover;
 
 .actionsPopover {
   position: relative;
@@ -64,5 +64,29 @@
 
   .link {
     text-decoration: none;
+  }
+  .iconGroup {
+    display: flex;
+    align-items: center;
+    color: $black;
+
+    .icon {
+      margin-right: 0.5rem;
+      vertical-align: middle;
+      padding-right: 0px;
+      padding-left: 0px;
+    }
+    .icon:hover {
+      background-color: $very-light-gray;
+    }
+  }
+  .iconGroup:hover,
+  .iconGroup:focus {
+    background-color: $very-light-gray;
+    color: $black;
+    .icon {
+      color: $es-blue;
+      background-color: $very-light-gray;
+    }
   }
 }

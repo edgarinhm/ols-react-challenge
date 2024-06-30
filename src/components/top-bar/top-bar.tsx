@@ -2,29 +2,32 @@ import { GetEnvironmentFromLocationUrl } from "common/functions/environment";
 import styles from "./top-bar.module.scss";
 import logoImg from "/logo.png";
 import { useAuthentication } from "common/authentication/authentication";
-import { PopoverActions } from "common/models/popover-actions";
-import { ActionsPopover, MenuButton } from "common/components/popover/actions-popover";
+import { PopoverActionsIcon } from "common/models/popover-actions";
+import { MenuButton } from "common/components/popover/actions-popover";
 import { useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBell, faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import badgeStyles from "common/sass/modules/badges.module.scss";
 import Avatar from "./avatar";
 import { useSharedStorage } from "common/state-management/shared-storage";
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { shallow } from "zustand/shallow";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
+import { ActionsIconPopover } from "common/components/popover/actions-icon-popover";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
   const env: string = !Environment ? import.meta.env?.VITE_APP_ENVIRONMENT : Environment;
   const { name: environmentName } = GetEnvironmentFromLocationUrl();
 
-  const popoverButtonRef = useRef<HTMLDivElement>(null);
+  const popoverAvatarRef = useRef<HTMLDivElement>(null);
 
   const notifications = useDashboardStorage((state) => state.notifications);
   const { handleLogout } = useAuthentication();
 
-  const commonMenuOptions: PopoverActions[] = [{ text: "Log Out", action: () => handleLogout() }];
+  const commonMenuOptions: PopoverActionsIcon[] = [
+    { text: "Log Out", action: () => handleLogout(), icon: <FontAwesomeIcon icon={faPowerOff} /> },
+  ];
 
   const { isCollapsed, initializeItem, updateStorage } = useSharedStorage(
     (state) => ({
@@ -74,11 +77,12 @@ const TopBar = () => {
             </span>
           )}
         </div>
-        <Avatar url={""} />
+        <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
+          <Avatar url={""} ref={popoverAvatarRef} />
+        </ActionsIconPopover>
+
         <div className={styles.menuBtn}>
-          <ActionsPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
-            <MenuButton ref={popoverButtonRef} />
-          </ActionsPopover>
+          <MenuButton />
         </div>
       </div>
     </div>
