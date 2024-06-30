@@ -3,7 +3,8 @@ import { UserModel } from "./user/user-model";
 
 export type LocalStorageModel = {
   [LocalStorageKeys.noExpireSession]?: boolean;
-  [LocalStorageKeys.isMainSidebarCollapsed]?: boolean;
+  [LocalStorageKeys.isMainSideBarOpen]?: boolean;
   [LocalStorageKeys.user]?: UserModel;
   [LocalStorageKeys.tokenStartTime]?: number;
+  [LocalStorageKeys.isTodoSideBarOpen]?: boolean;
 };

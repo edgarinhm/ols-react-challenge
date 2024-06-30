@@ -56,26 +56,31 @@ const TopBar = () => {
     };
   });
 
-  const { isCollapsed, initializeItem, updateStorage } = useSharedStorage(
+  const { isMainSideBarOpen, isTodoSideBarOpen, initializeItem, updateStorage } = useSharedStorage(
     (state) => ({
-      isCollapsed: state.isMainSidebarCollapsed,
+      isMainSideBarOpen: state.isMainSideBarOpen,
+      isTodoSideBarOpen: state.isTodoSideBarOpen,
       initializeItem: state.initializeItem,
       updateStorage: state.updateStorage,
     }),
     shallow
   );
 
-  const handleCollapsed = (): void => {
-    updateStorage(LocalStorageKeys.isMainSidebarCollapsed, !isCollapsed);
+  const handleMainSideBar = (): void => {
+    updateStorage(LocalStorageKeys.isMainSideBarOpen, !isMainSideBarOpen);
+  };
+
+  const handleTodoSideBar = (): void => {
+    updateStorage(LocalStorageKeys.isTodoSideBarOpen, !isTodoSideBarOpen);
   };
 
   useEffect(() => {
-    initializeItem(LocalStorageKeys.isMainSidebarCollapsed, false);
+    initializeItem(LocalStorageKeys.isMainSideBarOpen, true);
   }, []);
 
   return (
     <div
-      className={`${styles.topBar} ${styles[env.toLowerCase()]} ${isCollapsed ? styles.sideBarCollapsed : ""}`}
+      className={`${styles.topBar} ${styles[env.toLowerCase()]} ${!isMainSideBarOpen ? styles.sideBarCollapsed : ""}`}
     >
       <div className={`${styles.brand}`}>
         <a href="#">
@@ -87,7 +92,7 @@ const TopBar = () => {
           type="button"
           className={styles.sideBarMenuBtn}
           title={"sidebar menu"}
-          onClick={handleCollapsed}
+          onClick={handleMainSideBar}
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
@@ -117,7 +122,9 @@ const TopBar = () => {
           </ActionsIconPopover>
         </div>
         <div className={styles.menuBtn}>
-          <MenuButton />
+          <button onClick={handleTodoSideBar}>
+            <MenuButton />
+          </button>
         </div>
       </div>
     </div>

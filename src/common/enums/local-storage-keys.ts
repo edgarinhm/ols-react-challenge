@@ -1,6 +1,7 @@
 export enum LocalStorageKeys {
   noExpireSession = "noExpireSession",
-  isMainSidebarCollapsed = "isMainSidebarCollapsed",
+  isMainSideBarOpen = "isMainSideBarOpen",
   user = "user",
   tokenStartTime = "tokenStartTime",
+  isTodoSideBarOpen = "isTodoSideBarOpen",
 }

@@ -18,7 +18,7 @@ const MainSideBar = () => {
   const hasAccessToRolesPage = false;
   const [openMenuItem, setOpenMenuItem] = useState("");
 
-  const isCollapsed = useSharedStorage((state) => state.isMainSidebarCollapsed);
+  const isMainSideBarOpen = useSharedStorage((state) => state.isMainSideBarOpen);
 
   const menuItems = [
     {
@@ -50,7 +50,7 @@ const MainSideBar = () => {
   ];
 
   return (
-    <div className={`${styles.mainSideBar} ${isCollapsed ? styles.sideBarIconOnly : ""}`}>
+    <div className={`${styles.mainSideBar} ${!isMainSideBarOpen ? styles.sideBarIconOnly : ""}`}>
       <nav>
         {menuItems
           .filter((item) => !item.isHidden)
