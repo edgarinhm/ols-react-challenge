@@ -77,9 +77,11 @@ const TopBar = () => {
             </span>
           )}
         </div>
-        <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
-          <Avatar url={""} ref={popoverAvatarRef} />
-        </ActionsIconPopover>
+        <div className={styles.avatar}>
+          <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
+            <Avatar url={"/vite.svg"} ref={popoverAvatarRef} />
+          </ActionsIconPopover>
+        </div>
         <div className={styles.menuBtn}>
           <MenuButton />
         </div>

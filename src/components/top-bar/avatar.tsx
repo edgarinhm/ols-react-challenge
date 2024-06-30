@@ -5,13 +5,13 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 import { LegacyRef } from "react";
 
 interface AvatarProps {
-  url: string;
+  url?: string;
   ref: LegacyRef<HTMLDivElement> | undefined;
 }
 
 const Avatar = ({ url, ref }: AvatarProps) => {
   return (
-    <div className={styles.avatar} ref={ref}>
+    <div className={styles.avatar}>
       {url ? <img src={url} alt={"User Avatar"} /> : <FontAwesomeIcon icon={faCircleUser} />}
     </div>
   );
