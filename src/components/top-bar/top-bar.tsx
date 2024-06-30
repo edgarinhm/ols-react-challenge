@@ -80,7 +80,6 @@ const TopBar = () => {
         <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
           <Avatar url={""} ref={popoverAvatarRef} />
         </ActionsIconPopover>
-
         <div className={styles.menuBtn}>
           <MenuButton />
         </div>

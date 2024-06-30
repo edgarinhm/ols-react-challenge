@@ -9,9 +9,9 @@ interface AvatarProps {
   ref: LegacyRef<HTMLDivElement> | undefined;
 }
 
-const Avatar = ({ url }: AvatarProps) => {
+const Avatar = ({ url, ref }: AvatarProps) => {
   return (
-    <div className={styles.avatar}>
+    <div className={styles.avatar} ref={ref}>
       {url ? <img src={url} alt={"User Avatar"} /> : <FontAwesomeIcon icon={faCircleUser} />}
     </div>
   );
