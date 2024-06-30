@@ -26,7 +26,7 @@ const TopBar = () => {
   const { handleLogout } = useAuthentication();
 
   const commonMenuOptions: PopoverActionsIcon[] = [
-    { text: "Log Out", action: () => handleLogout(), icon: <FontAwesomeIcon icon={faPowerOff} /> },
+    { text: "Logout", action: () => handleLogout(), icon: <FontAwesomeIcon icon={faPowerOff} /> },
   ];
 
   const { isCollapsed, initializeItem, updateStorage } = useSharedStorage(
