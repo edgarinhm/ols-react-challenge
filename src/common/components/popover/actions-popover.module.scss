@@ -65,6 +65,7 @@
   .link {
     text-decoration: none;
   }
+
   .iconGroup {
     display: flex;
     align-items: center;
@@ -92,5 +93,16 @@
     .text > div {
       background-color: $very-light-gray;
     }
+  }
+  .title {
+    display: flex;
+    align-items: flex-start;
+    color: $black;
+  }
+  .title:hover,
+  .title:focus {
+    background-color: transparent;
+    color: $black;
+    cursor: text;
   }
 }

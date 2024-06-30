@@ -97,7 +97,11 @@ const TopBar = () => {
       </div>
       <div className={styles.userMenu}>
         <div className={styles.notification}>
-          <ActionsIconPopover menuOptions={notificationsMenuOptions} placement={"bottom-end"}>
+          <ActionsIconPopover
+            title={"Notificaciones"}
+            menuOptions={notificationsMenuOptions}
+            placement={"bottom-end"}
+          >
             <FontAwesomeIcon icon={faBell} />
             {!!notifications?.length && (
               <span className={`${badgeStyles.warningRounded} ${styles.count}`}>

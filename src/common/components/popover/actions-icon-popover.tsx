@@ -10,11 +10,13 @@ const ActionsIconPopover = ({
   placement,
   children: actionButton,
   disabled,
+  title,
 }: {
   menuOptions: PopoverActionsIcon[];
   placement: Placement;
   children: ReactNode;
   disabled?: boolean;
+  title?: string;
 }): JSX.Element => {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -60,6 +62,7 @@ const ActionsIconPopover = ({
         middleware={[flip()]}
         actionElement={actionButton}
       >
+        {title ? <div className={styles.title}>{title}</div> : null}
         {menuOptions.map((link) => (
           <div
             className={styles.link + ` ${styles.iconGroup} ${link.disabled ? styles.disabled : ""}`}
