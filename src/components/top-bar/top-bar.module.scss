@@ -102,7 +102,8 @@
     justify-content: flex-end;
 
     > * {
-      padding-left: 30px;
+      margin-left: 1rem;
+      margin-right: 1rem;
     }
 
     .notification {
@@ -130,7 +131,7 @@
     }
 
     .menuBtn {
-      padding: 0 1.25rem 0 1.25rem;
+      margin: 0 1.25rem 0 0.5rem;
     }
   }
 }
