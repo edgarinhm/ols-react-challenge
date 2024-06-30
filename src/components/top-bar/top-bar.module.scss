@@ -25,7 +25,7 @@
   }
 
   &.prod {
-    background-color: $es-blue;
+    background-color: $white;
   }
 
   i {
@@ -50,7 +50,7 @@
   .brand {
     display: flex;
     justify-content: center;
-    width: 235px;
+    width: 230px;
     height: 60px;
     text-align: start;
     a {
@@ -83,6 +83,7 @@
       cursor: pointer;
       border: none;
       background-color: transparent;
+      padding: 1rem;
     }
   }
 
@@ -132,8 +133,14 @@
       padding: 0 1.25rem 0 1.25rem;
     }
   }
+}
 
-  .collapsed {
+.sideBarCollapsed {
+  .brand {
     width: 84px;
+    transition: all 0.2s ease-in;
+  }
+  .sideBarMenuBtn {
+    transform: rotate(90deg);
   }
 }

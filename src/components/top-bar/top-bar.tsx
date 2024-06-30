@@ -16,8 +16,8 @@ import { useDashboardStorage } from "common/state-management/dashboard-storage";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
-  const env: string = !Environment ? import.meta.env.MODE : Environment;
-  const environment = GetEnvironmentFromLocationUrl();
+  const env: string = !Environment ? import.meta.env?.VITE_APP_ENVIRONMENT : Environment;
+  const { name: environmentName } = GetEnvironmentFromLocationUrl();
 
   const popoverButtonRef = useRef<HTMLDivElement>(null);
 
@@ -44,8 +44,10 @@ const TopBar = () => {
   }, []);
 
   return (
-    <div className={`${styles.topBar} ${styles[env.toLowerCase()]}`}>
-      <div className={`${styles.brand} ${isCollapsed ? styles.collapsed : ""}`}>
+    <div
+      className={`${styles.topBar} ${styles[env.toLowerCase()]} ${isCollapsed ? styles.sideBarCollapsed : ""}`}
+    >
+      <div className={`${styles.brand}`}>
         <a href="#">
           <img src={logoImg} alt={"logo"} />
         </a>
@@ -60,7 +62,7 @@ const TopBar = () => {
           <FontAwesomeIcon icon={faBars} />
         </button>
         <span className={styles.environment}>
-          {"Env:"} <strong>{environment.name}</strong>
+          {"OLS:"} <strong>{environmentName}</strong>
         </span>
       </div>
       <div className={styles.userMenu}>
