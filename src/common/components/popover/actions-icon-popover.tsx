@@ -11,12 +11,14 @@ const ActionsIconPopover = ({
   children: actionButton,
   disabled,
   title,
+  overflow = "hidden",
 }: {
   menuOptions: PopoverActionsIcon[];
   placement: Placement;
   children: ReactNode;
   disabled?: boolean;
   title?: string;
+  overflow?: string;
 }): JSX.Element => {
   const [popoverOpen, setPopoverOpen] = useState(false);
 
@@ -53,7 +55,7 @@ const ActionsIconPopover = ({
       role="button"
     >
       <Popover
-        className={styles.popoverContent}
+        className={`${styles.popoverContent} ${overflow !== "hidden" ? styles.overflow : ""} `}
         isOpen={popoverOpen}
         placement={placement}
         tabIndex={0}
@@ -61,6 +63,7 @@ const ActionsIconPopover = ({
         data-qa="action-icon-popover"
         middleware={[flip()]}
         actionElement={actionButton}
+        style={{ overflow: overflow }}
       >
         {title ? <div className={styles.title}>{title}</div> : null}
         {menuOptions.map((link) => (

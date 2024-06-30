@@ -101,6 +101,7 @@ const TopBar = () => {
             title={"Notificaciones"}
             menuOptions={notificationsMenuOptions}
             placement={"bottom-end"}
+            overflow="auto"
           >
             <FontAwesomeIcon icon={faBell} />
             {!!notifications?.length && (

@@ -105,4 +105,8 @@
     color: $black;
     cursor: text;
   }
+
+  &.overflow {
+    max-height: 65vh;
+  }
 }
