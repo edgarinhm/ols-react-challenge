@@ -84,8 +84,12 @@
   .iconGroup:focus {
     background-color: $very-light-gray;
     color: $black;
-    .icon {
+    .icon,
+    .text {
       color: $es-blue;
+      background-color: $very-light-gray;
+    }
+    .text > div {
       background-color: $very-light-gray;
     }
   }

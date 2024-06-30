@@ -6,6 +6,9 @@ export type PopoverActions = {
   disabled?: boolean;
 };
 
-export type PopoverActionsIcon = PopoverActions & {
+export type PopoverActionsIcon = Omit<PopoverActions, "text"> & {
   icon: ReactNode;
+  idKey: string | number;
+  children?: ReactNode;
+  text?: string;
 };

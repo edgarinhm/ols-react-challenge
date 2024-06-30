@@ -63,7 +63,7 @@ const ActionsIconPopover = ({
         {menuOptions.map((link) => (
           <div
             className={styles.link + ` ${styles.iconGroup} ${link.disabled ? styles.disabled : ""}`}
-            key={link.text}
+            key={`${link.idKey ?? link.text}}`}
             tabIndex={0}
             onClick={() => !link.disabled && link.action()}
             onKeyDown={(event) => {
@@ -75,7 +75,7 @@ const ActionsIconPopover = ({
             role="link"
           >
             <div className={styles.icon}>{link.icon}</div>
-            {link.text}
+            <div className={styles.text}> {link.children ?? link.text}</div>
           </div>
         ))}
       </Popover>

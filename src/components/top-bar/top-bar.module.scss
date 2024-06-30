@@ -2,7 +2,7 @@
 @use "common/sass/styles/colors.module.scss" as *;
 @use "common/sass/styles/base-style-and-scale.module.scss" as *;
 @use "common/sass/mixins/tooltip.module.scss" as *;
-
+@use "common/sass/mixins/alerts.module.scss";
 @use "common/sass/styles/z-index.module.scss" as z;
 
 .topBar {
@@ -115,6 +115,46 @@
         font-size: $font-size-larger;
         margin-right: 0;
         vertical-align: middle;
+      }
+    }
+
+    .notificationMenuOption {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      color: $black;
+      padding: 0px;
+      span {
+        color: $med-grey;
+      }
+    }
+    .notificationMenuOption:hover,
+    .notificationMenuOption:focus {
+      background-color: $very-light-gray;
+    }
+
+    .notificationMenuIcon {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      border-radius: 100%;
+      overflow: hidden;
+      vertical-align: middle;
+      padding: 6px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $white;
+
+      &.info {
+        @include alerts.alert-variant-success;
+      }
+      &.warning {
+        @include alerts.alert-variant-warning;
+      }
+      &.error {
+        @include alerts.alert-variant-error;
       }
     }
 

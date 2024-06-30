@@ -4,7 +4,7 @@ import logoImg from "/logo.png";
 import { useAuthentication } from "common/authentication/authentication";
 import { PopoverActionsIcon } from "common/models/popover-actions";
 import { MenuButton } from "common/components/popover/actions-popover";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBell, faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import badgeStyles from "common/sass/modules/badges.module.scss";
@@ -14,20 +14,44 @@ import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { shallow } from "zustand/shallow";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { ActionsIconPopover } from "common/components/popover/actions-icon-popover";
+import { GetNotificationIconClass } from "common/functions/notification-functions";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
   const env: string = !Environment ? import.meta.env?.VITE_APP_ENVIRONMENT : Environment;
   const { name: environmentName } = GetEnvironmentFromLocationUrl();
 
-  const popoverAvatarRef = useRef<HTMLDivElement>(null);
-
   const notifications = useDashboardStorage((state) => state.notifications);
+
   const { handleLogout } = useAuthentication();
 
   const commonMenuOptions: PopoverActionsIcon[] = [
-    { text: "Logout", action: () => handleLogout(), icon: <FontAwesomeIcon icon={faPowerOff} /> },
+    {
+      idKey: "Logout",
+      text: "Logout",
+      icon: <FontAwesomeIcon icon={faPowerOff} />,
+      action: () => handleLogout(),
+    },
   ];
+
+  const notificationsMenuOptions = notifications.map((notification, index) => {
+    const notificationIcon = GetNotificationIconClass(notification.type);
+    return {
+      idKey: `${notification.id}-${index}`,
+      icon: (
+        <div className={`${styles.notificationMenuIcon} ${styles[notification.type]}`}>
+          <FontAwesomeIcon icon={notificationIcon} />
+        </div>
+      ),
+      children: (
+        <div className={styles.notificationMenuOption}>
+          {notification.details}
+          <span>{notification.time}</span>
+        </div>
+      ),
+      action: () => "",
+    };
+  });
 
   const { isCollapsed, initializeItem, updateStorage } = useSharedStorage(
     (state) => ({
@@ -59,7 +83,7 @@ const TopBar = () => {
         <button
           type="button"
           className={styles.sideBarMenuBtn}
-          title="sidebar menu"
+          title={"sidebar menu"}
           onClick={handleCollapsed}
         >
           <FontAwesomeIcon icon={faBars} />
@@ -70,16 +94,18 @@ const TopBar = () => {
       </div>
       <div className={styles.userMenu}>
         <div className={styles.notification}>
-          <FontAwesomeIcon icon={faBell} />
-          {!!notifications?.length && (
-            <span className={`${badgeStyles.warningRounded} ${styles.count}`}>
-              {notifications.length}
-            </span>
-          )}
+          <ActionsIconPopover menuOptions={notificationsMenuOptions} placement={"bottom-end"}>
+            <FontAwesomeIcon icon={faBell} />
+            {!!notifications?.length && (
+              <span className={`${badgeStyles.warningRounded} ${styles.count}`}>
+                {notifications.length}
+              </span>
+            )}
+          </ActionsIconPopover>
         </div>
         <div className={styles.avatar}>
           <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
-            <Avatar url={"/vite.svg"} ref={popoverAvatarRef} />
+            <Avatar url={"/vite.svg"} />
           </ActionsIconPopover>
         </div>
         <div className={styles.menuBtn}>
