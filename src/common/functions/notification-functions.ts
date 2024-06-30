@@ -1,5 +1,4 @@
 import { NotificationType } from "common/enums/notification-type";
-
 import {
   faInfoCircle,
   faGear,
@@ -7,6 +6,7 @@ import {
   faWarning,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
+import dayjs, { locale } from "dayjs";
 
 export const GetNotificationIconClass = (notificationType: NotificationType): IconDefinition => {
   switch (notificationType) {
@@ -19,4 +19,8 @@ export const GetNotificationIconClass = (notificationType: NotificationType): Ic
     default:
       return faWarning;
   }
+};
+
+export const GetFormattedNotificationTimeFromNow = (date: string): string => {
+  return dayjs(date).fromNow();
 };

@@ -11,8 +11,10 @@ import {
   BlockRouteReRenderAfterAuth,
   UnAuthenticatedTemplate,
 } from "common/authentication/authentication-provider";
+import "common/extensions/dayjs-extensions";
 import "common/sass/styles/base-elements.scss";
 import "common/sass/styles/base-inputs.scss";
+
 import { ApiBaseProvider } from "common/services/api/api-base";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

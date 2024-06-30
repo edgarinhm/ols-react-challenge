@@ -14,7 +14,10 @@ import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { shallow } from "zustand/shallow";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { ActionsIconPopover } from "common/components/popover/actions-icon-popover";
-import { GetNotificationIconClass } from "common/functions/notification-functions";
+import {
+  GetFormattedNotificationTimeFromNow,
+  GetNotificationIconClass,
+} from "common/functions/notification-functions";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
@@ -46,7 +49,7 @@ const TopBar = () => {
       children: (
         <div className={styles.notificationMenuOption}>
           {notification.details}
-          <span>{notification.time}</span>
+          <span>{GetFormattedNotificationTimeFromNow(notification.time)}</span>
         </div>
       ),
       action: () => "",
