@@ -1,6 +1,6 @@
 export const Messages = {
-  UnExpectedNetworkError: "Unexpected Error has occurred, please try again.",
-  LoginAuthenticationError: "Usuario o contraseña incorrectos.",
+  UnexpectedError: "An unexpected error has occurred. Please contact help desk.",
+  LoginAuthenticationFailure: "Usuario o contraseña incorrectos.",
   LoginTitle: "Bienvenido al gestor de proyectos!",
   LoginDescription: "Necesitamos tu usuario y contraseña",
   LoginUsernamePlaceholder: "Nombre de usuario Ej: nombre.apellido",

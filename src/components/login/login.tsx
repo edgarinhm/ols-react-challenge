@@ -39,14 +39,14 @@ const Login = (): JSX.Element => {
           loginForm.password
         );
         if (!isAuthenticated) {
-          setValidationMessageError(Messages.LoginAuthenticationError);
+          setValidationMessageError(Messages.LoginAuthenticationFailure);
         } else {
           updateStorage(LocalStorageKeys.tokenStartTime, Date.now());
           updateStorage(LocalStorageKeys.noExpireSession, loginForm.noExpireSession);
           handleLoginRedirect(redirectURL);
         }
       } catch (error) {
-        setValidationMessageError(Messages.UnExpectedNetworkError);
+        setValidationMessageError(Messages.UnexpectedError);
       }
     }
     setIsLoading(false);
