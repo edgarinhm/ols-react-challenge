@@ -1,0 +1,50 @@
+@use "common/sass/styles/colors.module.scss";
+@use "common/sass/styles/z-index.module.scss";
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/functions/_strip-unit.scss" as *;
+
+$arrowSize: 6px;
+$animationDuration: 500ms;
+
+.tooltip {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 400;
+  color: colors.$white;
+  background-color: colors.$black;
+  border-radius: base.$base-border-radius;
+  padding: 3px 8px;
+  text-align: center;
+  z-index: z-index.$z-tooltip;
+  pointer-events: none;
+  max-width: 500px;
+  width: max-content;
+}
+
+.arrow {
+  position: absolute;
+  background: inherit;
+  transform: rotate(45deg);
+  height: $arrowSize;
+  width: $arrowSize;
+}
+
+.tooltipEnter,
+.tooltipAppear {
+  opacity: 0;
+}
+
+.tooltipEnterActive,
+.tooltipAppearActive {
+  opacity: 1;
+  transition: opacity $animationDuration;
+}
+
+.tooltipExit {
+  opacity: 1;
+}
+
+.tooltipExitActive {
+  opacity: 0;
+  transition: opacity $animationDuration;
+}

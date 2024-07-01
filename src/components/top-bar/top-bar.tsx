@@ -38,10 +38,14 @@ const TopBar = () => {
 
   useEffect(() => {
     const loadTodosData = async () => {
-      const todosData = await GetTodos();
-      setTopBarState((state) => {
-        state.todos = todosData;
-      });
+      try {
+        const todosData = await GetTodos();
+        setTopBarState((state) => {
+          state.todos = todosData;
+        });
+      } catch (error) {
+        console.log(error);
+      }
     };
     loadTodosData();
   }, []);
@@ -59,8 +63,6 @@ const TopBar = () => {
     };
     loadNotificationsData();
   }, []);
-
-  console.log("Topbar");
 
   return (
     <div className={`${styles.topBar} ${styles[env.toLowerCase()]} `}>
