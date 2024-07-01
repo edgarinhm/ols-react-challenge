@@ -9,8 +9,8 @@ import {
   faIdCard,
   faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSharedStorage } from "common/state-management/shared-storage";
 import { useState } from "react";
+import { useTopBarStorage } from "common/state-management/top-bar-storage";
 
 const MainSideBar = () => {
   const hasAccessToProjectsPage = false;
@@ -18,7 +18,7 @@ const MainSideBar = () => {
   const hasAccessToRolesPage = false;
   const [openMenuItem, setOpenMenuItem] = useState("");
 
-  const isMainSideBarOpen = useSharedStorage((state) => state.isMainSideBarOpen);
+  const isMainSideBarOpen = useTopBarStorage((state) => state.isMainSideBarOpen);
 
   const menuItems = [
     {

@@ -21,8 +21,7 @@ const Dashboard = () => {
     shallow
   );
 
-  const notifications = useTopBarStorage((state) => state.notifications);
-  const alertCount = notifications?.length;
+  const alertCount = useTopBarStorage((state) => state.notifications?.length);
 
   const projectsCardData = {
     title: "Proyectos Registrados",
