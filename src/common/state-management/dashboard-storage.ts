@@ -1,21 +1,21 @@
 import { DashboardCardModel } from "common/models/dashboard-card-model";
 import { DashboardServerReportModel } from "common/models/dashboard-server-report-model";
-import { NotificationModel } from "common/models/notification-model";
+import { TodoModel } from "common/models/todo-model";
 import { produce } from "immer";
 import { create } from "zustand";
 
 export type DashboardStorageModel = {
-  notifications: NotificationModel[];
   cards: DashboardCardModel | undefined;
   serverReport: DashboardServerReportModel | undefined;
+  todos: TodoModel[];
   setState: (recipe: (state: DashboardStorageModel) => void) => void;
 };
 
 export const useDashboardStorage = create<DashboardStorageModel>()((set) => {
   return {
-    notifications: [],
     cards: undefined,
     serverReport: undefined,
+    todos: [],
     setState: (recipe) => set(produce(recipe)),
   };
 });

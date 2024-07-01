@@ -186,6 +186,8 @@
 }
 
 .sideBarCollapsed {
+  display: flex;
+  flex-direction: row;
   .brand {
     width: 84px;
     transition: all 0.2s ease-in;
@@ -193,4 +195,9 @@
   .sideBarMenuBtn {
     transform: rotate(90deg);
   }
+}
+
+.sideBarOpen {
+  display: flex;
+  flex-direction: row;
 }

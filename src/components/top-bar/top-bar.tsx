@@ -1,30 +1,21 @@
-import { GetEnvironmentFromLocationUrl } from "common/functions/environment";
 import styles from "./top-bar.module.scss";
-import logoImg from "/logo.png";
 import { useAuthentication } from "common/authentication/authentication";
 import { PopoverActionsIcon } from "common/models/popover-actions";
 import { MenuButton } from "common/components/popover/actions-popover";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBell, faPowerOff } from "@fortawesome/free-solid-svg-icons";
-import badgeStyles from "common/sass/modules/badges.module.scss";
+import { faPowerOff } from "@fortawesome/free-solid-svg-icons";
 import Avatar from "./avatar";
-import { useSharedStorage } from "common/state-management/shared-storage";
-import { LocalStorageKeys } from "common/enums/local-storage-keys";
-import { shallow } from "zustand/shallow";
-import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { ActionsIconPopover } from "common/components/popover/actions-icon-popover";
-import {
-  GetFormattedNotificationTimeFromNow,
-  GetNotificationIconClass,
-} from "common/functions/notification-functions";
+import { GetTodos } from "common/services/todo-service";
+import Notifications from "./notifications";
+import { useTopBarStorage } from "common/state-management/top-bar-storage";
+import Brand from "./brand";
+import { GetNotifications } from "common/services/notification-service";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
   const env: string = !Environment ? import.meta.env?.VITE_APP_ENVIRONMENT : Environment;
-  const { name: environmentName } = GetEnvironmentFromLocationUrl();
-
-  const notifications = useDashboardStorage((state) => state.notifications);
 
   const { handleLogout } = useAuthentication();
 
@@ -37,85 +28,45 @@ const TopBar = () => {
     },
   ];
 
-  const notificationsMenuOptions = notifications.map((notification, index) => {
-    const notificationIcon = GetNotificationIconClass(notification.type);
-    return {
-      idKey: `${notification.id}-${index}`,
-      icon: (
-        <div className={`${styles.notificationMenuIcon} ${styles[notification.type]}`}>
-          <FontAwesomeIcon icon={notificationIcon} />
-        </div>
-      ),
-      children: (
-        <div className={styles.notificationMenuOption}>
-          {notification.details}
-          <span>{GetFormattedNotificationTimeFromNow(notification.time)}</span>
-        </div>
-      ),
-      action: () => "",
-    };
-  });
-
-  const { isMainSideBarOpen, isTodoSideBarOpen, initializeItem, updateStorage } = useSharedStorage(
-    (state) => ({
-      isMainSideBarOpen: state.isMainSideBarOpen,
-      isTodoSideBarOpen: state.isTodoSideBarOpen,
-      initializeItem: state.initializeItem,
-      updateStorage: state.updateStorage,
-    }),
-    shallow
-  );
-
-  const handleMainSideBar = (): void => {
-    updateStorage(LocalStorageKeys.isMainSideBarOpen, !isMainSideBarOpen);
-  };
+  const setTopBarState = useTopBarStorage((state) => state.setState);
 
   const handleTodoSideBar = (): void => {
-    updateStorage(LocalStorageKeys.isTodoSideBarOpen, !isTodoSideBarOpen);
+    setTopBarState((state) => {
+      state.isTodoSideBarOpen = !state.isTodoSideBarOpen;
+    });
   };
 
   useEffect(() => {
-    initializeItem(LocalStorageKeys.isMainSideBarOpen, true);
+    const loadTodosData = async () => {
+      const todosData = await GetTodos();
+      setTopBarState((state) => {
+        state.todos = todosData;
+      });
+    };
+    loadTodosData();
   }, []);
 
+  useEffect(() => {
+    const loadNotificationsData = async () => {
+      try {
+        const notificacions = await GetNotifications();
+        setTopBarState((state) => {
+          state.notifications = notificacions;
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    loadNotificationsData();
+  }, []);
+
+  console.log("Topbar");
+
   return (
-    <div
-      className={`${styles.topBar} ${styles[env.toLowerCase()]} ${!isMainSideBarOpen ? styles.sideBarCollapsed : ""}`}
-    >
-      <div className={`${styles.brand}`}>
-        <a href="#">
-          <img src={logoImg} alt={"logo"} />
-        </a>
-      </div>
-      <div className={styles.userMenuEnvironment}>
-        <button
-          type="button"
-          className={styles.sideBarMenuBtn}
-          title={"sidebar menu"}
-          onClick={handleMainSideBar}
-        >
-          <FontAwesomeIcon icon={faBars} />
-        </button>
-        <span className={styles.environment}>
-          {"OLS:"} <strong>{environmentName}</strong>
-        </span>
-      </div>
+    <div className={`${styles.topBar} ${styles[env.toLowerCase()]} `}>
+      <Brand />
       <div className={styles.userMenu}>
-        <div className={styles.notification}>
-          <ActionsIconPopover
-            title={"Notificaciones"}
-            menuOptions={notificationsMenuOptions}
-            placement={"bottom-end"}
-            overflow="auto"
-          >
-            <FontAwesomeIcon icon={faBell} />
-            {!!notifications?.length && (
-              <span className={`${badgeStyles.warningRounded} ${styles.count}`}>
-                {notifications.length}
-              </span>
-            )}
-          </ActionsIconPopover>
-        </div>
+        <Notifications />
         <div className={styles.avatar}>
           <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
             <Avatar url={"/vite.svg"} />

@@ -1,4 +1,4 @@
-export interface DashboardTodoModel {
+export interface TodoModel {
   id: number;
   description: string;
   check: boolean;

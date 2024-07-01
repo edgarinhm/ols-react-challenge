@@ -4,23 +4,24 @@ import ActivityCard from "./activity-card";
 import Weather from "./weather";
 import Reports from "./reports";
 import { useEffect, useState } from "react";
-import { GetNotifications } from "common/services/notification-service";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { shallow } from "zustand/shallow";
 import { GetDashboardCards, GetDashboardServerReport } from "common/services/dashboard-service";
 import { Spinner } from "common/components/spinner/spinner";
+import { useTopBarStorage } from "common/state-management/top-bar-storage";
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const name = useSharedStorage((state) => state.user?.name);
-  const { setDashboardState, notifications, cards } = useDashboardStorage(
+  const { setDashboardState, cards } = useDashboardStorage(
     (state) => ({
-      notifications: state.notifications,
       cards: state.cards,
       setDashboardState: state.setState,
     }),
     shallow
   );
+
+  const notifications = useTopBarStorage((state) => state.notifications);
   const alertCount = notifications?.length;
 
   const projectsCardData = {
@@ -48,19 +49,6 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const loadNotificationsData = async () => {
-      setIsLoading(true);
-      try {
-        const notificacions = await GetNotifications();
-        setDashboardState((state) => {
-          state.notifications = notificacions;
-        });
-      } catch (error) {
-        console.log(error);
-      }
-      setIsLoading(false);
-    };
-
     const loadDashboardCardsData = async () => {
       setIsLoading(true);
       try {
@@ -87,7 +75,6 @@ const Dashboard = () => {
       setIsLoading(false);
     };
 
-    loadNotificationsData();
     loadDashboardCardsData();
     loadServerReportData();
   }, []);

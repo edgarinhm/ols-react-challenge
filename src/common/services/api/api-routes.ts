@@ -18,7 +18,7 @@ export const DashboardCards = {
   get: (): string => "/dashboard_cards",
 };
 
-export const DashboardTodos = {
+export const Todos = {
   get: (): string => "/todos",
 };
 

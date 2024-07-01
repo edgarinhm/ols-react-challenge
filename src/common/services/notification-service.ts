@@ -1,4 +1,4 @@
-import { NotificationModel } from "common/models/notiifaction-model";
+import { NotificationModel } from "common/models/notification-model";
 import { Notification } from "./api/api-routes";
 import { axiosInstance } from "./api/api-base";
 
