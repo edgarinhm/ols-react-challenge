@@ -2,6 +2,7 @@
 @use "common/sass/styles/z-index.module.scss" as z;
 @use "common/sass/styles/base-style-and-scale.module.scss" as *;
 @use "common/sass/styles/_variables.scss" as *;
+@use "common/sass/mixins/buttons.module.scss" as buttons;
 
 .todoSideBar {
   border-left: 1px solid $white;
@@ -92,6 +93,54 @@
       height: 18px;
       margin-right: 0.5rem;
       color: $btn-primary-base;
+    }
+  }
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    color: $btn-primary-base;
+    padding: 0.75rem 1.5rem;
+  }
+  .close {
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    color: $btn-primary-base;
+    background: transparent;
+    border-radius: 4px;
+    padding: 0 3px;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    z-index: z.$z-popover;
+  }
+
+  .addTodo {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    .todoInput {
+      height: 2.875rem;
+      font-size: 0.875rem;
+      background: transparent;
+      border: none;
+    }
+    .todoInput::placeholder {
+      color: $light-grey;
+    }
+  }
+  .addActionGroup {
+    display: flex;
+    margin-bottom: 1.5rem;
+    button {
+      @include buttons.btn;
+      border-radius: 15px;
+      text-transform: capitalize;
+      margin-left: 0.5rem;
     }
   }
 }

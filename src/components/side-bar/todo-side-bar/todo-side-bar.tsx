@@ -2,7 +2,7 @@ import { shallow } from "zustand/shallow";
 import styles from "./todo-side-bar.module.scss";
 import { useTopBarStorage } from "common/state-management/top-bar-storage";
 import { FormControl } from "common/components/form-control/form-control";
-import { useId } from "react";
+import { FormEvent, useId } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
 import { faSquare } from "@fortawesome/free-regular-svg-icons";
@@ -38,13 +38,29 @@ const TodoSideBar = () => {
     });
   };
 
+  const closeTodoSideBar = (): void => {
+    setTodoState((state) => {
+      state.isTodoSideBarOpen = !state.isTodoSideBarOpen;
+    });
+  };
+
   console.log("todos", todos);
+
+  const handleOnSumit = (event: FormEvent): void => {
+    event.preventDefault();
+  };
 
   return (
     <div className={`${styles.todoSideBar} ${Boolean(isTodoSideBarOpen) ? styles.open : ""}`}>
       <div className={styles.title}>{"Pendientes"}</div>
-      <div className={styles.action}>
-        {"Que tienes pendiente?"} <button>{"Agregar"}</button>
+      <FontAwesomeIcon icon={faXmark} className={styles.close} onClick={closeTodoSideBar} />
+      <div className={styles.addTodo}>
+        <form noValidate autoComplete="off" onSubmit={handleOnSumit}>
+          <div className={styles.addActionGroup}>
+            <FormControl.Input placeholder={"Que tienes pendiente?"} className={styles.todoInput} />
+            <button type="submit">{"Agregar"}</button>
+          </div>
+        </form>
       </div>
       <div className={styles.todoList}>
         {todos
