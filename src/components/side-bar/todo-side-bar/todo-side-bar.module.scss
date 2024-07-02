@@ -1,6 +1,7 @@
 @use "common/sass/styles/colors.module.scss" as *;
 @use "common/sass/styles/z-index.module.scss" as z;
 @use "common/sass/styles/base-style-and-scale.module.scss" as *;
+@use "common/sass/styles/_variables.scss" as *;
 
 .todoSideBar {
   border-left: 1px solid $white;
@@ -26,13 +27,8 @@
     text-transform: capitalize;
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: 85%;
     white-space: nowrap;
-  }
-
-  .completed {
-    text-decoration: line-through;
-    text-decoration-color: #248afd;
+    font-size: $font-size-small;
   }
 
   .todoList {
@@ -41,29 +37,16 @@
     padding-left: 1rem;
     padding-right: 1rem;
     text-align: justify;
-
-    div > * {
-      margin: 0px;
-    }
-
-    input[type="checkbox"] {
-      margin-right: 0.5rem;
-    }
   }
 
   .todoItem {
     display: flex;
     align-items: center;
-    font-size: 0.9375rem;
     padding: 1.063rem 1.4rem;
-    border: 1px solid #ced4da;
+    border: $base-border;
     margin-bottom: 0.812rem;
-    border-radius: 7px;
-    justify-content: space-between;
+    border-radius: $border-radius-large;
 
-    svg {
-      font-size: $font-size-small;
-    }
     input {
       position: absolute;
       top: 0;
@@ -75,6 +58,14 @@
       opacity: 0;
       filter: alpha(opacity = 0);
     }
+
+    &.completed {
+      text-decoration: line-through;
+      text-decoration-color: $es-blue;
+      svg {
+        color: $btn-primary-base;
+      }
+    }
   }
 
   .removeTodo {
@@ -85,15 +76,22 @@
     height: 1.25rem;
     line-height: 1.25rem;
     text-align: center;
-    margin-left: 0.5rem;
+    margin-left: auto;
+    color: $med-grey;
   }
 
   .checkGroup {
     display: flex;
     align-items: center;
-    width: 100%;
-    div {
-      width: 100%;
+    overflow: hidden;
+    max-width: 90%;
+    text-overflow: ellipsis;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 0.5rem;
+      color: $btn-primary-base;
     }
   }
 }

@@ -4,7 +4,8 @@ import { useTopBarStorage } from "common/state-management/top-bar-storage";
 import { FormControl } from "common/components/form-control/form-control";
 import { useId } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark, faSquare, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faSquareCheck } from "@fortawesome/free-solid-svg-icons";
+import { faSquare } from "@fortawesome/free-regular-svg-icons";
 
 const TodoSideBar = () => {
   const id = useId();
@@ -51,7 +52,10 @@ const TodoSideBar = () => {
           .map((todo) => {
             const isChecked = todo.check === true;
             return (
-              <div key={todo.id} className={styles.todoItem}>
+              <div
+                key={todo.id}
+                className={`${styles.todoItem} ${isChecked ? styles.completed : ""}`}
+              >
                 <div className={styles.checkGroup}>
                   <FontAwesomeIcon
                     icon={isChecked ? faSquareCheck : faSquare}
@@ -63,7 +67,7 @@ const TodoSideBar = () => {
                     checked={isChecked}
                     id={`${id}-${todo.id}`}
                     label={todo.description}
-                    labelClassName={`${styles.standardLabel} ${isChecked ? styles.completed : ""}`}
+                    labelClassName={`${styles.standardLabel}`}
                     onChange={() => onCheckboxChange(todo.id)}
                   />
                 </div>
