@@ -6,7 +6,7 @@ else
     echo "Network '${NETWORK}' doesn't exist; creating it"
     docker network create ${NETWORK}
 fi
-docker run --rm -it -p 3000:4001/tcp \
+docker run -d --rm -it \
     -e 'VITE_API_HOSTNAME=https://ol-software-node-api-json-server-backend.onrender.com' \
     --name olsoftware-react-challenge \
     --network network-olsoftware-challenge \
