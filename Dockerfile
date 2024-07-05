@@ -35,7 +35,7 @@ COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app/package*.json ./
 
 # Expose a port to communicate with the React app [Port you mentioned in the vite.config file]
-# EXPOSE 3000
+EXPOSE 4173
 
 # Start your React app
-CMD ["npm", "run", "deploy"]
+CMD ["npm", "run", "preview"]

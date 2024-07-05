@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3000 --host",
     "build": "tsc && vite build",
     "test": "vitest",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "deploy": "npm run build && npm run preview"
+    "preview": "vite preview --port 4001 --host",
+    "deploy": "npm run build && npm run preview --host"
   },
   "dependencies": {
     "@floating-ui/react-dom-interactions": "^0.13.3",

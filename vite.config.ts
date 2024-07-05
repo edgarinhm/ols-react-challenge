@@ -12,8 +12,6 @@ export default defineConfig({
     setupFiles: "./src/setupTests.ts",
   },
   server: {
-    host: true,
-    port: 3000,
     proxy: {
       "^/v\\d+/.*": {
         target: "http://localhost:8080",
