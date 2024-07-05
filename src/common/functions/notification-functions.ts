@@ -6,7 +6,7 @@ import {
   faWarning,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
-import dayjs, { locale } from "dayjs";
+import dayjs from "dayjs";
 
 export const GetNotificationIconClass = (notificationType: NotificationType): IconDefinition => {
   switch (notificationType) {

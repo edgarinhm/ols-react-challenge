@@ -56,7 +56,6 @@ export const HomeRoutes = (): JSX.Element => {
 };
 
 export const AppRouter = (): JSX.Element => {
-  const defaultRoute = routes.dashboard.name;
   return (
     <Routes>
       <Route
