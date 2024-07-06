@@ -153,7 +153,7 @@ See the section about [deployment](https://vitejs.dev/guide/static-deploy.html) 
 
 ### Folder structure
 ```
-├── dist                   # Compiled files (auto-generated)
+├── dist                    # Compiled files (auto-generated)
 ├── node_modules            # Node libraries (auto-generated)
 ├── public                  # Config files, images
 ├── src                     # Source files
