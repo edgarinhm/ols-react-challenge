@@ -9,7 +9,7 @@ This project was bootstrapped with [Vite](https://vitejs.dev/).
       - [Env File](#env-file)
       - [Environment variables](#environment-variables)
   - [Technologies](#technologies)
-    - [Testing](#testing)
+    - [Testing framework](#testing-framework)
   - [Available Scripts](#available-scripts)
     - [`npm dev`](#npm-dev)
     - [`npm test`](#npm-test)
@@ -18,8 +18,9 @@ This project was bootstrapped with [Vite](https://vitejs.dev/).
     - [`npm preview`](#npm-preview)
     - [`npm deploy`](#npm-deploy)
   - [More info](#more-info)
-    - [React, Design, and Data Standards](#folders)
-    - [Folders](#folders)
+    - [React, Design, and Data Standards](#react,-design,-and-data-standards)
+    - [Folder structure](#folder-structure)
+    - [Deployment CI/CD](#deployment-ci/cd)
     - [Demo](#demo)
 
 ## In a nutshell
