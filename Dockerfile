@@ -1,8 +1,9 @@
 #---------------------------------------------------
-# ----- Build stage 1 ---------------------------------
+# ----- Dependencies stage 1 ---------------------------------
 # Use an official Node.js runtime as a parent image
-FROM node:22.3.0-slim AS builder
+FROM node:22.3.0-slim AS base
 
+FROM base as dependencies
 RUN corepack enable && corepack prepare pnpm@latest --activate
 ENV PNPM_HOME=/usr/local/bin
 
@@ -14,14 +15,20 @@ COPY package*.json ./
 # Install app dependencies
 RUN pnpm install
 
+#------------------------------------------------------
+# ----- Build stage 2 ---------------------------------
+#rebuild the source code only when needed
+FROM dependencies As builder
+# Set the working directory in the container
+WORKDIR /usr/src/app
 # Copy the rest of your application code to the working directory
 COPY . .
 RUN pnpm run build
 
 #---------------------------------------------------
 #---------------------------------------------------
-# ----- Deploy stage 2 -------
-FROM node:22-alpine
+# ----- Deploy stage 3 -------
+FROM node:22-alpine As deploy
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
