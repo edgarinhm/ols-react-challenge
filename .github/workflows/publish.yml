@@ -1,0 +1,50 @@
+name: publish
+
+on:
+    push:
+        branches: ["master"]
+    pull_request:
+        branches: ["master"]
+jobs:
+    create-docker-image:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout-the-code
+              uses: actions/checkout@v2
+            
+            - name: Login to Github container registry
+              uses: docker/login-action@v1
+              with: 
+                registry: ghcr.io
+                username: ${{ github.actor }}
+                password: ${{ secrets.TOKEN_OLS_CD}}
+            
+            - name: Build Ols React image Docker image
+              run: |
+                docker build . --tag ghcr.io/edgarinhm/ols-react-challenge:latest
+                docker push ghcr.io/edgarinhm/ols-react-challenge:latest
+    deploy:
+        needs: create-docker-image
+        runs-on: ubuntu:latest
+        steps:
+            - name: install sshpass
+              run: sudo apt-get-install -y sshpass
+
+            - name: SSH into server
+              run: |
+                sshpass -p ${{secrets.AUTH_OLS_PASS}} ssh -o StrictHostKeyChecking=no ${{secrets.AUTH_OLS_SERVER}} << EOF
+                    cd /root/ols-react-challenge/
+                    docker login ghcr.io -u edgarinhm -p ${{secrets.TOKEN_OLS_CD}}
+                    docker pull ghcr.io/edgarinhm/ols-react-challenge:latest
+                    docker stop  ols_react_challenge:latest && docker rm ols_react_challenge
+                    docker run -d \
+                        --name ols_react_challenge \
+                        -p 3000:4000 \
+                        -v ${pwd}/ols_sessions:/app/ols_sessions \
+                        -w /app \
+                        --restart always \
+                        --env-file .env \
+                        ghcr.io/edgarinhm/ols-react-challenge:latest
+                EOF
+
+
