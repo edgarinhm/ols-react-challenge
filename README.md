@@ -100,7 +100,7 @@ See the section about [deployment](https://vitejs.dev/guide/static-deploy.html) 
 * Cleanup broadcast channels and listeners in hooks
 * Eliminate unnecessary hooks [Read Here](https://react.dev/learn/you-might-not-need-an-effect)
 * Learn More
-	- You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+	- You can learn more in the [Vite documentation](https://vitejs.dev/guide/).
 	- To learn React, check out the [React documentation](https://react.dev/).
 
 ### Naming Conventions
