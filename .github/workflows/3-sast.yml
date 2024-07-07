@@ -40,7 +40,7 @@ jobs:
         id: cache-build
         uses: actions/cache@v4
         with:
-          path: ./target
+          path: ./src/node_modules
           key: ${{ runner.os }}-target
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -68,9 +68,9 @@ jobs:
         id: report
         uses: bearer/bearer-action@v2
         with:
-          path: ./target
+          path: ./src/node_modules
       - name: Upload Bearer Report
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: bearer.sarif
