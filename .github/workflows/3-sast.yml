@@ -68,10 +68,11 @@ jobs:
         id: report
         uses: bearer/bearer-action@v2
         with:
+          format: sarif
+          output: bearer.sarif
           path: ./
       - name: Upload Bearer Report
         uses: actions/upload-artifact@v4
-        if: always()
         with:
           name: bearer.sarif
           path: ${{github.workspace}}/results.sarif
