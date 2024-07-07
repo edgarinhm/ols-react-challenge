@@ -42,7 +42,6 @@ jobs:
         with:
           path: ./target
           key: ${{ runner.os }}-target
-            ${{ runner.os }}-node-
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
