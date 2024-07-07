@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_API_HOSTNAME: string;
   readonly VITE_APP_ENVIRONMENT: string;
+  readonly VITE_API_HOSTNAME: string;
 }
 
 interface ImportMeta {
