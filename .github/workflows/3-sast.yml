@@ -53,7 +53,9 @@ jobs:
         with:
           category: "/language:${{matrix.language}}"
 
-  rule_check:
+  bearer:
+    name: SAST Bearer
+    needs: [SAST-CodeQL]
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -66,11 +68,11 @@ jobs:
         with:
           format: sarif
           output: results.sarif
-      - name: Upload SARIF file
-        if: always()
-        uses: github/codeql-action/upload-sarif@v2
-        with:
-          sarif_file: results.sarif        
+      #- name: Upload analysis results to GitHub Security tab
+      #  if: always()
+      #  uses: github/codeql-action/upload-sarif@v3
+      #  with:
+      #    sarif_file: ${{github.workspace}}/results.sarif
       
   semgrep:
     needs: [SAST-CodeQL]
