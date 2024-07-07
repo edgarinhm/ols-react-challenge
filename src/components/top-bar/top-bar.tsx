@@ -44,7 +44,7 @@ const TopBar = () => {
           state.todos = todosData;
         });
       } catch (error) {
-        console.log(error);
+        console.log("error");
       }
     };
     loadTodosData();
@@ -58,7 +58,7 @@ const TopBar = () => {
           state.notifications = notificacions;
         });
       } catch (error) {
-        console.log(error);
+        console.log("error");
       }
     };
     loadNotificationsData();

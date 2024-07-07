@@ -13,7 +13,7 @@ const Weather = (): JSX.Element => {
         const data = await GetWeatherByCity("Cali");
         setWeather(data);
       } catch (error) {
-        console.log(error);
+        console.log("error");
       }
     };
     loadWeatherData();

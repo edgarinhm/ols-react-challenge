@@ -56,7 +56,7 @@ const Dashboard = () => {
           state.cards = cards;
         });
       } catch (error) {
-        console.log(error);
+        console.log("error");
       }
       setIsLoading(false);
     };
@@ -69,7 +69,7 @@ const Dashboard = () => {
           state.serverReport = serverReport;
         });
       } catch (error) {
-        console.log(error);
+        console.log("error");
       }
       setIsLoading(false);
     };
