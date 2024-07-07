@@ -70,7 +70,7 @@ jobs:
         with:
           format: sarif
           output: results.sarif
-          path: ./
+          #path: ./
       - name: Upload analysis results to GitHub Security tab
         if: always()
         uses: github/codeql-action/upload-sarif@v3
