@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://edgarinhm.github.io/ols-react-challenge",
   "scripts": {
     "dev": "vite --port 3000 --host",
     "build": "tsc && vite build",

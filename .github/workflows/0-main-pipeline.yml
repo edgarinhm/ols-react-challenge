@@ -1,0 +1,55 @@
+name: 00 - Main CI / CD Pipeline
+
+on:
+  push:
+    paths-ignore:
+      - '**/*.md'
+      - '**/*.txt'
+  workflow_dispatch:
+  
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/1-build.yml
+    secrets: inherit #https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idsecretsinherit
+
+  sca:
+    needs: build
+    name: SCA
+    uses: ./.github/workflows/2-sca.yml
+    secrets: inherit
+
+  sast:
+    needs: build
+    name: SAST
+    uses: ./.github/workflows/3-sast.yml
+    secrets: inherit
+
+  license-compliance:
+    needs: build
+    name: License compliance
+    uses: ./.github/workflows/4-license-compliance.yml
+    secrets: inherit
+
+  docker:
+    needs: build
+    name: Build docker image
+    uses: ./.github/workflows/5-docker.yml
+    secrets: inherit
+
+  container-image-scan:
+    needs: docker
+    name: Build docker image
+    uses: ./.github/workflows/5.1-container-image-scan.yml
+    secrets: inherit
+    with:
+      image-tag: ${{ needs.docker.outputs.image-tag }}
+
+  dast:
+    needs: [build,docker]
+    name: DAST Scan
+    uses: ./.github/workflows/5.2-dast.yml
+    secrets: inherit
+    with:
+      image-tag: ${{ needs.docker.outputs.image-tag }}
+ 

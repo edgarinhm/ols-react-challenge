@@ -1,0 +1,36 @@
+name: 80 Deploy Stage
+
+on:
+  workflow_dispatch:
+  workflow_call:
+env:
+  # Setting an environment variable with the value of a configuration variable
+  env_var: ${{ vars.OLS_REACT_CHALLENGE }}
+
+  
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/1-build.yml
+  
+  # Deploy Job
+  deploy:
+    # Add a dependency to the build job
+    needs: build
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    environment: staging
+    env:
+      VITE_API_HOSTNAME: ${{ vars.OLS_REACT_API_HOSTNAME }} # environment variable
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: production-files
+          path: ./dist
+      # Deploy to stage environment
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN_OLS_CD }}
+          publish_dir: ./dist

@@ -6,6 +6,7 @@ import path from "path";
 
 export default defineConfig({
   plugins: [react()],
+  base: "/ols-react-challenge/", //github pages
   test: {
     globals: true,
     environment: "happy-dom",

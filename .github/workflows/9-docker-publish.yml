@@ -1,10 +1,7 @@
-name: publish
+name: 90 publish
 
 on:
-    push:
-        branches: ["main"]
-    pull_request:
-        branches: ["main"]
+    workflow_call:
 jobs:
     create-docker-image:
         runs-on: ubuntu-latest

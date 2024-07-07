@@ -1,0 +1,45 @@
+name: 20 SCA
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  sca:
+    strategy:
+      fail-fast: false
+    runs-on: ubuntu-latest
+    name: SCA JavaScript project
+    steps:
+      #download production code
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: production-files
+          path: ./dist
+       #run SCA tool (ESLinter)
+       #we can run lint in main pipeline with needs: build
+      - name: Lint Project
+        run: npm run lint
+        
+      #install SCA tool (SonarQube)
+      #- name: SonarQube Scan
+      #  uses: sonarsource/sonarqube-scan-action@master
+      #  with:
+      #    projectBaseDir: .
+      #    args: >
+      #      -Dsonar.organization=my-org
+      #      -Dsonar.projectKey=my-Java-web-app
+      #  env:
+      #    SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #    SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}    
+      #install SCA tool (Checkmarx)  
+      #- name: Install SCA tool (Checkmarx AST CLI Action)
+      #  uses: checkmarx/ast-github-action@main #Github Action version
+      #  with:
+      #    base_uri: https://ast.checkmarx.net/
+      #    cx_tenant: your_tenant
+      #    cx_client_id: ${{ secrets.CX_CLIENT_ID }}
+      #    cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
+
+         
