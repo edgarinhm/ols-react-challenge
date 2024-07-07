@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useRef, useState } from "react";
 import { Transition } from "react-transition-group";
 
@@ -99,7 +100,6 @@ export const Collapse = (props: CollapseProps): JSX.Element => {
         height,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // update size when children change
@@ -122,7 +122,6 @@ export const Collapse = (props: CollapseProps): JSX.Element => {
     }
 
     return () => resizeObserver.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children]);
 
   return (

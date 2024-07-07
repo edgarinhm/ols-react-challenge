@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { ParseLocalStorageValue } from "common/functions/local-storage";
 import { LocalStorageModel } from "common/models/local-storage-model";
@@ -81,7 +82,6 @@ const addLocalStorageEventListener = (
     }
   };
 
-  // eslint-disable-next-line no-restricted-globals
   addEventListener("storage", storageListener);
 };
 

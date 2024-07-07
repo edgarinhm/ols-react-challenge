@@ -51,7 +51,7 @@ const TodoSideBar = () => {
   };
 
   return (
-    <div className={`${styles.todoSideBar} ${Boolean(isTodoSideBarOpen) ? styles.open : ""}`}>
+    <div className={`${styles.todoSideBar} ${isTodoSideBarOpen === true ? styles.open : ""}`}>
       <div className={styles.title}>{"Pendientes"}</div>
       <FontAwesomeIcon icon={faXmark} className={styles.close} onClick={closeTodoSideBar} />
       <div className={styles.addTodo}>

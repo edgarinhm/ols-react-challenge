@@ -83,6 +83,7 @@ export const Tooltip = (props: TooltipProps): JSX.Element => {
   const child = Children.only(children) as ReactElement;
 
   const clonedChildren = cloneElement(child, {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ref: mergeRefs(reference, (child as any).ref),
   });
 

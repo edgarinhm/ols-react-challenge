@@ -1,18 +1,18 @@
-import { flip, Placement } from '@floating-ui/react-dom-interactions';
-import { SyntheticEvent, useRef, useState, forwardRef, ReactNode } from 'react';
-import styles from './actions-popover.module.scss';
-import { PopoverActions } from 'common/models/popover-actions';
-import { Popover } from './popover';
-import { useOnClickOutside } from 'common/hooks/on-click-out-side';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { flip, Placement } from "@floating-ui/react-dom-interactions";
+import { SyntheticEvent, useRef, useState, forwardRef, ReactNode } from "react";
+import styles from "./actions-popover.module.scss";
+import { PopoverActions } from "common/models/popover-actions";
+import { Popover } from "./popover";
+import { useOnClickOutside } from "common/hooks/on-click-out-side";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faGear,
   faCaretDown,
   faChevronCircleRight,
   faEllipsisVertical,
   faEllipsis,
-} from '@fortawesome/free-solid-svg-icons';
-export const GearButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
+} from "@fortawesome/free-solid-svg-icons";
+export const GearButton = forwardRef<HTMLDivElement>(function GearButton(_, ref) {
   return (
     <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
       <div className={styles.gear}>
@@ -25,19 +25,17 @@ export const GearButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
   );
 });
 
-export const GearButtonNoCaret = forwardRef<HTMLDivElement>(
-  (_, ref): JSX.Element => {
-    return (
-      <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
-        <div className={styles.gear}>
-          <FontAwesomeIcon icon={faGear} />
-        </div>
+export const GearButtonNoCaret = forwardRef<HTMLDivElement>(function GearButtonNoCaret(_, ref) {
+  return (
+    <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
+      <div className={styles.gear}>
+        <FontAwesomeIcon icon={faGear} />
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 
-export const ArrowButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
+export const ArrowButton = forwardRef<HTMLDivElement>(function ArrowButton(_, ref) {
   return (
     <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
       <div>
@@ -47,7 +45,7 @@ export const ArrowButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
   );
 });
 
-export const MenuButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
+export const MenuButton = forwardRef<HTMLDivElement>(function MenuButton(_, ref) {
   return (
     <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
       <div>
@@ -57,29 +55,25 @@ export const MenuButton = forwardRef<HTMLDivElement>((_, ref): JSX.Element => {
   );
 });
 
-export const MenuVerticalButton = forwardRef<HTMLDivElement>(
-  (_, ref): JSX.Element => {
-    return (
-      <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
-        <div>
-          <FontAwesomeIcon icon={faEllipsisVertical} />
-        </div>
+export const MenuVerticalButton = forwardRef<HTMLDivElement>(function MenuButton(_, ref) {
+  return (
+    <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
+      <div>
+        <FontAwesomeIcon icon={faEllipsisVertical} />
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 
-export const CaretDownButton = forwardRef<HTMLDivElement>(
-  (_, ref): JSX.Element => {
-    return (
-      <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
-        <div className={styles.popoverCaretButton}>
-          <FontAwesomeIcon icon={faCaretDown} />
-        </div>
+export const CaretDownButton = forwardRef<HTMLDivElement>(function CaretDownButton(_, ref) {
+  return (
+    <div className={styles.popoverMenuButton} tabIndex={0} ref={ref}>
+      <div className={styles.popoverCaretButton}>
+        <FontAwesomeIcon icon={faCaretDown} />
       </div>
-    );
-  }
-);
+    </div>
+  );
+});
 
 const ActionsPopover = ({
   menuOptions,
@@ -96,7 +90,7 @@ const ActionsPopover = ({
 
   const handleKeyDown = (event: SyntheticEvent<HTMLElement, KeyboardEvent>) => {
     const { key } = event.nativeEvent;
-    if (key.toLowerCase() === 'escape') {
+    if (key.toLowerCase() === "escape") {
       setPopoverOpen(false);
     }
   };
@@ -138,12 +132,12 @@ const ActionsPopover = ({
       >
         {menuOptions.map((link) => (
           <div
-            className={styles.link + ` ${link.disabled ? styles.disabled : ''}`}
+            className={styles.link + ` ${link.disabled ? styles.disabled : ""}`}
             key={link.text}
             tabIndex={0}
             onClick={() => !link.disabled && link.action()}
             onKeyDown={(event) => {
-              if (event.key.toLowerCase() === 'enter' && !link.disabled) {
+              if (event.key.toLowerCase() === "enter" && !link.disabled) {
                 link.action();
               }
             }}
