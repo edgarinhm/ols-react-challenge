@@ -18,8 +18,8 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
       - if: steps.cache-restore.outputs.cache-hit != 'true'
-        name: List the state of node modules
-        run: npm list
+        name: List files
+        run: ls
         
       - name: Install dependencies 
         run: | 
