@@ -3,6 +3,7 @@
 
 // prettier-ignore
 window["environment-config"] = Object.freeze({
+    "ReactRouteId": "ols-react-challenge",
     "Environment": "local",
     "OlWebsiteDomain": "",
     "APIHostName": "http://localhost:3000",
