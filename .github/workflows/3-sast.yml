@@ -100,7 +100,7 @@ jobs:
 
     steps:
       # Fetch project source with GitHub Actions Checkout.
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: semgrep ci -v -o results.sarif --sarif || true
         env:
            # Add the rules that Semgrep uses by setting the SEMGREP_RULES environment variable. 
@@ -109,7 +109,7 @@ jobs:
            # Uncomment SEMGREP_TIMEOUT to set this job's timeout (in seconds): Default timeout is 1800 seconds (30 minutes). 0=disable
            # SEMGREP_TIMEOUT: 300
       - name: Upload Semgrep Report
-        uses: actions/upload-artifact@v3.1.0
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: semgrep.sarif
