@@ -24,7 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         resetErrorBoundary(error);
         return <></>;
       }}
-      onReset={(error) => console.error(`Critical Application Error: ${error.reason}}`)}
+      onReset={() => console.error(`Critical Application Error}`)}
     >
       <BrowserRouter>
         <AuthenticationProvider>
