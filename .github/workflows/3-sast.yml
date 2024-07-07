@@ -74,7 +74,7 @@ jobs:
       - name: Upload Bearer Report
         uses: actions/upload-artifact@v4
         with:
-          name: bearer.sarif
+          name: results.sarif
           path: ${{github.workspace}}/results.sarif
       - name: Upload analysis results to GitHub Security tab
         if: always()
