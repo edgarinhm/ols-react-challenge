@@ -26,7 +26,7 @@ jobs:
     - name: Download application binary
       uses: actions/download-artifact@v4
       with:
-        name: Application-Binary
+        name: production-files
         path: target
     - name: Log in to the Container registry
       uses: docker/login-action@v2.1.0
