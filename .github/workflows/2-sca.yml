@@ -17,6 +17,10 @@ jobs:
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Install dependencies 
+        if: steps.cache-restore.outputs.cache-hit != 'true' 
+        run: | 
+          npm install - ignore-scripts 
        #run SCA tool (ESLinter)
        #we can run lint in main pipeline with needs: build
       - name: Lint Project
