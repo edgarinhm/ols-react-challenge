@@ -40,7 +40,7 @@ jobs:
         id: cache-build
         uses: actions/cache@v4
         with:
-          path: ./
+          path: ./target
           key: ${{ runner.os }}-target
       - name: Upload artifact
         uses: actions/upload-artifact@v4
