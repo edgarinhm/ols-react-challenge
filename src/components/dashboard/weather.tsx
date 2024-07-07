@@ -28,7 +28,7 @@ const Weather = (): JSX.Element => {
       {`${weatherCity}, ${weatherCondition}`}
       <div>
         <img
-          src={`/${weatherCondition?.toLowerCase()}.png`}
+          src={`${weatherCondition?.toLowerCase()}.png`}
           loading="lazy"
           alt="Wheater Condition"
         />

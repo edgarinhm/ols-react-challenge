@@ -31,9 +31,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      # install
+      # install  Using npm ci is generally faster than running npm i because it caches dependencies
       - name: Install with npm Dependencies
-        run: npm install
+        run: npm ci
       # build
       - name: Build with npm Project
         run: npm run build

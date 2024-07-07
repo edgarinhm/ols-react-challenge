@@ -71,7 +71,7 @@ const TopBar = () => {
         <Notifications />
         <div className={styles.avatar}>
           <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
-            <Avatar url={"/vite.svg"} />
+            <Avatar url={"vite.svg"} />
           </ActionsIconPopover>
         </div>
         <div className={styles.menuBtn}>
