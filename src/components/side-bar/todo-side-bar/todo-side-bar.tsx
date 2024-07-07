@@ -44,8 +44,6 @@ const TodoSideBar = () => {
     });
   };
 
-  console.log("todos", todos);
-
   const handleOnSumit = (event: FormEvent): void => {
     event.preventDefault();
   };
