@@ -24,10 +24,6 @@ export const useAuthentication = (): {
     localStorage.clear();
     sessionStorage.clear();
   };
-  const handleLogout = useCallback((): void => {
-    clearStorage();
-    handleAuthenticatedRedirect(routes.login.name);
-  }, [clearStorage]);
 
   const handleLoginRedirect = useCallback(async (redirectUrl: string): Promise<void> => {
     OpenWindow(redirectUrl, "_self");
@@ -52,8 +48,13 @@ export const useAuthentication = (): {
         return false;
       }
     },
-    []
+    [updateStorage]
   );
+
+  const handleLogout = useCallback((): void => {
+    clearStorage();
+    handleAuthenticatedRedirect(routes.login.name);
+  }, [handleAuthenticatedRedirect]);
 
   return {
     handleLoginRedirect,

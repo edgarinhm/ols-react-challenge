@@ -68,7 +68,7 @@ const Login = (): JSX.Element => {
 
   useEffect(() => {
     handleAuthenticatedRedirect(redirectURL);
-  }, []);
+  }, [handleAuthenticatedRedirect, redirectURL]);
 
   return (
     <div className={styles.container}>

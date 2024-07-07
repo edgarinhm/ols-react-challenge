@@ -48,7 +48,7 @@ const TopBar = () => {
       }
     };
     loadTodosData();
-  }, []);
+  }, [setTopBarState]);
 
   useEffect(() => {
     const loadNotificationsData = async () => {
@@ -62,7 +62,7 @@ const TopBar = () => {
       }
     };
     loadNotificationsData();
-  }, []);
+  }, [setTopBarState]);
 
   return (
     <div className={`${styles.topBar} ${styles[env.toLowerCase()]} `}>

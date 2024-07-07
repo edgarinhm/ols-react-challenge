@@ -76,7 +76,7 @@ const Dashboard = () => {
 
     loadDashboardCardsData();
     loadServerReportData();
-  }, []);
+  }, [setDashboardState]);
 
   return (
     <>

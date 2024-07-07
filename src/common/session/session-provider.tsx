@@ -16,7 +16,7 @@ const SessionProvider = ({ children }: { children: ReactNode }) => {
         handleLogout();
       }
     }
-  }, []);
+  }, [handleLogout, noExpireSession, tokenStartTime]);
 
   return <>{children}</>;
 };
