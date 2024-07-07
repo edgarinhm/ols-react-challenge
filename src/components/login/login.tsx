@@ -19,7 +19,7 @@ const Login = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [hasError, errors] = useLoginValidator(loginForm);
-  const redirectURL = basename + routes.dashboard.name;
+  const redirectURL = basename + routes.home.name;
   const [validationMessageError, setValidationMessageError] = useState("");
 
   const { validateAuthenticateUser, handleLoginRedirect, handleAuthenticatedRedirect } =

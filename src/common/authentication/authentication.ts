@@ -54,7 +54,7 @@ export const useAuthentication = (): {
 
   const handleLogout = useCallback((): void => {
     clearStorage();
-    handleAuthenticatedRedirect(basename + routes.login.name);
+    handleAuthenticatedRedirect(basename + routes.home.name);
   }, [handleAuthenticatedRedirect]);
 
   return {
