@@ -1,3 +1,4 @@
+import { basename } from "./../constants/basename-constants";
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { OpenWindow } from "common/functions/windows-funtions";
 import { GetSignInLogin, GetUser } from "common/services/login-service";
@@ -53,7 +54,7 @@ export const useAuthentication = (): {
 
   const handleLogout = useCallback((): void => {
     clearStorage();
-    handleAuthenticatedRedirect(routes.login.name);
+    handleAuthenticatedRedirect(basename + routes.login.name);
   }, [handleAuthenticatedRedirect]);
 
   return {

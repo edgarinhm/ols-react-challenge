@@ -16,8 +16,7 @@ import "common/sass/styles/base-elements.scss";
 import "common/sass/styles/base-inputs.scss";
 
 import { ApiBaseProvider } from "common/services/api/api-base";
-
-const { ReactRouteId } = window["environment-config" as keyof typeof window] ?? {};
+import { basename } from "common/constants/basename-constants";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -28,7 +27,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       }}
       onReset={() => console.error(`Critical Application Error}`)}
     >
-      <BrowserRouter basename={`/${ReactRouteId}`}>
+      <BrowserRouter basename={basename}>
         <AuthenticationProvider>
           <AuthenticatedTemplate>
             <ApiBaseProvider>

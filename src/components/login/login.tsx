@@ -10,6 +10,7 @@ import { useAuthentication } from "common/authentication/authentication";
 import { Messages } from "common/constants/messages-constants";
 import { useSharedStorage } from "common/state-management/shared-storage";
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
+import { basename } from "common/constants/basename-constants";
 
 const Login = (): JSX.Element => {
   const id = useId();
@@ -18,7 +19,7 @@ const Login = (): JSX.Element => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [hasError, errors] = useLoginValidator(loginForm);
-  const redirectURL = routes.dashboard.name;
+  const redirectURL = basename + routes.dashboard.name;
   const [validationMessageError, setValidationMessageError] = useState("");
 
   const { validateAuthenticateUser, handleLoginRedirect, handleAuthenticatedRedirect } =
@@ -75,7 +76,7 @@ const Login = (): JSX.Element => {
       <div className={styles.login}>
         <header>
           <Link to="#">
-            <img className={styles.logo} src={"/logo.png"} loading="lazy" alt={"login logo"} />
+            <img className={styles.logo} src={"logo.png"} loading="lazy" alt={"login logo"} />
           </Link>
           <h4>{Messages.LoginTitle}</h4>
           <h6>{Messages.LoginDescription}</h6>
