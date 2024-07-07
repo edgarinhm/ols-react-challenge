@@ -38,12 +38,12 @@ jobs:
       # cache the dependencies to speed up the build
       - name: Cache build
         id: cache-build
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: target
           key: ${{ runner.os }}-target
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: target
           path: ${{github.workspace}}/target
