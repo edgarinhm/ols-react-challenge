@@ -25,7 +25,7 @@ jobs:
           node-version: 20.12.1
       # cache the dependencies to speed up the build
       - name: Cache dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
