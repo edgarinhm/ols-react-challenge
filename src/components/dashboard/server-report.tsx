@@ -46,7 +46,7 @@ const ServerReport = () => {
       <div>
         <div>
           {"tiempo de uso "}
-          <span>{serverReport?.percentajeTime.toFixed(2)}%</span>
+          <span>{serverReport?.percentajeTime?.toFixed(2)}%</span>
         </div>
         <div>
           {"proyectos deplegados "}
