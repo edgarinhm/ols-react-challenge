@@ -11,23 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     name: SCA JavaScript project
     steps:
-      - name: Restore cached dependencies 
-        id: cache-restore
-        uses: actions/cache@v4
+      #download production code
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - if: steps.cache-restore.outputs.cache-hit != 'true'
-        name: List files
-        run: ls
-        
-      - name: Install dependencies 
-        run: | 
-          npm install
+          name: production-files
+          path: ./dist
        #run SCA tool (ESLinter)
        #we can run lint in main pipeline with needs: build
-      - name: Lint Project
-        run: npm run lint
+      - name: List files
+        run : ls
+      #- name: Lint Project
+      #  run: npm run lint
         
       #install SCA tool (SonarQube)
       #- name: SonarQube Scan
