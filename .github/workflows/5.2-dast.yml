@@ -55,8 +55,9 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-full-scan@v0.10.0
         with:
+          docker_name: 'owasp/zap2docker-stable'
           token: ${{ secrets.TOKEN_OLS_CD }}
-          target: 'https://www.zaproxy.org/'
+          target: 'http://localhost:8080'
           cmd_options: '-a -j -l WARN -z "-addoninstallall" '
           allow_issue_writing: true
 
