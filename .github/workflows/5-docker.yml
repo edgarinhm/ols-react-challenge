@@ -22,9 +22,9 @@ jobs:
       contents: read
       packages: write
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Download application binary
-      uses: actions/download-artifact@v3.0.0
+      uses: actions/download-artifact@v4
       with:
         name: Application-Binary
         path: target
