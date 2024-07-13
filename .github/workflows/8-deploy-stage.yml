@@ -21,6 +21,7 @@ jobs:
     environment: staging
     env:
       VITE_API_HOSTNAME: ${{ vars.OLS_REACT_API_HOSTNAME }} # environment variable
+      VITE_WEATHER_API_KEY: ${{ vars.OLS_REACT_VITE_WEATHER_API_KEY }} 
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v4
