@@ -30,7 +30,7 @@ jobs:
       # Overwrite existing environment-config
       - name: Prepare environment config
         run: |
-           echo "${{ vars.OLS_REACT_ENVIRONMENT_CONFIG }}" >> ./dist/environment-config.js
+           echo "${{ vars.OLS_REACT_ENVIRONMENT_CONFIG }}" > ./dist/environment-config.js
       # Deploy to stage environment
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
