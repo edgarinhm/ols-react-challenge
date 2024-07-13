@@ -3,20 +3,21 @@ import { Link } from "react-router-dom";
 import LogoImg from "/logo.png";
 import styles from "./register.module.scss";
 import { Spinner } from "common/components/spinner/spinner";
-import { useId, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 import { FormControl } from "common/components/form-control/form-control";
 import { CountryModel } from "common/enums/country-type";
-import { registerFields, registerFieldsModel } from "./initial-data";
+import { registerFields, RegisterFieldsModel } from "./initial-data";
 import { routes } from "routes";
+import { useRegisterValidator } from "./use-register-validator";
 
 const Register = (): JSX.Element => {
   const id = useId();
   const [isLoading, setIsLoading] = useState(false);
-  const [registerForm, setRegisterForm] = useState<registerFieldsModel>(registerFields);
+  const [registerForm, setRegisterForm] = useState<RegisterFieldsModel>(registerFields);
   const [validationMessageError, setValidationMessageError] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const errors = { userName: [], password: [], country: [] };
+  const [hasErrors, errors] = useRegisterValidator(registerForm);
 
   const changeForm = (key: string, value: string): void => {
     setRegisterForm((state) => ({
@@ -50,7 +51,9 @@ const Register = (): JSX.Element => {
 
   const handleSubmit = (): void => {
     setSubmitted(true);
-    setIsLoading(true);
+    if (!hasErrors) {
+      setIsLoading(true);
+    }
     setValidationMessageError("");
   };
 
@@ -67,7 +70,14 @@ const Register = (): JSX.Element => {
 
         {validationMessageError && <div className={styles.alert}>{validationMessageError}</div>}
 
-        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+        <form
+          noValidate
+          autoComplete="off"
+          onSubmit={(event: FormEvent) => {
+            event.preventDefault();
+            handleSubmit();
+          }}
+        >
           <FormControl.Input
             id={`${id}-username`}
             type="text"
@@ -83,11 +93,11 @@ const Register = (): JSX.Element => {
             placeholder={Messages.RegisterEmailPlaceholder}
             onChange={(event) => onEmailChange(event.target.value)}
             className={styles.input}
-            errors={errors.userName}
+            errors={errors.email}
             showErrors={submitted}
           />
           <FormControl.Select
-            id={id}
+            id={`${id}-country`}
             errors={errors.country}
             showErrors={submitted}
             onChange={(event) => onCountryChange(event.target.value)}
@@ -118,10 +128,12 @@ const Register = (): JSX.Element => {
               type="checkbox"
               required={true}
               checked={registerForm.termsAndConditions}
-              id={`${id}-no-expire-session`}
+              id={`${id}-term-and-conditions`}
               label={Messages.RegisterTermsAndConditions}
               labelClassName={styles.standardLabel}
               onChange={onCheckboxChange}
+              errors={errors.termsAndConditions}
+              showErrors={submitted}
             />
           </div>
           <button type="submit" className={styles.registerButton}>

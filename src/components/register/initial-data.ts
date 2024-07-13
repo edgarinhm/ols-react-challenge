@@ -6,4 +6,4 @@ export const registerFields = {
   termsAndConditions: false,
 };
 
-export type registerFieldsModel = typeof registerFields;
+export type RegisterFieldsModel = typeof registerFields;
