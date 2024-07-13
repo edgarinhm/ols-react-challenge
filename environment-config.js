@@ -8,4 +8,9 @@ window["environment-config"] = Object.freeze({
     "OlWebsiteDomain": "",
     "APIHostName": "http://localhost:3000",
   });
-  
+  {
+    ReactRouteId: ols-react-challenge,
+    Environment: staging,
+    OlWebsiteDomain: edgarinhm.github.io,
+    APIHostName: http://localhost:3000,
+  }
