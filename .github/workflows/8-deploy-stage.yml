@@ -12,8 +12,6 @@ jobs:
   build:
     name: Build
     uses: ./.github/workflows/1-build.yml
-    permissions:
-      contents: write
   # Deploy Job
   deploy-stage:
     # Add a dependency to the build job
