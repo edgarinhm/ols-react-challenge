@@ -11,6 +11,7 @@ import { Messages } from "common/constants/messages-constants";
 import { useSharedStorage } from "common/state-management/shared-storage";
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { basename } from "common/constants/basename-constants";
+import LogoImg from "/logo.png";
 
 const Login = (): JSX.Element => {
   const id = useId();
@@ -76,7 +77,7 @@ const Login = (): JSX.Element => {
       <div className={styles.login}>
         <header>
           <Link to="#">
-            <img className={styles.logo} src={"logo.png"} loading="lazy" alt={"login logo"} />
+            <img className={styles.logo} src={LogoImg} loading="lazy" alt={"login logo"} />
           </Link>
           <h4>{Messages.LoginTitle}</h4>
           <h6>{Messages.LoginDescription}</h6>
