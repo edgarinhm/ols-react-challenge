@@ -1,5 +1,5 @@
-import { DashboardCardModel } from "common/models/dashboard-card-model";
-import { DashboardServerReportModel } from "common/models/dashboard-server-report-model";
+import { DashboardCardModel } from "common/models/dashboard/dashboard-card-model";
+import { DashboardServerReportModel } from "common/models/dashboard/dashboard-server-report-model";
 
 export const CardsData: DashboardCardModel = {
   projects: 1,

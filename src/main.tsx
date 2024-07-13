@@ -17,6 +17,7 @@ import "common/sass/styles/base-inputs.scss";
 
 import { ApiBaseProvider } from "common/services/api/api-base";
 import { basename } from "common/constants/basename-constants";
+import Register from "components/register/register";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -38,6 +39,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <ApiBaseProvider>
               <Routes>
                 <Route path={routes.login.name} element={<Login />} />
+                <Route path={routes.register.name} element={<Register />} />
                 <Route
                   path={"*"}
                   element={

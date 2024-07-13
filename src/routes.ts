@@ -17,6 +17,9 @@ const routes = {
   roles: {
     name: "/roles",
   },
+  register: {
+    name: "/register",
+  },
 } as const;
 
 export { routes };

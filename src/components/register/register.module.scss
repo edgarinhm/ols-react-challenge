@@ -1,0 +1,103 @@
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/colors.module.scss";
+@use "common/sass/mixins/buttons.module.scss";
+@use "common/sass/mixins/panels.module.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh; /* vh stands for viewport height */
+  overflow: hidden;
+  padding: 1rem;
+  h4 {
+    text-align: left;
+    line-height: 1;
+    font-size: base.$font-size-large;
+    font-weight: bold;
+    padding-top: 26px;
+  }
+  h6 {
+    font-size: base.$font-size-small;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.register {
+  @include panels.panel;
+  margin-bottom: 0px;
+  padding: 3rem;
+
+  form {
+    > * {
+      margin-bottom: 15px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    .standardLabel {
+      text-transform: capitalize;
+      font-size: base.$font-size-smaller;
+    }
+    a {
+      font-size: base.$font-size-smaller;
+      text-align: right;
+      color: colors.$black;
+    }
+  }
+
+  .registerButton {
+    @include buttons.btn;
+    width: 100%;
+    padding: 1rem 3rem;
+  }
+  .redirectLogin {
+    display: flex;
+    justify-content: center;
+    color: colors.$light-black;
+    font-weight: 300;
+    a {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.logo {
+  max-width: 4rem;
+  max-height: 4rem;
+}
+
+.alert {
+  color: colors.$red;
+}
+
+/** RESPONSIVE CSS*/
+.container {
+  @media (min-width: 768px) {
+    align-items: center;
+    padding: 0px;
+    header,
+    form {
+      width: 50vw;
+    }
+  }
+  @media (min-width: 992px) {
+    align-items: center;
+    padding: 0px;
+    header,
+    form {
+      width: 40vw;
+    }
+  }
+  @media (min-width: 1200px) {
+    align-items: center;
+    padding: 0px;
+    header,
+    form {
+      width: 30vw;
+    }
+  }
+}

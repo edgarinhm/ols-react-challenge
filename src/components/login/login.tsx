@@ -97,7 +97,7 @@ const Login = (): JSX.Element => {
           <FormControl.Input
             id={`${id}-password`}
             type="password"
-            placeholder={Messages.LogingPasswordPlaceholder}
+            placeholder={Messages.LoginPasswordPlaceholder}
             onChange={(event) => onPasswordChange(event.target.value)}
             className={styles.input}
             errors={errors.password}
@@ -120,7 +120,7 @@ const Login = (): JSX.Element => {
           </div>
           <div className={styles.createAccount}>
             {Messages.LoginNoAccount}
-            <Link to="#">{Messages.LoginCreateAccount}</Link>
+            <Link to={routes.register.name}>{Messages.LoginCreateAccount}</Link>
           </div>
         </form>
       </div>
