@@ -18,7 +18,7 @@ RUN pnpm install
 #------------------------------------------------------
 # ----- Build stage 2 ---------------------------------
 #rebuild the source code only when needed
-FROM dependencies As builder
+FROM dependencies As build
 # Set the working directory in the container
 WORKDIR /usr/src/app
 # Copy the rest of your application code to the working directory
@@ -28,21 +28,11 @@ RUN pnpm run build
 #---------------------------------------------------
 #---------------------------------------------------
 # ----- Deploy stage 3 -------
-FROM node:22-alpine As deploy
-
-# Set the working directory in the container
-WORKDIR /usr/src/app
-
-# set node to production environment
-# ENV NODE_ENV production
+FROM nginx:1.25.4-alpine3.18 As deploy
 
 # Copy the rest of your application code to the working directory
-COPY --from=builder /usr/src/app/dist ./dist
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY --from=builder /usr/src/app/package*.json ./
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /usr/src/app/dist /usr/share/nginx/html/
 
-# Expose a port to communicate with the React app [Port you mentioned in the vite.config file]
-EXPOSE 4173
-
-# Start your React app
-CMD ["npm", "run", "preview"]
+# Start your nginx
+ENTRYPOINT [ "nginx","-g","daemon off;"]

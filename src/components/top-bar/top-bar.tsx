@@ -15,7 +15,7 @@ import { GetNotifications } from "common/services/notification-service";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
-  const env: string = !Environment ? import.meta.env?.VITE_APP_ENVIRONMENT : Environment;
+  const env: string = Environment ?? import.meta.env?.VITE_APP_ENVIRONMENT;
 
   const { handleLogout } = useAuthentication();
 
