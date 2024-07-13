@@ -70,6 +70,16 @@
     button {
       padding: 1rem 3rem;
     }
+
+    .createAccount {
+      display: flex;
+      justify-content: center;
+      color: colors.$light-black;
+      font-weight: 300;
+      a {
+        margin-left: 0.5rem;
+      }
+    }
   }
   .alert {
     color: colors.$red;

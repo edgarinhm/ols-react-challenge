@@ -118,6 +118,10 @@ const Login = (): JSX.Element => {
             />
             <Link to="#">{Messages.LoginPassworRecover}</Link>
           </div>
+          <div className={styles.createAccount}>
+            {Messages.LoginNoAccount}
+            <Link to="#">{Messages.LoginCreateAccount}</Link>
+          </div>
         </form>
       </div>
       <Spinner show={isLoading} />

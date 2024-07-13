@@ -8,4 +8,6 @@ export const Messages = {
   LoginSubmitButton: "Ingresar",
   LoginExpireSession: "Permanecer Conectado",
   LoginPassworRecover: "Recuperar Contraseña",
+  LoginCreateAccount: "Crear",
+  LoginNoAccount: "No tienes cuenta?",
 };
