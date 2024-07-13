@@ -28,6 +28,10 @@ jobs:
         with:
           name: production-files
           path: ./dist
+      # Prepare environment-config
+      - name: Prepare environment config
+        run: |
+           echo ${{ vars.OLS_REACT_ENVIRONMENT_CONFIG }} >> ./dist/environment-config.js
       # Deploy to stage environment
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
