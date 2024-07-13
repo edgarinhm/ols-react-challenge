@@ -1,7 +1,7 @@
 export interface EnvironmentModel {
   code: string;
   name: string;
-  type: 'development' | 'staging' | 'production';
+  type: "development" | "staging" | "production";
 }
 
 /**
@@ -11,18 +11,23 @@ export interface EnvironmentModel {
  */
 export const Environments = {
   localhost: {
-    code: 'localhost',
-    name: 'Local',
-    type: 'development',
+    code: "localhost",
+    name: "Local",
+    type: "development",
+  },
+  staging: {
+    code: "github",
+    name: "Staging",
+    type: "staging",
   },
   prod: {
-    code: 'prod',
-    name: 'Ol',
-    type: 'production',
+    code: "prod",
+    name: "Ol",
+    type: "production",
   },
   uat: {
-    code: 'uat',
-    name: 'UAT',
-    type: 'staging',
+    code: "uat",
+    name: "UAT",
+    type: "staging",
   },
 } as const;
