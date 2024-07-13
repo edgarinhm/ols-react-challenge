@@ -1,5 +1,6 @@
 export const Login = {
   get: (): string => "/login",
+  post: (): string => "/login",
 };
 
 export const Users = {

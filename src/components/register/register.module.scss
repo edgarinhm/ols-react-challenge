@@ -10,20 +10,6 @@
   min-height: 100vh; /* vh stands for viewport height */
   overflow: hidden;
   padding: 1rem;
-
-  .loginButton {
-    @include buttons.btn;
-    width: 100%;
-    padding: 1rem 3rem;
-  }
-  .input {
-    padding: 0.94rem 1.94rem;
-    background: transparent;
-  }
-  .input::placeholder {
-    color: colors.$light-grey;
-  }
-
   h4 {
     text-align: left;
     line-height: 1;
@@ -38,52 +24,54 @@
   }
 }
 
-.login {
+.register {
   @include panels.panel;
   margin-bottom: 0px;
   padding: 3rem;
-
-  .logo {
-    max-width: 4rem;
-    max-height: 4rem;
-  }
 
   form {
     > * {
       margin-bottom: 15px;
     }
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0px;
-      .standardLabel {
-        text-transform: capitalize;
-        font-size: base.$font-size-smaller;
-      }
-      a {
-        font-size: base.$font-size-smaller;
-        text-align: right;
-        color: colors.$black;
-      }
-    }
-    input,
-    button {
-      padding: 1rem 3rem;
-    }
+  }
 
-    .createAccount {
-      display: flex;
-      justify-content: center;
-      color: colors.$light-black;
-      font-weight: 300;
-      a {
-        margin-left: 0.5rem;
-      }
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    .standardLabel {
+      text-transform: capitalize;
+      font-size: base.$font-size-smaller;
+    }
+    a {
+      font-size: base.$font-size-smaller;
+      text-align: right;
+      color: colors.$black;
     }
   }
-  .alert {
-    color: colors.$red;
+
+  .registerButton {
+    @include buttons.btn;
+    width: 100%;
+    padding: 1rem 3rem;
   }
+  .redirectLogin {
+    display: flex;
+    justify-content: center;
+    color: colors.$light-black;
+    font-weight: 300;
+    a {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.logo {
+  max-width: 4rem;
+  max-height: 4rem;
+}
+
+.alert {
+  color: colors.$red;
 }
 
 /** RESPONSIVE CSS*/
