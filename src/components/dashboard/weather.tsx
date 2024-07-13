@@ -3,6 +3,7 @@ import { GetWeatherByCity } from "common/services/weather-service";
 import { useEffect, useState } from "react";
 import styles from "./weather.module.scss";
 import { Spinner } from "common/components/spinner/spinner";
+import { GetWeatherIcon } from "common/functions/weather-functions";
 
 const Weather = (): JSX.Element => {
   const [weather, setWeather] = useState<WeatherModel>();
@@ -28,7 +29,7 @@ const Weather = (): JSX.Element => {
       {`${weatherCity}, ${weatherCondition}`}
       <div>
         <img
-          src={`/${weatherCondition?.toLowerCase()}.png`}
+          src={GetWeatherIcon(`${weatherCondition?.toLowerCase()}`)}
           loading="lazy"
           alt={"Wheater Condition"}
         />
