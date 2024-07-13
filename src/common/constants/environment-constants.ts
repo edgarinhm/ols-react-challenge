@@ -15,8 +15,13 @@ export const Environments = {
     name: "Local",
     type: "development",
   },
-  staging: {
-    code: "edgarinhm",
+  edgarinhm: {
+    code: "github",
+    name: "Staging-edgarinhm",
+    type: "staging",
+  },
+  github: {
+    code: "github",
     name: "Staging-Github",
     type: "staging",
   },
