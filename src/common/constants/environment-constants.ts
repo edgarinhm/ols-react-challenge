@@ -16,8 +16,8 @@ export const Environments = {
     type: "development",
   },
   staging: {
-    code: "github",
-    name: "Staging",
+    code: "edgarinhm",
+    name: "Staging-Github",
     type: "staging",
   },
   prod: {
