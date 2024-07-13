@@ -15,7 +15,7 @@ export const Messages = {
   RegisterUsernamePlaceholder: "Nombre de usuario Ej: nombre.apellido",
   RegisterEmailPlaceholder: "Email Ej: usuario@email.com",
   RegisterCountryPlaceholder: "Seleccionar País",
-  RegisterPasswordPlaceholder: "Escribe una Constraseña",
+  RegisterPasswordPlaceholder: "Escribe una Contraseña",
   RegisterTermsAndConditions: "Acepto terminos y Condiciones",
   RegisterSubmitButton: "Registar",
   RegisterHaveAccount: "Ya tienes cuenta?",

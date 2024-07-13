@@ -1,5 +1,5 @@
 import { Messages } from "common/constants/messages-constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LogoImg from "/logo.png";
 import styles from "./register.module.scss";
 import { Spinner } from "common/components/spinner/spinner";
@@ -9,6 +9,10 @@ import { CountryModel } from "common/enums/country-type";
 import { registerFields, RegisterFieldsModel } from "./initial-data";
 import { routes } from "routes";
 import { useRegisterValidator } from "./use-register-validator";
+import { CreateSignUpLogin } from "common/services/login-service";
+import { useAuthentication } from "common/authentication/authentication";
+import { useSharedStorage } from "common/state-management/shared-storage";
+import { LocalStorageKeys } from "common/enums/local-storage-keys";
 
 const Register = (): JSX.Element => {
   const id = useId();
@@ -16,8 +20,11 @@ const Register = (): JSX.Element => {
   const [registerForm, setRegisterForm] = useState<RegisterFieldsModel>(registerFields);
   const [validationMessageError, setValidationMessageError] = useState("");
   const [submitted, setSubmitted] = useState(false);
-
   const [hasErrors, errors] = useRegisterValidator(registerForm);
+
+  const navigate = useNavigate();
+  const { validateAuthenticateUser } = useAuthentication();
+  const updateStorage = useSharedStorage((state) => state.updateStorage);
 
   const changeForm = (key: string, value: string): void => {
     setRegisterForm((state) => ({
@@ -49,12 +56,24 @@ const Register = (): JSX.Element => {
     }));
   };
 
-  const handleSubmit = (): void => {
+  const handleSubmit = async (): Promise<void> => {
     setSubmitted(true);
     if (!hasErrors) {
       setIsLoading(true);
+      try {
+        const login = await CreateSignUpLogin(registerForm.username, registerForm.password);
+        const isAuthenticated = await validateAuthenticateUser(login.user, login.password);
+        if (isAuthenticated) {
+          updateStorage(LocalStorageKeys.tokenStartTime, Date.now());
+          navigate(routes.home.name);
+        } else {
+          setValidationMessageError(Messages.LoginAuthenticationFailure);
+        }
+      } catch (error) {
+        setValidationMessageError(Messages.UnexpectedError);
+      }
+      setIsLoading(false);
     }
-    setValidationMessageError("");
   };
 
   return (
