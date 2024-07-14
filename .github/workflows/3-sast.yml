@@ -16,8 +16,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'typescript' ]
-        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
+        language: [ 'javascript-typescript' ]
+        # CodeQL supports [ 'c-cpp', 'csharp', 'go', 'java-kotlin', 'javascript-typescript', 'python', 'ruby', 'swift' ]
+        # Use only 'java-kotlin' to analyze code written in Java, Kotlin or both
+        # Use only 'javascript-typescript' to analyze code written in JavaScript, TypeScript or both
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
     steps:
@@ -62,17 +64,18 @@ jobs:
       contents: read
       security-events: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Bearer
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Bearer Scan
         uses: bearer/bearer-action@v2
         with:
           format: sarif
-          output: results.sarif
-      #- name: Upload analysis results to GitHub Security tab
-      #  if: always()
-      #  uses: github/codeql-action/upload-sarif@v3
-      #  with:
-      #    sarif_file: ${{github.workspace}}/results.sarif
+          output: bearer-results.sarif
+      - name: Upload analysis results to GitHub Security tab
+        if: always()
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: ${{github.workspace}}/bearer-results.sarif
       
   semgrep:
     needs: [SAST-CodeQL]
