@@ -1,0 +1,12 @@
+.container {
+  background: #f5f7ff;
+  padding: 2.375rem 2.375rem;
+  width: 100%;
+  flex-grow: 1;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}

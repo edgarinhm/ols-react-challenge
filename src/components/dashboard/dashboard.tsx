@@ -135,9 +135,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className={styles.reports}>
-          <Reports />
-        </div>
+        <Reports />
       </div>
       <Spinner show={isLoading} text={"Loading Dashboard..."} />
     </>
