@@ -11,29 +11,30 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { useEffect, useState } from "react";
+import { useChartServerReport } from "common/hooks/use-chart-server-report";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const ServerReport = () => {
   const serverReport = useDashboardStorage((state) => state.serverReport);
+  const [charTimeData, setCharTimeData] = useState<string[]>([]);
+  const [charValueData, setCharValueData] = useState<number[]>([]);
 
-  const chartData = {
-    labels: ["Red", "Orange", "Blue"],
-    // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
-    datasets: [
-      {
-        label: "",
-        data: [55, 23, 96],
-        // you can set indiviual colors for each bar
-        backgroundColor: [
-          "rgba(255, 255, 255, 0.6)",
-          "rgba(255, 255, 255, 0.6)",
-          "rgba(255, 255, 255, 0.6)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
+  const { AreaChartData, AreaChartOptions } = useChartServerReport();
+  const chartData = AreaChartData(charTimeData, charValueData);
+
+  useEffect(() => {
+    const LoadCharData = () => {
+      if (serverReport?.time?.length) {
+        const dataTimeLabel = serverReport.time.map((time) => time.time);
+        const dataValueLabel = serverReport?.time.map((time) => time.value);
+        setCharTimeData(dataTimeLabel);
+        setCharValueData(dataValueLabel);
+      }
+    };
+    LoadCharData();
+  }, [serverReport?.time]);
 
   return (
     <div className={styles.serverReport}>
@@ -53,7 +54,9 @@ const ServerReport = () => {
           <span>{serverReport?.deploys}</span>
         </div>
       </div>
-      <div className={styles.chartContainer}>{<Line data={chartData} />}</div>
+      <div className={styles.chartContainer}>
+        {<Line data={chartData} options={AreaChartOptions} />}
+      </div>
     </div>
   );
 };
