@@ -67,12 +67,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Bearer Scan
+        id: report
         uses: bearer/bearer-action@v2
         with:
           format: sarif
           output: bearer-results.sarif
+          diff: true
       - name: Upload analysis results to GitHub Security tab
-        if: always()
+        if: failure()
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{github.workspace}}/bearer-results.sarif
