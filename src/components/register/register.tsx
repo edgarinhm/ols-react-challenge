@@ -70,8 +70,6 @@ const Register = (): JSX.Element => {
           setValidationMessageError(Messages.LoginAuthenticationFailure);
         }
       } catch (error) {
-        console.log("error", error);
-
         setValidationMessageError(Messages.UnexpectedError);
       }
       setIsLoading(false);
