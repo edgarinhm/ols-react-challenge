@@ -72,7 +72,7 @@ jobs:
         with:
           format: sarif
           output: bearer-results.sarif
-          #diff: true
+          diff: true
           exit-code: '0'
       - name: Upload analysis results to GitHub Security tab
         if: always()
