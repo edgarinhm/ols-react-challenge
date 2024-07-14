@@ -38,20 +38,20 @@ const ServerReport = () => {
 
   return (
     <div className={styles.serverReport}>
-      <p>{"Detalles del servidor"}</p>
-      <p>
+      <p className={styles.title}>{"Detalles del servidor"}</p>
+      <p className={styles.description}>
         {
           "The total number of sessions within the date range. its. the periods time  a user is  actively engaded with your website, page, app etc."
         }
       </p>
-      <div>
-        <div>
-          {"tiempo de uso "}
-          <span>{serverReport?.percentajeTime?.toFixed(2)}%</span>
+      <div className={styles.details}>
+        <div className={styles.item}>
+          <p>{"tiempo de uso "}</p>
+          <h3>{serverReport?.percentajeTime?.toFixed(2)}%</h3>
         </div>
-        <div>
-          {"proyectos deplegados "}
-          <span>{serverReport?.deploys}</span>
+        <div className={styles.item}>
+          <p>{"proyectos deplegados "}</p>
+          <h3>{serverReport?.deploys}</h3>
         </div>
       </div>
       <div className={styles.chartContainer}>
