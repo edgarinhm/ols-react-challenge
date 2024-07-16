@@ -1,40 +1,21 @@
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import styles from "./server-report.module.scss";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-import { useEffect, useState } from "react";
 import { useChartServerReport } from "common/hooks/use-chart-server-report";
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
 
 const ServerReport = () => {
   const serverReport = useDashboardStorage((state) => state.serverReport);
-  const [charTimeData, setCharTimeData] = useState<string[]>([]);
-  const [charValueData, setCharValueData] = useState<number[]>([]);
 
-  const { AreaChartData, AreaChartOptions } = useChartServerReport();
-  const chartData = AreaChartData(charTimeData, charValueData);
-
-  useEffect(() => {
-    const LoadCharData = () => {
-      if (serverReport?.time?.length) {
-        const dataTimeLabel = serverReport.time.map((time) => time.time);
-        const dataValueLabel = serverReport?.time.map((time) => time.value);
-        setCharTimeData(dataTimeLabel);
-        setCharValueData(dataValueLabel);
-      }
-    };
-    LoadCharData();
-  }, [serverReport?.time]);
+  const { LineChartData } = useChartServerReport();
+  const chartData = LineChartData(serverReport);
 
   return (
     <div className={styles.serverReport}>
@@ -55,7 +36,23 @@ const ServerReport = () => {
         </div>
       </div>
       <div className={styles.chartContainer}>
-        {<Line data={chartData} options={AreaChartOptions} />}
+        <ResponsiveContainer width="100%" height="100%" aspect={500 / 300}>
+          <LineChart width={600} height={300} data={chartData.datasets}>
+            <CartesianGrid vertical={false} />
+            <XAxis
+              dataKey="time"
+              ticks={chartData.labels}
+              axisLine={false}
+              tickLine={false}
+              tickMargin={20}
+              padding={{ left: 45 }}
+              height={50}
+            />
+            <YAxis axisLine={false} tickLine={false} />
+            <Tooltip />
+            <Line dataKey="value" type="monotone" fill="#6C7383" strokeWidth={2} dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
