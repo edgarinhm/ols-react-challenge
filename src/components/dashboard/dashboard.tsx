@@ -6,7 +6,11 @@ import Reports from "./reports";
 import { useEffect, useState } from "react";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { shallow } from "zustand/shallow";
-import { GetDashboardCards, GetDashboardServerReport } from "common/services/dashboard-service";
+import {
+  GetDashboardCards,
+  GetDashboardReportCommits,
+  GetDashboardServerReport,
+} from "common/services/dashboard-service";
 import { Spinner } from "common/components/spinner/spinner";
 import { useTopBarStorage } from "common/state-management/top-bar-storage";
 
@@ -74,8 +78,22 @@ const Dashboard = () => {
       setIsLoading(false);
     };
 
+    const loadCommitsReportData = async () => {
+      setIsLoading(true);
+      try {
+        const commitsReport = await GetDashboardReportCommits();
+        setDashboardState((state) => {
+          state.commitsReport = commitsReport;
+        });
+      } catch (error) {
+        console.log("error");
+      }
+      setIsLoading(false);
+    };
+
     loadDashboardCardsData();
     loadServerReportData();
+    loadCommitsReportData();
   }, [setDashboardState]);
 
   return (

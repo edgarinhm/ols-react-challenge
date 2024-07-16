@@ -9,4 +9,20 @@
   background-clip: border-box;
   border: 1px solid #e3e3e3;
   border-radius: 20px;
+
+  .title {
+    margin-bottom: 1.2rem;
+    text-transform: capitalize;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.3rem;
+    word-wrap: break-word;
+  }
+
+  .description {
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3rem;
+  }
 }
