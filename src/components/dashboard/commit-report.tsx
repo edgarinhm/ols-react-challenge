@@ -1,4 +1,4 @@
-import styles from "./commits-report.module.scss";
+import styles from "./commit-report.module.scss";
 import { useChartCommitsReport } from "common/hooks/use-chart-commits-report";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import {

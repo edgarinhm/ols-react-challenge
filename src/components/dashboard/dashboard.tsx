@@ -8,6 +8,7 @@ import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { shallow } from "zustand/shallow";
 import {
   GetDashboardCards,
+  GetDashboardReleaseResume,
   GetDashboardReportCommits,
   GetDashboardServerReport,
 } from "common/services/dashboard-service";
@@ -91,9 +92,23 @@ const Dashboard = () => {
       setIsLoading(false);
     };
 
+    const loadReleaseResumeData = async () => {
+      setIsLoading(true);
+      try {
+        const releaseResume = await GetDashboardReleaseResume();
+        setDashboardState((state) => {
+          state.releaseResume = releaseResume;
+        });
+      } catch (error) {
+        console.log("error");
+      }
+      setIsLoading(false);
+    };
+
     loadDashboardCardsData();
     loadServerReportData();
     loadCommitsReportData();
+    loadReleaseResumeData();
   }, [setDashboardState]);
 
   return (

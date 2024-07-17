@@ -1,0 +1,14 @@
+.progressBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .currentValue {
+    font-weight: 700;
+  }
+  progress {
+    width: 60%;
+  }
+  label {
+    text-transform: capitalize;
+  }
+}

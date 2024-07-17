@@ -1,0 +1,50 @@
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+.detailedReport {
+  padding: 1.25rem 1.25rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid #e3e3e3;
+  border-radius: 20px;
+
+  .title {
+    margin-bottom: 1.2rem;
+    text-transform: capitalize;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 1.3rem;
+    word-wrap: break-word;
+  }
+
+  .description {
+    font-weight: 500;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3rem;
+  }
+
+  .subTitle,
+  .value {
+    color: #4b49ac;
+  }
+
+  .value {
+    font-size: base.$font-size-extra-large;
+    font-weight: 500;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .subTitle {
+    font-weight: 500;
+    line-height: 1;
+    text-shadow: none;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+    font-size: base.$font-size-large;
+    text-transform: capitalize;
+  }
+}

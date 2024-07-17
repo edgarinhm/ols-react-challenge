@@ -1,6 +1,7 @@
-import CommitsReport from "./commits-report";
+import CommitsReport from "./commit-report";
 import ServerReport from "./server-report";
 import styles from "./reports.module.scss";
+import DetailedReport from "./detailed-report";
 
 const Reports = (): JSX.Element => {
   return (
@@ -8,6 +9,7 @@ const Reports = (): JSX.Element => {
       <div className={styles.row}>
         <ServerReport />
         <CommitsReport />
+        <DetailedReport />
       </div>
     </div>
   );
