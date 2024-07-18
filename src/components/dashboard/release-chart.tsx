@@ -1,4 +1,4 @@
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer, LegendProps } from "recharts";
+import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer, LegendProps, Label } from "recharts";
 import styles from "./release-chart.module.scss";
 
 interface ReleaseChartProps {
@@ -18,7 +18,21 @@ const ReleaseChart = ({ data }: ReleaseChartProps) => {
           iconSize={10}
           content={<CustomLegendText />}
         />
-        <Pie cx="50%" cy="50%" data={data} dataKey="value" outerRadius={100} innerRadius={80} />
+        <Pie
+          cx="50%"
+          cy="50%"
+          data={data}
+          dataKey="value"
+          outerRadius={100}
+          innerRadius={80}
+          strokeWidth={0}
+        >
+          <Label
+            width={30}
+            position="center"
+            value={data.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)}
+          />
+        </Pie>
       </PieChart>
     </ResponsiveContainer>
   );

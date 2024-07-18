@@ -1,4 +1,7 @@
 @use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/variables.scss" as *;
+@use "common/sass/styles/colors.module.scss" as *;
+
 .detailedReport {
   padding: 1.25rem 1.25rem;
   position: relative;
@@ -6,9 +9,9 @@
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background-color: $white;
   background-clip: border-box;
-  border: 1px solid #e3e3e3;
+  border: 1px solid $light-grey;
   border-radius: 20px;
 
   .title {
@@ -29,7 +32,7 @@
 
   .subTitle,
   .value {
-    color: #4b49ac;
+    color: $btn-primary-base;
   }
 
   .value {
@@ -52,5 +55,76 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .projectsStatus {
+    progress {
+      font-size: 0.75rem;
+      background-color: transparent;
+      /* Chrome and Safari */
+      &::-webkit-progress-bar {
+        background: $ghost-grey;
+        border-radius: 100px;
+      }
+
+      &::-webkit-progress-value {
+        background-color: $btn-primary-base;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+      }
+
+      /* Firefox */
+      &::-moz-progress-bar {
+        background-color: $btn-primary-base;
+        border-top-left-radius: 100px;
+        border-bottom-left-radius: 100px;
+      }
+    }
+
+    .isNC {
+      progress {
+        &::-webkit-progress-value {
+          background-color: $orange;
+          border-color: $orange;
+          color: $orange;
+        }
+        /* Firefox */
+        &::-moz-progress-bar {
+          background-color: $orange;
+          border-color: $orange;
+          color: $orange;
+        }
+      }
+    }
+    .isDelay {
+      progress {
+        &::-webkit-progress-value {
+          background-color: $red;
+          border-color: $red;
+          color: $red;
+        }
+        /* Firefox */
+        &::-moz-progress-bar {
+          background-color: $red;
+          border-color: $red;
+          color: $red;
+        }
+      }
+    }
+    .isDeliver {
+      progress {
+        &::-webkit-progress-value {
+          background-color: $es-green;
+          border-color: $es-green;
+          color: $es-green;
+        }
+        /* Firefox */
+        &::-moz-progress-bar {
+          background-color: $es-green;
+          border-color: $es-green;
+          color: $es-green;
+        }
+      }
+    }
   }
 }

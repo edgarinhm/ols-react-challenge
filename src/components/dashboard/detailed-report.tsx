@@ -18,6 +18,22 @@ const DetailedReport = () => {
     }
   }, [releaseResume?.cicle]);
 
+  const GetProgressBarColorStatus = (
+    isNC: boolean,
+    isDelay: boolean,
+    isDeliver: boolean
+  ): string => {
+    const colorStatus =
+      isDeliver && !isDelay && !isNC
+        ? "isDeliver"
+        : isDelay
+          ? "isDelay"
+          : isNC
+            ? "isNC"
+            : "defaultStaus";
+    return colorStatus;
+  };
+
   return (
     <div className={styles.detailedReport}>
       <div className={styles.header}>
@@ -36,16 +52,22 @@ const DetailedReport = () => {
           }
         </p>
       </div>
-      <div className={styles.proyects}>
+      <div className={styles.projectsStatus}>
         {releaseResume?.topProjects.map((project) => {
           return (
-            <ProgressBarWithLabel
+            <div
               key={project.name}
-              currentValue={Number(project.porcentaje)}
-              label={project.name}
-              maxValue={100}
-              unit={"%"}
-            />
+              className={`${
+                styles[GetProgressBarColorStatus(project.isNc, project.isDelay, project.isDeliver)]
+              }`}
+            >
+              <ProgressBarWithLabel
+                currentValue={Number(project.porcentaje)}
+                label={project.name}
+                maxValue={100}
+                unit={"%"}
+              />
+            </div>
           );
         })}
       </div>
