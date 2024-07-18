@@ -4,6 +4,7 @@ import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { useMemo } from "react";
 import { formatter } from "common/formatters/formatters";
 import dayjs from "dayjs";
+import ReleaseChart from "./release-chart";
 
 const DetailedReport = () => {
   const releaseResume = useDashboardStorage((state) => state.releaseResume);
@@ -21,7 +22,10 @@ const DetailedReport = () => {
     <div className={styles.detailedReport}>
       <div className={styles.header}>
         <p className={styles.title}>{"Entregas"}</p>
-        <h1 className={styles.value}>{releaseResume?.porcentaje}</h1>
+        <h1 className={styles.value}>
+          {releaseResume?.porcentaje}
+          {"%"}
+        </h1>
         <h3 className={styles.subTitle}>
           {"Proximo Ciclo: "}
           {cicle}
@@ -32,7 +36,7 @@ const DetailedReport = () => {
           }
         </p>
       </div>
-      <div className={styles.body}>
+      <div className={styles.proyects}>
         {releaseResume?.topProjects.map((project) => {
           return (
             <ProgressBarWithLabel
@@ -44,6 +48,17 @@ const DetailedReport = () => {
             />
           );
         })}
+      </div>
+      <div className={styles.releaseChart}>
+        {releaseResume?.ncState && (
+          <ReleaseChart
+            data={[
+              { name: "detectadas", value: releaseResume.ncState.detected, fill: "#FF4747" },
+              { name: "en proceso", value: releaseResume.ncState.process, fill: "#FFC100" },
+              { name: "resueltas", value: releaseResume.ncState.solved, fill: "#248AFD" },
+            ]}
+          />
+        )}
       </div>
     </div>
   );

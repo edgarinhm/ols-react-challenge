@@ -47,4 +47,10 @@
     font-size: base.$font-size-large;
     text-transform: capitalize;
   }
+
+  .releaseChart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

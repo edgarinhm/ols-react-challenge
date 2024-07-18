@@ -4,11 +4,13 @@
   align-items: center;
   .currentValue {
     font-weight: 700;
+    width: 10%;
   }
   progress {
-    width: 60%;
+    width: 55%;
   }
   label {
     text-transform: capitalize;
+    width: 20%;
   }
 }
