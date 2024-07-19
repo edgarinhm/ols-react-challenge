@@ -20,8 +20,10 @@ const ProgressBarWithLabel = ({
       <label htmlFor="progress-bar">{label}</label>
       <ProgressBar currentValue={currentValue} maxValue={maxValue} minValue={minValue} />
       <div className={styles.currentValue}>
-        {currentValue}
-        {unit}
+        <span>
+          {currentValue}
+          {unit}
+        </span>
       </div>
     </div>
   );

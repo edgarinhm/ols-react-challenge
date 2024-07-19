@@ -7,24 +7,21 @@ interface ReleaseChartProps {
 
 const ReleaseChart = ({ data }: ReleaseChartProps) => {
   return (
-    <ResponsiveContainer width="100%" height="100%" aspect={500 / 300}>
-      <PieChart width={600} height={300}>
+    <ResponsiveContainer height={350}>
+      <PieChart>
         <Tooltip />
         <Legend
-          height={70}
-          iconType="circle"
           layout="vertical"
           verticalAlign="bottom"
-          iconSize={10}
           content={<CustomLegendText />}
+          align="left"
         />
         <Pie
-          cx="50%"
-          cy="50%"
+          cy="35%"
           data={data}
           dataKey="value"
-          outerRadius={100}
-          innerRadius={80}
+          outerRadius={120}
+          innerRadius={90}
           strokeWidth={0}
         >
           <Label
@@ -40,7 +37,7 @@ const ReleaseChart = ({ data }: ReleaseChartProps) => {
 
 const CustomLegendText = ({ payload }: LegendProps) => {
   return (
-    <>
+    <div className={styles.legendText}>
       {payload &&
         payload.map((entry) => (
           <div key={entry.value} className={styles.legend}>
@@ -56,7 +53,7 @@ const CustomLegendText = ({ payload }: LegendProps) => {
             <p className={styles.value}>{entry.payload?.value}</p>
           </div>
         ))}
-    </>
+    </div>
   );
 };
 

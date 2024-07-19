@@ -52,35 +52,43 @@ const DetailedReport = () => {
           }
         </p>
       </div>
-      <div className={styles.projectsStatus}>
-        {releaseResume?.topProjects.map((project) => {
-          return (
-            <div
-              key={project.name}
-              className={`${
-                styles[GetProgressBarColorStatus(project.isNc, project.isDelay, project.isDeliver)]
-              }`}
-            >
-              <ProgressBarWithLabel
-                currentValue={Number(project.porcentaje)}
-                label={project.name}
-                maxValue={100}
-                unit={"%"}
-              />
+      <div className={styles.body}>
+        <div className={styles.row}>
+          <div className={`${styles.projectsStatus} ${styles.borderRight}`}>
+            <div className={styles.projectResposiveProgress}>
+              {releaseResume?.topProjects.map((project) => {
+                return (
+                  <div
+                    key={project.name}
+                    className={`${
+                      styles[
+                        GetProgressBarColorStatus(project.isNc, project.isDelay, project.isDeliver)
+                      ]
+                    }`}
+                  >
+                    <ProgressBarWithLabel
+                      currentValue={Number(project.porcentaje)}
+                      label={project.name}
+                      maxValue={100}
+                      unit={"%"}
+                    />
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
-      </div>
-      <div className={styles.releaseChart}>
-        {releaseResume?.ncState && (
-          <ReleaseChart
-            data={[
-              { name: "detectadas", value: releaseResume.ncState.detected, fill: "#FF4747" },
-              { name: "en proceso", value: releaseResume.ncState.process, fill: "#FFC100" },
-              { name: "resueltas", value: releaseResume.ncState.solved, fill: "#248AFD" },
-            ]}
-          />
-        )}
+          </div>
+          <div className={styles.releaseChart}>
+            {releaseResume?.ncState && (
+              <ReleaseChart
+                data={[
+                  { name: "detectadas", value: releaseResume.ncState.detected, fill: "#FF4747" },
+                  { name: "en proceso", value: releaseResume.ncState.process, fill: "#FFC100" },
+                  { name: "resueltas", value: releaseResume.ncState.solved, fill: "#248AFD" },
+                ]}
+              />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
