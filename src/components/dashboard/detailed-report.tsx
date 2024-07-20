@@ -56,10 +56,10 @@ const DetailedReport = () => {
         <div className={styles.row}>
           <div className={`${styles.projectsStatus} ${styles.borderRight}`}>
             <div className={styles.projectResposiveProgress}>
-              {releaseResume?.topProjects.map((project) => {
+              {releaseResume?.topProjects.map((project, index) => {
                 return (
                   <div
-                    key={project.name}
+                    key={`${project.name}-${index}`}
                     className={`${
                       styles[
                         GetProgressBarColorStatus(project.isNc, project.isDelay, project.isDeliver)

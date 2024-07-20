@@ -1,6 +1,5 @@
 .container {
   background: #f5f7ff;
-  padding: 2.375rem 2.375rem;
   width: 100%;
   flex-grow: 1;
 }
@@ -9,4 +8,11 @@
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
+}
+.twoReportsInRow {
+  display: flex;
+  flex: 0 0 50%;
+  max-width: 50%;
+  align-items: stretch;
+  justify-content: stretch;
 }

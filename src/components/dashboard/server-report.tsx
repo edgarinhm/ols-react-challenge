@@ -19,23 +19,26 @@ const ServerReport = () => {
 
   return (
     <div className={styles.serverReport}>
-      <p className={styles.title}>{"Detalles del servidor"}</p>
-      <p className={styles.description}>
-        {
-          "The total number of sessions within the date range. its. the periods time  a user is  actively engaded with your website, page, app etc."
-        }
-      </p>
-      <div className={styles.details}>
-        <div className={styles.item}>
-          <p>{"tiempo de uso "}</p>
-          <h3>{serverReport?.percentajeTime?.toFixed(2)}%</h3>
+      <div className={styles.body}>
+        <p className={styles.title}>{"Detalles del servidor"}</p>
+        <p className={styles.description}>
+          {
+            "The total number of sessions within the date range. its. the periods time  a user is  actively engaded with your website, page, app etc."
+          }
+        </p>
+        <div className={styles.details}>
+          <div className={styles.item}>
+            <p>{"tiempo de uso "}</p>
+            <h3>
+              {serverReport?.percentajeTime?.toFixed(2)}
+              {"%"}
+            </h3>
+          </div>
+          <div className={styles.item}>
+            <p>{"proyectos deplegados "}</p>
+            <h3>{serverReport?.deploys}</h3>
+          </div>
         </div>
-        <div className={styles.item}>
-          <p>{"proyectos deplegados "}</p>
-          <h3>{serverReport?.deploys}</h3>
-        </div>
-      </div>
-      <div className={styles.chartContainer}>
         <ResponsiveContainer width="100%" height="100%" aspect={500 / 300}>
           <LineChart width={600} height={300} data={chartData.datasets}>
             <CartesianGrid vertical={false} />

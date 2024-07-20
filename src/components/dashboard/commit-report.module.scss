@@ -1,5 +1,4 @@
 .commitsReport {
-  padding: 1.25rem 1.25rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,6 +8,8 @@
   background-clip: border-box;
   border: 1px solid #e3e3e3;
   border-radius: 20px;
+  width: 100%;
+  min-width: 100%;
 
   .title {
     margin-bottom: 1.2rem;
@@ -24,5 +25,11 @@
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
     line-height: 1.3rem;
+  }
+
+  .body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
   }
 }
