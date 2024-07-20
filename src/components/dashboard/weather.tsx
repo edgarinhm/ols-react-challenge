@@ -1,9 +1,9 @@
 import { WeatherModel } from "common/models/weather-model";
 import { GetWeatherByCity } from "common/services/weather-service";
 import { useEffect, useState } from "react";
-import styles from "./weather.module.scss";
 import { Spinner } from "common/components/spinner/spinner";
 import { GetWeatherIcon } from "common/functions/weather-functions";
+import Card from "common/components/card/card";
 
 const Weather = (): JSX.Element => {
   const [weather, setWeather] = useState<WeatherModel>();
@@ -24,9 +24,8 @@ const Weather = (): JSX.Element => {
   const weatherCity = weather?.list[0].name;
 
   return (
-    <div className={styles.weather}>
-      {"WEATHER: "}
-      {`${weatherCity}, ${weatherCondition}`}
+    <Card>
+      <Card.Header title={`WEATHER: ${weatherCity ?? ""}, ${weatherCondition ?? ""}`} />
       <div>
         <img
           src={GetWeatherIcon(`${weatherCondition?.toLowerCase()}`)}
@@ -35,7 +34,7 @@ const Weather = (): JSX.Element => {
         />
       </div>
       <Spinner show={!weatherCondition} overlay="Component" />
-    </div>
+    </Card>
   );
 };
 
