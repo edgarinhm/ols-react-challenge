@@ -114,22 +114,24 @@ const Dashboard = () => {
   return (
     <>
       <div className={styles.dashboard}>
-        <div className={styles.title}>
-          <h3>{`Bienvenido ${name}`}</h3>
-          <h6>
-            {"Verifica tus alertas, posees "}
-            <span className={styles.alertNotification}>{`${alertCount} sin leer!`}</span>
-          </h6>
+        <div className={styles.row}>
+          <div className={styles.title}>
+            <h3>{`Bienvenido ${name}`}</h3>
+            <h6>
+              {"Verifica tus alertas, posees "}
+              <span className={styles.alertNotification}>{`${alertCount} sin leer!`}</span>
+            </h6>
+          </div>
         </div>
-        {/* GRID & CHARTS */}
-        <div className={styles.body}>
-          {/* ROW 1 */}
-          <div className={`${styles.row} ${styles.weatherRow}`}>
+        <div className={styles.row}>
+          <div
+            className={`${styles.weatherRow} ${styles.twoColumns} ${styles.stretchCard} ${styles.marginColumn}`}
+          >
             <Weather />
           </div>
-          <div className={`${styles.row} ${styles.activityPanelRow}`}>
-            <div className={styles.activityPanelColumn}>
-              <div className={styles.card}>
+          <div className={`${styles.twoColumns} ${styles.marginColumn}`}>
+            <div className={styles.row}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={projectsCardData.title}
                   bodyText={projectsCardData.message}
@@ -137,7 +139,7 @@ const Dashboard = () => {
                   styleColor={"tale"}
                 />
               </div>
-              <div className={styles.card}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={pendingNotificationsCardData.title}
                   bodyText={pendingNotificationsCardData.message}
@@ -146,10 +148,8 @@ const Dashboard = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className={`${styles.row} ${styles.activityPanelRow}`}>
-            <div className={styles.activityPanelColumn}>
-              <div className={styles.card}>
+            <div className={styles.row}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={projectsInDevCardData.title}
                   bodyText={projectsInDevCardData.message}
@@ -157,7 +157,7 @@ const Dashboard = () => {
                   styleColor={"darkBlue"}
                 />
               </div>
-              <div className={styles.card}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={errorsDeployCardData.title}
                   bodyText={errorsDeployCardData.message}

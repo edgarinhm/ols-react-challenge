@@ -1,61 +1,44 @@
-.serverReport {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+@use "common/sass/styles/colors.module.scss" as *;
+
+.title {
+  margin-bottom: 1.2rem;
+  text-transform: capitalize;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3rem;
   word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid #e3e3e3;
-  border-radius: 20px;
-  width: 100%;
-  min-width: 100%;
+}
 
-  .title {
-    margin-bottom: 1.2rem;
-    text-transform: capitalize;
-    font-size: 1.125rem;
-    font-weight: 600;
-    line-height: 1.3rem;
-    word-wrap: break-word;
-  }
+.description {
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3rem;
+}
 
-  .description {
-    font-weight: 500;
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
-    line-height: 1.3rem;
-  }
-
-  .details {
-    display: flex;
-    margin-bottom: 3rem;
-    flex-wrap: wrap;
-    .item {
-      margin-right: 3rem;
-      margin-top: 1rem;
-      p {
-        font-size: 0.875rem;
-        margin-bottom: 0.5rem;
-        line-height: 1.3rem;
-        text-transform: capitalize;
-        word-wrap: break-word;
-        color: #737f8b;
-      }
-      h3 {
-        font-size: 30px;
-        font-weight: 600;
-        color: #4b49ac;
-        line-height: 1;
-        text-shadow: none;
-        margin-bottom: 0.5rem;
-        margin-top: 0;
-      }
+.details {
+  display: flex;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  .item {
+    margin-right: 3rem;
+    margin-top: 1rem;
+    p {
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
+      line-height: 1.3rem;
+      text-transform: capitalize;
+      word-wrap: break-word;
+      color: #737f8b;
     }
-  }
-  .body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1.25rem;
+    h3 {
+      font-size: 30px;
+      font-weight: 600;
+      color: #4b49ac;
+      line-height: 1;
+      text-shadow: none;
+      margin-bottom: 0.5rem;
+      margin-top: 0;
+    }
   }
 }

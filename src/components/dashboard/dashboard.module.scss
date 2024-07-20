@@ -2,8 +2,10 @@
 @use "common/sass/styles/_variables.scss" as var;
 
 .dashboard {
-  display: grid;
-  padding: 2rem 2rem;
+  background: #f5f7ff;
+  padding: 2.375rem 2.375rem;
+  width: 100%;
+  flex-grow: 1;
 
   .title {
     margin-bottom: 1.5em;
@@ -23,25 +25,34 @@
 
   .row {
     display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
   }
 
   .weatherRow {
     grid-column: span 6;
   }
 
-  .activityPanelRow {
-    grid-column: span 3;
+  .stretchCard {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
   }
 
-  .activityPanelColumn {
-    display: flex;
-    flex-direction: column;
-    text-wrap: nowrap;
+  .twoColumns {
+    flex: 0 0 50%;
+    max-width: 50%;
+    position: relative;
     width: 100%;
-    .card {
-      margin-bottom: 1rem;
-    }
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .card {
+    margin-bottom: 1rem;
+  }
+  .marginColumn {
+    margin-bottom: 2.5rem;
   }
 }
