@@ -4,6 +4,8 @@
 @use "common/sass/styles/_variables.scss" as var;
 
 .mainSideBar {
+  display: flex;
+  overflow: hidden;
   background: $white;
   min-height: calc(100vh - 60px);
   font-weight: 500;
@@ -67,17 +69,6 @@
     margin-right: 1rem;
   }
 
-  .active {
-    @extend .navItem;
-    background-color: $side-menu-active;
-    border-radius: 8px;
-    color: $white;
-    .menuItemExpanded {
-      transform: rotate(90deg);
-      transition: all 0.2s ease-in;
-    }
-  }
-
   .nav > * {
     display: flex;
     width: 100%;
@@ -104,6 +95,17 @@
     }
   }
 
+  .active {
+    @extend .navItem;
+    background-color: $side-menu-active;
+    border-radius: 8px;
+    color: $white;
+    .menuItemExpanded {
+      transform: rotate(90deg);
+      transition: all 0.2s ease-in;
+    }
+  }
+
   .nav > a:hover,
   a:focus {
     text-decoration: none;
@@ -118,7 +120,7 @@
     }
 
     .active {
-      background-color: $side-menu-active;
+      background-color: red;
     }
 
     &:hover {
