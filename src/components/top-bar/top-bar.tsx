@@ -12,6 +12,7 @@ import Notifications from "./notifications";
 import { useTopBarStorage } from "common/state-management/top-bar-storage";
 import Brand from "./brand";
 import { GetNotifications } from "common/services/notification-service";
+import AvatarImg from "/vite.svg";
 
 const TopBar = () => {
   const { Environment } = window["environment-config" as keyof typeof window] ?? {};
@@ -71,7 +72,7 @@ const TopBar = () => {
         <Notifications />
         <div className={styles.avatar}>
           <ActionsIconPopover menuOptions={commonMenuOptions} placement={"bottom-end"}>
-            <Avatar url={"/vite.svg"} />
+            <Avatar url={AvatarImg} />
           </ActionsIconPopover>
         </div>
         <div className={styles.menuBtn}>

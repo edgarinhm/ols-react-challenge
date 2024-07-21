@@ -60,4 +60,24 @@ export const formatter = {
 
     return `${expirationDigits.substring(0, 2)}/${expirationDigits.substring(2)}`;
   },
+
+  dateReverseFormat: (date: string | undefined | null): string => {
+    if (!date) {
+      return "";
+    }
+    const formattedDate = date.replace(/\D/g, "");
+
+    if (formattedDate.length < 3) {
+      return `${formattedDate}`;
+    }
+
+    if (formattedDate.length < 5) {
+      return `${formattedDate.substring(2, 4)}-${formattedDate.substring(0, 2)}`;
+    }
+
+    return `${formattedDate.substring(4, 8)}-${formattedDate.substring(
+      2,
+      4
+    )}-${formattedDate.substring(0, 2)}`;
+  },
 };

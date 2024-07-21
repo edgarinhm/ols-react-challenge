@@ -1,0 +1,59 @@
+@use "common/sass/styles/colors.module.scss";
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: colors.$white;
+  background-clip: border-box;
+  border: 1px solid colors.$light-grey;
+  border-radius: 20px;
+}
+
+.cardBody {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+
+.header {
+  &.standard {
+    background-color: colors.$white;
+  }
+
+  &.warning {
+    color: colors.$white;
+    background-color: colors.$red;
+    border-color: colors.$red;
+  }
+
+  &.inProgress {
+    color: colors.$white;
+    background-color: colors.$orange;
+    border-color: colors.$orange;
+  }
+
+  &.success {
+    background-color: colors.$es-green;
+    color: colors.$white;
+  }
+
+  padding: base.$base-spacing;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: base.$base-border-radius;
+  border-top-right-radius: base.$base-border-radius;
+
+  > h3 {
+    display: inline-block;
+    font-weight: 700;
+    margin: 0;
+    line-height: base.$modal-title-line-height;
+    color: inherit;
+    text-transform: capitalize;
+  }
+}

@@ -10,6 +10,7 @@ import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc";
 import relativeTime from "dayjs/plugin/relativeTime";
 import es from "dayjs/locale/es";
+import localeData from "dayjs/plugin/localeData";
 
 dayjs.locale(es);
 dayjs.extend(isSameOrBefore);
@@ -22,3 +23,4 @@ dayjs.extend(isoWeek);
 dayjs.extend(isToday);
 dayjs.extend(isBetween);
 dayjs.extend(relativeTime);
+dayjs.extend(localeData);

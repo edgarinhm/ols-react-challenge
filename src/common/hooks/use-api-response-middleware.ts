@@ -1,8 +1,6 @@
-import * as changeKeys from "change-case/keys";
+import humps from "humps";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const useApiResponseMiddleware = (data: any) => {
-  return Array.isArray(data)
-    ? data.map((data) => changeKeys.camelCase(data))
-    : changeKeys.camelCase(data);
+export const useApiResponseMiddleware = (data: any): any => {
+  return humps.camelizeKeys(data);
 };

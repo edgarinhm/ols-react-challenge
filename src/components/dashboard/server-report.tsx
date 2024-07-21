@@ -1,60 +1,62 @@
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import styles from "./server-report.module.scss";
+import { useChartServerReport } from "common/hooks/use-chart-server-report";
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
   Tooltip,
-  Legend,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+  CartesianGrid,
+  ResponsiveContainer,
+} from "recharts";
+import Card from "common/components/card/card";
 
 const ServerReport = () => {
   const serverReport = useDashboardStorage((state) => state.serverReport);
 
-  const chartData = {
-    labels: ["Red", "Orange", "Blue"],
-    // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
-    datasets: [
-      {
-        label: "",
-        data: [55, 23, 96],
-        // you can set indiviual colors for each bar
-        backgroundColor: [
-          "rgba(255, 255, 255, 0.6)",
-          "rgba(255, 255, 255, 0.6)",
-          "rgba(255, 255, 255, 0.6)",
-        ],
-        borderWidth: 1,
-      },
-    ],
-  };
+  const { LineChartData } = useChartServerReport();
+  const chartData = LineChartData(serverReport);
 
   return (
-    <div className={styles.serverReport}>
-      <p>{"Detalles del servidor"}</p>
-      <p>
+    <Card>
+      <Card.Header title={"Detalles del servidor"} />
+      <p className={styles.description}>
         {
           "The total number of sessions within the date range. its. the periods time  a user is  actively engaded with your website, page, app etc."
         }
       </p>
-      <div>
-        <div>
-          {"tiempo de uso "}
-          <span>{serverReport?.percentajeTime?.toFixed(2)}%</span>
+      <div className={styles.details}>
+        <div className={styles.item}>
+          <p>{"tiempo de uso "}</p>
+          <h3>
+            {serverReport?.percentajeTime?.toFixed(2)}
+            {"%"}
+          </h3>
         </div>
-        <div>
-          {"proyectos deplegados "}
-          <span>{serverReport?.deploys}</span>
+        <div className={styles.item}>
+          <p>{"proyectos deplegados "}</p>
+          <h3>{serverReport?.deploys}</h3>
         </div>
       </div>
-      <div className={styles.chartContainer}>{<Line data={chartData} />}</div>
-    </div>
+      <ResponsiveContainer width="100%" height="100%" aspect={500 / 300}>
+        <LineChart width={600} height={300} data={chartData.datasets}>
+          <CartesianGrid vertical={false} />
+          <XAxis
+            dataKey="time"
+            ticks={chartData.labels}
+            axisLine={false}
+            tickLine={false}
+            tickMargin={20}
+            padding={{ left: 45 }}
+            height={50}
+          />
+          <YAxis axisLine={false} tickLine={false} />
+          <Tooltip />
+          <Line dataKey="value" type="monotone" fill="#6C7383" strokeWidth={2} dot={false} />
+        </LineChart>
+      </ResponsiveContainer>
+    </Card>
   );
 };
 

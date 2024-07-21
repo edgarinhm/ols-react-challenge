@@ -1,11 +1,20 @@
 .home {
-  display: grid;
-  width: 100vw;
-  grid-template-columns: min-content 1fr;
-  grid-template-rows: 1fr;
-  overflow: auto;
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .content {
-  overflow: auto;
+  transition:
+    width 0.25s ease,
+    margin 0.25s ease;
+  width: calc(100% - 235px);
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
 }

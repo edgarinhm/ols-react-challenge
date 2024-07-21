@@ -51,7 +51,7 @@ const MainSideBar = () => {
 
   return (
     <div className={`${styles.mainSideBar} ${!isMainSideBarOpen ? styles.sideBarIconOnly : ""}`}>
-      <nav>
+      <nav className={styles.nav}>
         {menuItems
           .filter((item) => !item.isHidden)
           .map((menuItem) => {

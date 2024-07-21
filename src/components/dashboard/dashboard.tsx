@@ -6,7 +6,12 @@ import Reports from "./reports";
 import { useEffect, useState } from "react";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
 import { shallow } from "zustand/shallow";
-import { GetDashboardCards, GetDashboardServerReport } from "common/services/dashboard-service";
+import {
+  GetDashboardCards,
+  GetDashboardReleaseResume,
+  GetDashboardReportCommits,
+  GetDashboardServerReport,
+} from "common/services/dashboard-service";
 import { Spinner } from "common/components/spinner/spinner";
 import { useTopBarStorage } from "common/state-management/top-bar-storage";
 
@@ -74,29 +79,59 @@ const Dashboard = () => {
       setIsLoading(false);
     };
 
+    const loadCommitsReportData = async () => {
+      setIsLoading(true);
+      try {
+        const commitsReport = await GetDashboardReportCommits();
+        setDashboardState((state) => {
+          state.commitsReport = commitsReport;
+        });
+      } catch (error) {
+        console.log("error");
+      }
+      setIsLoading(false);
+    };
+
+    const loadReleaseResumeData = async () => {
+      setIsLoading(true);
+      try {
+        const releaseResume = await GetDashboardReleaseResume();
+        setDashboardState((state) => {
+          state.releaseResume = releaseResume;
+        });
+      } catch (error) {
+        console.log("error");
+      }
+      setIsLoading(false);
+    };
+
     loadDashboardCardsData();
     loadServerReportData();
+    loadCommitsReportData();
+    loadReleaseResumeData();
   }, [setDashboardState]);
 
   return (
     <>
       <div className={styles.dashboard}>
-        <div className={styles.title}>
-          <h3>{`Bienvenido ${name}`}</h3>
-          <h6>
-            {"Verifica tus alertas, posees "}
-            <span className={styles.alertNotification}>{`${alertCount} sin leer!`}</span>
-          </h6>
+        <div className={styles.row}>
+          <div className={styles.title}>
+            <h3>{`Bienvenido ${name}`}</h3>
+            <h6>
+              {"Verifica tus alertas, posees "}
+              <span className={styles.alertNotification}>{`${alertCount} sin leer!`}</span>
+            </h6>
+          </div>
         </div>
-        {/* GRID & CHARTS */}
-        <div className={styles.body}>
-          {/* ROW 1 */}
-          <div className={`${styles.row} ${styles.weatherRow}`}>
+        <div className={styles.row}>
+          <div
+            className={`${styles.weatherRow} ${styles.twoColumns} ${styles.stretchCard} ${styles.marginColumn}`}
+          >
             <Weather />
           </div>
-          <div className={`${styles.row} ${styles.activityPanelRow}`}>
-            <div className={styles.activityPanelColumn}>
-              <div className={styles.card}>
+          <div className={`${styles.twoColumns} ${styles.marginColumn}`}>
+            <div className={styles.row}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={projectsCardData.title}
                   bodyText={projectsCardData.message}
@@ -104,7 +139,7 @@ const Dashboard = () => {
                   styleColor={"tale"}
                 />
               </div>
-              <div className={styles.card}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={pendingNotificationsCardData.title}
                   bodyText={pendingNotificationsCardData.message}
@@ -113,10 +148,8 @@ const Dashboard = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className={`${styles.row} ${styles.activityPanelRow}`}>
-            <div className={styles.activityPanelColumn}>
-              <div className={styles.card}>
+            <div className={styles.row}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={projectsInDevCardData.title}
                   bodyText={projectsInDevCardData.message}
@@ -124,7 +157,7 @@ const Dashboard = () => {
                   styleColor={"darkBlue"}
                 />
               </div>
-              <div className={styles.card}>
+              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
                 <ActivityCard
                   title={errorsDeployCardData.title}
                   bodyText={errorsDeployCardData.message}
@@ -135,9 +168,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className={styles.reports}>
-          <Reports />
-        </div>
+        <Reports />
       </div>
       <Spinner show={isLoading} text={"Loading Dashboard..."} />
     </>
