@@ -1,0 +1,43 @@
+@use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/mixins/buttons.module.scss" as buttons;
+.project {
+  padding: 2.375rem 2.375rem;
+  width: 100%;
+  flex-grow: 1;
+
+  .addActionGroup {
+    display: flex;
+    margin-bottom: 1.5rem;
+    justify-content: end;
+    button {
+      @include buttons.btn;
+      border-radius: 15px;
+      text-transform: capitalize;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.gridContainer {
+  margin: 0px 20px 20px 20px;
+  display: grid;
+  grid-template-areas: "body body";
+}
+
+.projectGrid {
+  .theadLabel {
+    span {
+      text-transform: capitalize;
+    }
+  }
+  .theadBottom {
+    vertical-align: bottom;
+    border-bottom: 2px solid colors.$very-light-grey;
+  }
+  .headingActionsColumn {
+    //width: 5%;
+  }
+  .projectName {
+   // width: 25%;
+  }
+}

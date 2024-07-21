@@ -56,7 +56,8 @@ $status-width: 85px;
           margin-left: 12px;
         }
 
-        i {
+        i,
+        svg {
           margin-left: 5px;
         }
       }
@@ -205,7 +206,8 @@ $status-width: 85px;
     width: $status-width;
     font-size: base.$font-size-large;
 
-    > i {
+    > i,
+    svg {
       background: $pinkish-grey;
       width: $status-icon-width;
       border-radius: $status-icon-width * 0.5;
