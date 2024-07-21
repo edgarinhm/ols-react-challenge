@@ -3,10 +3,6 @@ name: 80 Deploy Stage
 on:
   workflow_dispatch:
   workflow_call:
-env:
-  # Setting an environment variable with the value of a configuration variable
-  env_var: ${{ vars.OLS_REACT_CHALLENGE }}
-
   
 jobs:
   build:
@@ -20,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: staging
     env:
-      VITE_API_HOSTNAME: ${{ vars.OLS_REACT_API_HOSTNAME }} # environment variable
       VITE_WEATHER_API_KEY: ${{ vars.OLS_REACT_VITE_WEATHER_API_KEY }} 
     steps:
       - name: Download artifact
