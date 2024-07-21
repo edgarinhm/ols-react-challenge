@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useApiResponseMiddleware } from "common/hooks/use-api-response-middleware";
 
+const { ExpressHostName } = window["environment-config" as keyof typeof window] ?? {};
+
 export const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_HOSTNAME,
+  baseURL: import.meta.env.VITE_API_HOSTNAME ?? ExpressHostName,
   headers: {
     "Content-Type": "application/json",
   },
