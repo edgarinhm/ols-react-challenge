@@ -10,7 +10,6 @@
   min-height: calc(100vh - 60px);
   font-weight: 500;
   padding: 0;
-  width: 235px;
   z-index: 11;
 
   &.sideBarIconOnly {
@@ -58,7 +57,7 @@
     transition: all 400ms ease-out;
     display: flex;
     flex-flow: column nowrap;
-    width: 196px;
+    width: 235px;
     font-family: $base-font-family;
     font-size: $font-size-small;
     color: $grey;
