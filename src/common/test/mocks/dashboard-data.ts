@@ -1,4 +1,5 @@
 import { DashboardCardModel } from "common/models/dashboard/dashboard-card-model";
+import { DashboardReportCommit } from "common/models/dashboard/dashboard-report-commit-model";
 import { DashboardServerReportModel } from "common/models/dashboard/dashboard-server-report-model";
 
 export const CardsData: DashboardCardModel = {
@@ -18,3 +19,7 @@ export const DashboardServerReportData: DashboardServerReportModel = {
     },
   ],
 };
+
+export const DashboardCommitsReportData: DashboardReportCommit[] = [
+  { month: 12, feat: 50, fix: 10 },
+];
