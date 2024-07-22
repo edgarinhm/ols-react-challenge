@@ -28,6 +28,16 @@
   overflow-x: auto;
 }
 
+.tableBody {
+  > div:nth-of-type(even) {
+    background: colors.$ghost-grey;
+  }
+  > div {
+    border: 0;
+    border-left: 4px solid transparent;
+  }
+}
+
 .projectGrid {
   .theadLabel {
     span {

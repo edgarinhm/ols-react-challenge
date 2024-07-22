@@ -17,7 +17,12 @@ const ProjectGrid = () => {
   const [sortDescending, setSortDescending] = useState<boolean>(true);
 
   const headers = [
-    { name: "projectName", label: "proyecto", isSortable: true, width: "25%" },
+    {
+      name: "projectName",
+      label: "proyecto",
+      isSortable: true,
+      styles: { flex: 1, flexGrow: 0.7 },
+    },
     { name: "client", label: "cliente" },
     { name: "repoUrl", label: "repositorio" },
     { name: "developers", label: "desarrolladores" },
@@ -80,7 +85,7 @@ const ProjectGrid = () => {
                 <div
                   key={header.name}
                   className={`${getHeaderClass(header.name)}`}
-                  style={{ width: header.width }}
+                  style={header.styles}
                   onClick={() =>
                     header.isSortable ? toggleSort(header.name as keyof ProjectModel) : undefined
                   }
@@ -101,7 +106,16 @@ const ProjectGrid = () => {
 
         <div className={styles.tableBody}>
           {sortedProjects.map((row) => (
-            <ProjectGridRow project={row} key={`${row.id}${row.projectName}${row.status}`} />
+            <ProjectGridRow key={`${row.id}${row.projectName}${row.status}`} row={row}>
+              {headers.map((header) => (
+                <ProjectGridRow.Row
+                  key={header.name}
+                  value={row[header.name as keyof typeof row]}
+                  style={header.styles}
+                />
+              ))}
+              <ProjectGridRow.Actions />
+            </ProjectGridRow>
           ))}
         </div>
       </div>
