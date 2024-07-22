@@ -28,9 +28,9 @@ const ProjectGrid = () => {
     { name: "databases", label: "db" },
     { name: "warningCount", label: "alertas" },
     { name: "errorsCount", label: "errores" },
-    { name: "deployCount", label: "cant. despliegues" },
+    { name: "deployCount", label: "cant. despliegues", width: "16%" },
     { name: "percentageCompletion", label: "avance" },
-    { name: "reportNc", label: "reporte nc's" },
+    { name: "reportNc", label: "reporte nc's", width: "12%" },
     { name: "status", label: "status" },
   ];
 
