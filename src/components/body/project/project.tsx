@@ -6,17 +6,19 @@ const Project = () => {
   const handleCreateNewProject = (): void => {};
   return (
     <div className={styles.project}>
-      <Card width="100%">
-        <Card.Header title={"Lista de proyectos registrados"} />
-        <div className={styles.addActionGroup}>
-          <button type="submit" onClick={handleCreateNewProject}>
-            {"nuevo proyecto"}
-          </button>
-        </div>
-        <div className={styles.gridContainer}>
-          <ProjectGrid />
-        </div>
-      </Card>
+      <div className={`${styles.fullRow} ${styles.stretchCard}`}>
+        <Card width="100%">
+          <Card.Header title={"Lista de proyectos registrados"} />
+          <div className={styles.addActionGroup}>
+            <button type="submit" onClick={handleCreateNewProject}>
+              {"nuevo proyecto"}
+            </button>
+          </div>
+          <div className={styles.tableGridResponsive}>
+            <ProjectGrid />
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };

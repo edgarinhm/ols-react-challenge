@@ -17,7 +17,7 @@ const ProjectGrid = () => {
   const [sortDescending, setSortDescending] = useState<boolean>(true);
 
   const headers = [
-    { name: "projectName", label: "proyecto", isSortable: true },
+    { name: "projectName", label: "proyecto", isSortable: true, width: "25%" },
     { name: "client", label: "cliente" },
     { name: "repoUrl", label: "repositorio" },
     { name: "developers", label: "desarrolladores" },
@@ -79,7 +79,8 @@ const ProjectGrid = () => {
               return (
                 <div
                   key={header.name}
-                  className={`${styles[header.name]} ${getHeaderClass(header.name)}`}
+                  className={`${getHeaderClass(header.name)}`}
+                  style={{ width: header.width }}
                   onClick={() =>
                     header.isSortable ? toggleSort(header.name as keyof ProjectModel) : undefined
                   }
