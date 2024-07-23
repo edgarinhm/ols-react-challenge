@@ -206,8 +206,7 @@ $status-width: 85px;
     width: $status-width;
     font-size: base.$font-size-large;
 
-    > i,
-    svg {
+    > i {
       background: $pinkish-grey;
       width: $status-icon-width;
       border-radius: $status-icon-width * 0.5;
@@ -234,6 +233,28 @@ $status-width: 85px;
 
       &.grey {
         background: $pinkish-grey;
+      }
+    }
+
+    svg {
+      &.green {
+        color: $es-green;
+      }
+
+      &.yellow {
+        color: $yellow-orange;
+      }
+
+      &.red {
+        color: $red;
+      }
+
+      &.blue {
+        color: $es-blue;
+      }
+
+      &.grey {
+        color: $pinkish-grey;
       }
     }
   }

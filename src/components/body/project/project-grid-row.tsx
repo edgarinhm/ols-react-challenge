@@ -30,16 +30,14 @@ const ProjectGridRow = ({ row, children, handleOnDrawerOpen }: ProjectGridRowPro
 };
 
 const Row = ({
-  key,
   value,
   style,
 }: {
-  key: string;
   value: string | number | boolean;
   style: CSSProperties | undefined;
 }): JSX.Element => {
   return (
-    <div key={key} className={`${tableStyles.column}`} style={style}>
+    <div className={`${tableStyles.column}`} style={style}>
       <div className={tableStyles.content}>
         <span>{value}</span>
       </div>
@@ -47,18 +45,39 @@ const Row = ({
   );
 };
 
-const Actions = (): JSX.Element => {
+const CustomRowValue = ({
+  style,
+  children,
+}: {
+  style: CSSProperties | undefined;
+  children: ReactNode;
+}): JSX.Element => {
   return (
-    <div className={tableStyles.actions}>
+    <div className={`${tableStyles.column}`} style={style}>
+      <div className={tableStyles.content}>{children}</div>
+    </div>
+  );
+};
+
+const Actions = ({
+  onEdit,
+  onDelete,
+}: {
+  onEdit: () => void;
+  onDelete: () => void;
+}): JSX.Element => {
+  return (
+    <div className={tableStyles.actions} style={{ width: 100 }}>
       <div className={tableStyles.actionsInnerContainer}>
-        <FontAwesomeIcon icon={faPenToSquare} />
-        <FontAwesomeIcon icon={faEraser} />
+        <FontAwesomeIcon icon={faPenToSquare} style={{ padding: "0.125rem" }} onClick={onEdit} />
+        <FontAwesomeIcon icon={faEraser} style={{ padding: "0.125rem" }} onClick={onDelete} />
       </div>
     </div>
   );
 };
 
 ProjectGridRow.Row = Row;
+ProjectGridRow.CustomRowValue = CustomRowValue;
 ProjectGridRow.Actions = Actions;
 
 export default ProjectGridRow;

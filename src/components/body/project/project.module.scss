@@ -29,12 +29,9 @@
 }
 
 .tableBody {
+  grid-area: body;
   > div:nth-of-type(even) {
     background: colors.$ghost-grey;
-  }
-  > div {
-    border: 0;
-    border-left: 4px solid transparent;
   }
 }
 
@@ -49,14 +46,6 @@
     vertical-align: bottom;
     border-bottom: 2px solid colors.$very-light-grey;
   }
-
-  .headingActionsColumn {
-    //width: 5%;
-  }
-
-  .projectName {
-    // width: 25%;
-  }
 }
 
 .stretchCard {
@@ -64,11 +53,10 @@
   align-items: stretch;
   justify-content: stretch;
 
-  &>div:first-child {
+  & > div:first-child {
     min-width: 100%;
   }
 }
-
 
 .fullRow {
   position: relative;

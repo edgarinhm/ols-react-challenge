@@ -15,3 +15,7 @@ export const StatusSortOrder = (status: ProjectStatus): number => {
       return 7;
   }
 };
+
+export const GetProjectCiCdStatusClass = (status: boolean): string => {
+  return status ? "green" : "red";
+};
