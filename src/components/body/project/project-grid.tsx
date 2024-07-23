@@ -30,6 +30,17 @@ const ProjectGrid = () => {
   };
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const formatPeriodRowValue = (rowValue: any) => {
+    return typeof rowValue === "string"
+      ? formatter.replacePeriodToNewHtmlLine(rowValue).map((value, index) => (
+          <div key={`${value}-${index}`} style={{ display: "flex", flexDirection: "column" }}>
+            <span>{value}</span>
+          </div>
+        ))
+      : "";
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const formatCiCdRowValue = (rowValue: any) => {
     return typeof rowValue === "boolean" ? (
       <span className={`${tableStyles.status}`}>
@@ -51,7 +62,7 @@ const ProjectGrid = () => {
       style: {
         //flex: 2,
         // width: "20%",
-        minWidth: "170px",
+        minWidth: "230px",
       } as CSSProperties,
     },
     {
@@ -59,7 +70,7 @@ const ProjectGrid = () => {
       label: "cliente",
       style: {
         //flex: 3,
-        minWidth: "170px",
+        minWidth: "280px",
       },
     },
     {
@@ -76,7 +87,7 @@ const ProjectGrid = () => {
       style: {
         //  flex: 4,
         //width: "40%",
-        minWidth: "170px",
+        minWidth: "230px",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
@@ -87,7 +98,12 @@ const ProjectGrid = () => {
       name: "ci",
       label: "ci",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "40px",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
       } as CSSProperties,
       format: formatCiCdRowValue,
     },
@@ -95,7 +111,12 @@ const ProjectGrid = () => {
       name: "cd",
       label: "cd",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "50px",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
       } as CSSProperties,
       format: formatCiCdRowValue,
     },
@@ -103,10 +124,12 @@ const ProjectGrid = () => {
       name: "frontendTecnology",
       label: "frontend",
       style: {
-        flex: 3,
+        //flex: 3,
+        minWidth: "150px",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
+        textAlign: "left",
       } as CSSProperties,
       format: formatPipeRowValue,
     },
@@ -114,18 +137,20 @@ const ProjectGrid = () => {
       name: "backendTecnology",
       label: "backend",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "150px",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
       } as CSSProperties,
-      format: formatPipeRowValue,
+      format: formatPeriodRowValue,
     },
     {
       name: "databases",
       label: "db",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "150px",
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "flex-start",
@@ -136,7 +161,8 @@ const ProjectGrid = () => {
       name: "warningCount",
       label: "alertas",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "60px",
         textAlign: "center",
       } as CSSProperties,
     },
@@ -144,7 +170,8 @@ const ProjectGrid = () => {
       name: "errorsCount",
       label: "errores",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "60px",
         textAlign: "center",
       } as CSSProperties,
     },
@@ -152,7 +179,8 @@ const ProjectGrid = () => {
       name: "deployCount",
       label: "cant. despliegues",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "120px",
         textAlign: "center",
       } as CSSProperties,
     },
@@ -160,7 +188,8 @@ const ProjectGrid = () => {
       name: "percentageCompletion",
       label: "avance",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "60px",
         textAlign: "center",
       } as CSSProperties,
     },
@@ -168,7 +197,8 @@ const ProjectGrid = () => {
       name: "reportNc",
       label: "reporte NC's",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "100px",
         textAlign: "center",
       } as CSSProperties,
     },
@@ -176,7 +206,8 @@ const ProjectGrid = () => {
       name: "status",
       label: "status",
       style: {
-        flex: 1,
+        //flex: 1,
+        minWidth: "120px",
       } as CSSProperties,
     },
   ];
