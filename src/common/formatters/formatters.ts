@@ -90,4 +90,7 @@ export const formatter = {
       return pipe;
     });
   },
+  percentageUnit: (value: string | number, precision = 2): string => {
+    return `${Number(value).toFixed(precision)}%`;
+  },
 };

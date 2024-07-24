@@ -1,9 +1,15 @@
 import Card from "common/components/card/card";
 import styles from "./project.module.scss";
 import ProjectGrid from "./project-grid";
+import { useEffect } from "react";
 
 const Project = () => {
   const handleCreateNewProject = (): void => {};
+
+  useEffect(() => {
+    document.title = "OLS Project";
+  }, []);
+
   return (
     <div className={styles.project}>
       <div className={`${styles.fullRow} ${styles.stretchCard}`}>

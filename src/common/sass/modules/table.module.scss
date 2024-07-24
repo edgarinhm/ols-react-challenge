@@ -236,7 +236,8 @@ $status-width: 85px;
       }
     }
 
-    svg {
+    svg,
+    span {
       &.green {
         color: $es-green;
       }

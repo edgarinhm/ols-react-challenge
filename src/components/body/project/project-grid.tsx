@@ -1,222 +1,32 @@
 import tableStyles from "common/sass/modules/table.module.scss";
 import { Spinner } from "common/components/spinner/spinner";
 import styles from "./project.module.scss";
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ProjectModel } from "common/models/project-model";
-import { GetCiCdIconClass, GetSortIconClass } from "common/functions/table-functions";
+import { GetSortIconClass } from "common/functions/table-functions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { GetProjects } from "common/services/project-service";
-import { GetProjectCiCdStatusClass, StatusSortOrder } from "common/functions/status-functions";
+import { StatusSortOrder } from "common/functions/status-functions";
 import { SortObjects } from "common/functions/sort-functions";
 import ProjectGridRow from "./project-grid-row";
-import { formatter } from "common/formatters/formatters";
+import { useProjectGrid } from "common/hooks/use-project-grid";
+
+type KeysProject = keyof ProjectModel;
 
 const ProjectGrid = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [projects, setProjects] = useState<ProjectModel[]>([]);
 
-  const [sortColumn, setSortColumn] = useState<keyof ProjectModel>("id");
+  const [sortColumn, setSortColumn] = useState<KeysProject>("id");
   const [sortDescending, setSortDescending] = useState<boolean>(true);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const formatPipeRowValue = (rowValue: any) => {
-    return typeof rowValue === "string"
-      ? formatter.replacePipeToNewHtmlLine(rowValue).map((value, index) => (
-          <div key={`${value}-${index}`} style={{ display: "flex", flexDirection: "column" }}>
-            <span>{value}</span>
-          </div>
-        ))
-      : "";
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const formatPeriodRowValue = (rowValue: any) => {
-    return typeof rowValue === "string"
-      ? formatter.replacePeriodToNewHtmlLine(rowValue).map((value, index) => (
-          <div key={`${value}-${index}`} style={{ display: "flex", flexDirection: "column" }}>
-            <span>{value}</span>
-          </div>
-        ))
-      : "";
-  };
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const formatCiCdRowValue = (rowValue: any) => {
-    return typeof rowValue === "boolean" ? (
-      <span className={`${tableStyles.status}`}>
-        <FontAwesomeIcon
-          className={`${tableStyles[GetProjectCiCdStatusClass(rowValue)]}`}
-          icon={GetCiCdIconClass(rowValue)}
-        />
-      </span>
-    ) : (
-      ""
-    );
-  };
-
-  const headers = [
-    {
-      name: "projectName",
-      label: "proyecto",
-      isSortable: true,
-      style: {
-        //flex: 2,
-        // width: "20%",
-        minWidth: "230px",
-      } as CSSProperties,
-    },
-    {
-      name: "client",
-      label: "cliente",
-      style: {
-        //flex: 3,
-        minWidth: "280px",
-      },
-    },
-    {
-      name: "repoUrl",
-      label: "repositorio",
-      style: {
-        //flex: 3,
-        minWidth: "170px",
-      },
-    },
-    {
-      name: "developers",
-      label: "desarrolladores",
-      style: {
-        //  flex: 4,
-        //width: "40%",
-        minWidth: "230px",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-      } as CSSProperties,
-      format: formatPipeRowValue,
-    },
-    {
-      name: "ci",
-      label: "ci",
-      style: {
-        //flex: 1,
-        minWidth: "40px",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-      } as CSSProperties,
-      format: formatCiCdRowValue,
-    },
-    {
-      name: "cd",
-      label: "cd",
-      style: {
-        //flex: 1,
-        minWidth: "50px",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-      } as CSSProperties,
-      format: formatCiCdRowValue,
-    },
-    {
-      name: "frontendTecnology",
-      label: "frontend",
-      style: {
-        //flex: 3,
-        minWidth: "150px",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        textAlign: "left",
-      } as CSSProperties,
-      format: formatPipeRowValue,
-    },
-    {
-      name: "backendTecnology",
-      label: "backend",
-      style: {
-        //flex: 1,
-        minWidth: "150px",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-      } as CSSProperties,
-      format: formatPeriodRowValue,
-    },
-    {
-      name: "databases",
-      label: "db",
-      style: {
-        //flex: 1,
-        minWidth: "150px",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "flex-start",
-      } as CSSProperties,
-      format: formatPipeRowValue,
-    },
-    {
-      name: "warningCount",
-      label: "alertas",
-      style: {
-        //flex: 1,
-        minWidth: "60px",
-        textAlign: "center",
-      } as CSSProperties,
-    },
-    {
-      name: "errorsCount",
-      label: "errores",
-      style: {
-        //flex: 1,
-        minWidth: "60px",
-        textAlign: "center",
-      } as CSSProperties,
-    },
-    {
-      name: "deployCount",
-      label: "cant. despliegues",
-      style: {
-        //flex: 1,
-        minWidth: "120px",
-        textAlign: "center",
-      } as CSSProperties,
-    },
-    {
-      name: "percentageCompletion",
-      label: "avance",
-      style: {
-        //flex: 1,
-        minWidth: "60px",
-        textAlign: "center",
-      } as CSSProperties,
-    },
-    {
-      name: "reportNc",
-      label: "reporte NC's",
-      style: {
-        //flex: 1,
-        minWidth: "100px",
-        textAlign: "center",
-      } as CSSProperties,
-    },
-    {
-      name: "status",
-      label: "status",
-      style: {
-        //flex: 1,
-        minWidth: "120px",
-      } as CSSProperties,
-    },
-  ];
+  const { headers } = useProjectGrid();
 
   const isActiveSorter = (fieldName: string) => {
     return fieldName === sortColumn;
   };
 
-  const toggleSort = (column: keyof ProjectModel): void => {
+  const toggleSort = (column: KeysProject): void => {
     if (isActiveSorter(column)) {
       setSortDescending(!sortDescending);
     } else {
@@ -228,7 +38,9 @@ const ProjectGrid = () => {
   const getHeaderSortClass = (headerName: string): string => {
     return isActiveSorter(headerName) ? tableStyles.activeSorter : tableStyles.sortable;
   };
+
   const customSortOrder = sortColumn === "status" ? StatusSortOrder : undefined;
+
   const sortedProjects = sortColumn
     ? SortObjects(projects, sortColumn, sortDescending, customSortOrder)
     : projects;
@@ -259,7 +71,7 @@ const ProjectGrid = () => {
                   key={name}
                   className={`${getHeaderSortClass(name)}`}
                   style={style}
-                  onClick={() => (isSortable ? toggleSort(name as keyof ProjectModel) : undefined)}
+                  onClick={() => (isSortable ? toggleSort(name as KeysProject) : undefined)}
                   data-qa={`${name}-sort-button`}
                 >
                   <span>{label}</span>
@@ -286,14 +98,10 @@ const ProjectGrid = () => {
                 {headers.map(({ name, style, format }) =>
                   format ? (
                     <ProjectGridRow.CustomRowValue key={name} style={style}>
-                      {format(row[name as keyof typeof row])}
+                      {format(row, name)}
                     </ProjectGridRow.CustomRowValue>
                   ) : (
-                    <ProjectGridRow.Row
-                      key={name}
-                      value={row[name as keyof typeof row]}
-                      style={style}
-                    />
+                    <ProjectGridRow.Row key={name} value={row[name as KeysProject]} style={style} />
                   )
                 )}
                 <ProjectGridRow.Actions onEdit={() => ""} onDelete={() => ""} />
