@@ -1,15 +1,15 @@
-import { ProjectStatus } from "common/enums/project-status-type";
+import { ProjectStatusType } from "common/enums/project-status-type";
 import { ProjectModel } from "common/models/project-model";
 
-export const StatusSortOrder = (status: ProjectStatus): number => {
+export const StatusSortOrder = (status: ProjectStatusType): number => {
   switch (status) {
-    case ProjectStatus.Complete:
+    case ProjectStatusType.Completed:
       return 1;
 
-    case ProjectStatus.InProgress:
+    case ProjectStatusType.InProgress:
       return 2;
 
-    case ProjectStatus.NotStarted:
+    case ProjectStatusType.Pending:
       return 3;
 
     default:

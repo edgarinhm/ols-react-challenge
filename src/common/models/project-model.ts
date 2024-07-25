@@ -1,4 +1,4 @@
-import { ProjectStatus } from "common/enums/project-status-type";
+import { ProjectStatusType } from "common/enums/project-status-type";
 
 export interface ProjectModel {
   id: number;
@@ -16,5 +16,5 @@ export interface ProjectModel {
   deployCount: number;
   percentageCompletion: number;
   reportNc: number;
-  status: ProjectStatus;
+  status: ProjectStatusType;
 }

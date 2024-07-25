@@ -95,10 +95,10 @@ const ProjectGrid = () => {
           {sortedProjects.map((row) => (
             <div key={`${row.id}${row.projectName}${row.status}`} data-qa={"projects-rows-data"}>
               <ProjectGridRow row={row}>
-                {headers.map(({ name, style, format }) =>
-                  format ? (
+                {headers.map(({ name, style, rowFormatter }) =>
+                  rowFormatter ? (
                     <ProjectGridRow.CustomRowValue key={name} style={style}>
-                      {format(row, name)}
+                      {rowFormatter(row, name)}
                     </ProjectGridRow.CustomRowValue>
                   ) : (
                     <ProjectGridRow.Row key={name} value={row[name as KeysProject]} style={style} />

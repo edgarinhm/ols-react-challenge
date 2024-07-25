@@ -8,9 +8,14 @@ import {
 import { GetCiCdIconClass } from "common/functions/table-functions";
 import { ProjectModel } from "common/models/project-model";
 import { CSSProperties } from "react";
+import { GetProyectStatusType } from "common/enums/project-status-type";
+import { GetProjecStatusBadgeClass } from "common/functions/badge-classes";
 
 export const useProjectGrid = () => {
-  const formatPipeRowValue = (row: ProjectModel, rowName: StringValueKeys<ProjectModel>) => {
+  const pipeRowValueFormetter = (
+    row: ProjectModel,
+    rowName: StringValueKeys<ProjectModel>
+  ): JSX.Element[] | "" => {
     const rowValue = row[rowName];
     return ["developers", "frontendTecnology", "databases"].includes(rowName)
       ? formatter.replacePipeToNewHtmlLine(rowValue).map((value, index) => (
@@ -21,7 +26,10 @@ export const useProjectGrid = () => {
       : "";
   };
 
-  const formatPeriodRowValue = (row: ProjectModel, rowName: StringValueKeys<ProjectModel>) => {
+  const periodRowValueFormatter = (
+    row: ProjectModel,
+    rowName: StringValueKeys<ProjectModel>
+  ): JSX.Element[] | "" => {
     const rowValue = row[rowName];
     return ["backendTecnology"].includes(rowName)
       ? formatter.replacePeriodToNewHtmlLine(rowValue).map((value, index) => (
@@ -32,7 +40,10 @@ export const useProjectGrid = () => {
       : "";
   };
 
-  const formatCiCdRowValue = (row: ProjectModel, rowName: BooleanValueKeys<ProjectModel>) => {
+  const ciCdRowValueFormatter = (
+    row: ProjectModel,
+    rowName: BooleanValueKeys<ProjectModel>
+  ): JSX.Element | "" => {
     const rowValue = row[rowName];
     return ["ci", "cd"].includes(rowName) ? (
       <span className={`${tableStyles.status}`}>
@@ -46,7 +57,10 @@ export const useProjectGrid = () => {
     );
   };
 
-  const formatAlertTextColorRow = (row: ProjectModel, rowName: NumberValueKeys<ProjectModel>) => {
+  const alertTextColorRowFormatter = (
+    row: ProjectModel,
+    rowName: NumberValueKeys<ProjectModel>
+  ): JSX.Element | "" => {
     const rowValue = row[rowName];
     return [
       "deployCount",
@@ -60,6 +74,23 @@ export const useProjectGrid = () => {
           {rowName === "percentageCompletion" ? formatter.percentageUnit(rowValue, 1) : rowValue}
         </span>
       </div>
+    ) : (
+      ""
+    );
+  };
+
+  const statusRowFormatter = (
+    row: ProjectModel,
+    rowName: StringValueKeys<ProjectModel>
+  ): JSX.Element | "" => {
+    const rowValue = row[rowName];
+    return "status".includes(rowName) ? (
+      <span
+        className={`${[GetProjecStatusBadgeClass(GetProyectStatusType(rowValue))]}`}
+        style={{ textTransform: "capitalize", color: "black", fontWeight: "normal" }}
+      >
+        {rowValue}
+      </span>
     ) : (
       ""
     );
@@ -97,7 +128,7 @@ export const useProjectGrid = () => {
         justifyContent: "center",
         alignItems: "flex-start",
       } as CSSProperties,
-      format: formatPipeRowValue,
+      rowFormatter: pipeRowValueFormetter,
     },
     {
       name: "ci" as never,
@@ -109,7 +140,7 @@ export const useProjectGrid = () => {
         alignItems: "center",
         textAlign: "center",
       } as CSSProperties,
-      format: formatCiCdRowValue,
+      rowFormatter: ciCdRowValueFormatter,
     },
     {
       name: "cd" as never,
@@ -121,7 +152,7 @@ export const useProjectGrid = () => {
         alignItems: "center",
         textAlign: "center",
       } as CSSProperties,
-      format: formatCiCdRowValue,
+      rowFormatter: ciCdRowValueFormatter,
     },
     {
       name: "frontendTecnology" as never,
@@ -133,7 +164,7 @@ export const useProjectGrid = () => {
         alignItems: "flex-start",
         textAlign: "left",
       } as CSSProperties,
-      format: formatPipeRowValue,
+      rowFormatter: pipeRowValueFormetter,
     },
     {
       name: "backendTecnology" as never,
@@ -144,7 +175,7 @@ export const useProjectGrid = () => {
         justifyContent: "center",
         alignItems: "flex-start",
       } as CSSProperties,
-      format: formatPeriodRowValue,
+      rowFormatter: periodRowValueFormatter,
     },
     {
       name: "databases" as never,
@@ -155,7 +186,7 @@ export const useProjectGrid = () => {
         justifyContent: "center",
         alignItems: "flex-start",
       } as CSSProperties,
-      format: formatPipeRowValue,
+      rowFormatter: pipeRowValueFormetter,
     },
     {
       name: "warningCount" as never,
@@ -164,7 +195,7 @@ export const useProjectGrid = () => {
         minWidth: "60px",
         textAlign: "center",
       } as CSSProperties,
-      format: formatAlertTextColorRow,
+      rowFormatter: alertTextColorRowFormatter,
     },
     {
       name: "errorsCount" as never,
@@ -173,7 +204,7 @@ export const useProjectGrid = () => {
         minWidth: "60px",
         textAlign: "center",
       } as CSSProperties,
-      format: formatAlertTextColorRow,
+      rowFormatter: alertTextColorRowFormatter,
     },
     {
       name: "deployCount" as never,
@@ -182,7 +213,7 @@ export const useProjectGrid = () => {
         minWidth: "120px",
         textAlign: "center",
       } as CSSProperties,
-      format: formatAlertTextColorRow,
+      rowFormatter: alertTextColorRowFormatter,
     },
     {
       name: "percentageCompletion" as never,
@@ -191,7 +222,7 @@ export const useProjectGrid = () => {
         minWidth: "60px",
         textAlign: "center",
       } as CSSProperties,
-      format: formatAlertTextColorRow,
+      rowFormatter: alertTextColorRowFormatter,
     },
     {
       name: "reportNc" as never,
@@ -200,7 +231,7 @@ export const useProjectGrid = () => {
         minWidth: "100px",
         textAlign: "center",
       } as CSSProperties,
-      format: formatAlertTextColorRow,
+      rowFormatter: alertTextColorRowFormatter,
     },
     {
       name: "status" as never,
@@ -208,6 +239,7 @@ export const useProjectGrid = () => {
       style: {
         minWidth: "120px",
       } as CSSProperties,
+      rowFormatter: statusRowFormatter,
     },
   ];
 
