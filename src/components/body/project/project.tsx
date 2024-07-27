@@ -1,10 +1,11 @@
 import Card from "common/components/card/card";
 import styles from "./project.module.scss";
 import ProjectGrid from "./project-grid";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import AddProjectModal from "./add-project-modal";
 
 const Project = () => {
-  const handleCreateNewProject = (): void => {};
+  const [isAddProjectModalOpen, setIsAddProjectModalOpen] = useState(false);
 
   useEffect(() => {
     document.title = "OLS Project";
@@ -16,7 +17,7 @@ const Project = () => {
         <Card width="100%">
           <Card.Header title={"Lista de proyectos registrados"} />
           <div className={styles.addActionGroup}>
-            <button type="submit" onClick={handleCreateNewProject}>
+            <button type="submit" onClick={() => setIsAddProjectModalOpen(true)}>
               {"nuevo proyecto"}
             </button>
           </div>
@@ -25,6 +26,10 @@ const Project = () => {
           </div>
         </Card>
       </div>
+      <AddProjectModal
+        open={isAddProjectModalOpen}
+        onClose={() => setIsAddProjectModalOpen(false)}
+      />
     </div>
   );
 };

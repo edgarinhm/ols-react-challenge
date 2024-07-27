@@ -20,4 +20,7 @@ export const Messages = {
   RegisterSubmitButton: "Registar",
   RegisterHaveAccount: "Ya tienes cuenta?",
   RegisterRedirectLogin: "Iniciar Sessión",
+  AddProjectModalTitle: "Creemos un nuevo projecto",
+  AddProjectModalSubmit: "Save changes",
+  AddProjectModalCancel: "Close",
 };

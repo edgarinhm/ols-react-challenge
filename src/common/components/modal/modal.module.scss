@@ -1,0 +1,118 @@
+@use "common/sass/styles/colors.module.scss";
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/styles/z-index.module.scss" as z;
+@use "common/sass/mixins/buttons.module.scss";
+
+// Container that the modal scrolls within
+.scrollContainer {
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: z.$z-modal;
+}
+
+.dialog {
+  margin: 0 auto 3 * base.$large-spacing auto;
+  position: relative;
+  top: 4em;
+  left: inherit;
+}
+
+.content {
+  position: relative;
+  border-radius: base.$border-radius-large;
+  outline: 0;
+  background: base.$modal-content-background-color;
+  box-shadow: 0 4px 20px base.$page-overlay-color;
+  padding: 0px;
+  overflow: visible;
+  border: none;
+}
+
+.header {
+  &.standard {
+    background-color: colors.$white;
+  }
+
+  &.warning {
+    color: colors.$white;
+    background-color: colors.$red;
+    border-color: colors.$red;
+  }
+
+  &.inProgress {
+    color: colors.$white;
+    background-color: colors.$orange;
+    border-color: colors.$orange;
+  }
+
+  &.success {
+    background-color: colors.$es-green;
+    color: colors.$white;
+  }
+
+  padding: base.$base-spacing;
+  border-bottom: 1px solid colors.$med-grey;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: base.$base-border-radius;
+  border-top-right-radius: base.$base-border-radius;
+
+  > h2 {
+    display: inline-block;
+    font-weight: 700;
+    margin: 0;
+    line-height: base.$modal-title-line-height;
+    color: inherit;
+  }
+
+  .btnClose {
+    @include buttons.btn;
+    @include buttons.btn-close;
+    padding: 0px;
+    color: inherit !important;
+    align-items: flex-end;
+
+    > i,
+    svg {
+      font-size: base.$font-size-larger;
+      margin-left: 5px;
+    }
+  }
+}
+// Modal background
+.backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: z.$z-modal-background;
+  background-color: base.$modal-backdrop-bg;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+
+  .cancelBtn {
+    @include buttons.btn;
+    @include buttons.btn-tertiary;
+    margin-right: 5px;
+  }
+
+  .submitBtn {
+    @include buttons.btn;
+  }
+
+  .greenSubmitBtn {
+    @include buttons.btn;
+    @include buttons.btn-special;
+  }
+}
