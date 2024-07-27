@@ -16,7 +16,7 @@
 
   .cancelBtn {
     @include buttons.btn;
-    @include buttons.btn-tertiary;
+    @include buttons.btn-close;
     margin-right: 5px;
     text-transform: capitalize;
     background-color: colors.$dark-grey;
