@@ -1,6 +1,6 @@
 import tableStyles from "common/sass/modules/table.module.scss";
 import { Spinner } from "common/components/spinner/spinner";
-import styles from "./project.module.scss";
+import styles from "./project-grid.module.scss";
 import { useEffect, useState } from "react";
 import { ProjectModel } from "common/models/project-model";
 import { GetSortIconClass } from "common/functions/table-functions";
