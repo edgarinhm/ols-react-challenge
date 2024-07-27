@@ -118,10 +118,6 @@
       display: flex;
     }
 
-    .active {
-      background-color: red;
-    }
-
     &:hover {
       color: $white;
       background-color: var.$btn-primary-base;
@@ -132,5 +128,11 @@
 
   i {
     font-size: 20px;
+  }
+}
+
+@media (min-width: 992px) {
+  .sideBarIconOnly {
+    width: 70px;
   }
 }

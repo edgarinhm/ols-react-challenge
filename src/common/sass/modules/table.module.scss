@@ -56,7 +56,8 @@ $status-width: 85px;
           margin-left: 12px;
         }
 
-        i {
+        i,
+        svg {
           margin-left: 5px;
         }
       }
@@ -232,6 +233,29 @@ $status-width: 85px;
 
       &.grey {
         background: $pinkish-grey;
+      }
+    }
+
+    svg,
+    span {
+      &.green {
+        color: $es-green;
+      }
+
+      &.yellow {
+        color: $yellow-orange;
+      }
+
+      &.red {
+        color: $red;
+      }
+
+      &.blue {
+        color: $es-blue;
+      }
+
+      &.grey {
+        color: $pinkish-grey;
       }
     }
   }

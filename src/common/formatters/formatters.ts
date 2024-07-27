@@ -80,4 +80,17 @@ export const formatter = {
       4
     )}-${formattedDate.substring(0, 2)}`;
   },
+  replacePipeToNewHtmlLine: (value: string): string[] => {
+    return value.split("|").map((pipe) => {
+      return pipe;
+    });
+  },
+  replacePeriodToNewHtmlLine: (value: string): string[] => {
+    return value.split(",").map((pipe) => {
+      return pipe;
+    });
+  },
+  percentageUnit: (value: string | number, precision = 2): string => {
+    return `${Number(value).toFixed(precision)}%`;
+  },
 };

@@ -13,10 +13,17 @@
 .content {
   display: flex;
   flex-direction: column;
-  width: calc(100% - 235px);
   min-height: calc(100vh - 60px);
   transition:
     width 0.25s ease,
     margin 0.25s ease;
   overflow: auto;
+  width: 100%;
+  padding: 2.375rem 2.375rem;
+}
+
+@media (max-width: 767px) {
+  .content {
+    padding: 1.5rem 1.5rem;
+  }
 }

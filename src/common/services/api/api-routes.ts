@@ -34,3 +34,7 @@ export const DashboardReportCommits = {
 export const DashboardReleaseResume = {
   get: (): string => "/release_resume",
 };
+
+export const Projects = {
+  get: (): string => "/projects",
+};
