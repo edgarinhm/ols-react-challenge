@@ -18,6 +18,6 @@ export const ProjectsData: ProjectModel[] = [
     deployCount: 8,
     percentageCompletion: 62,
     reportNc: 125,
-    status: ProjectStatusType.InDevelopment,
+    status: ProjectStatusType.InProgress,
   },
 ];

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { StatusSortOrder } from "./status-functions";
 
 export const SortObjects = <T>(
   data: T[],
   sortField?: { [K in keyof T]: T[K] extends Record<string, unknown> ? never : K }[keyof T],
   isDescending?: boolean,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   customSortOrder?: (value: any) => number,
   sortNullLastWhileAscending?: boolean
 ): T[] => {
@@ -34,16 +35,12 @@ export const SortObjects = <T>(
 };
 
 export const SortNestedObjects = <T>(
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   data: T[],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   sortField: (sortField: keyof T) => T[keyof T],
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   isDescending?: boolean,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
   customSortOrder?: (value: any) => number
 ): T[] => {
-  throw Error("Not Implemented");
+  throw Error(`Not Implemented ${data}-${isDescending}-${sortField}-${customSortOrder}`);
 };
 
 export const HandleSorting = <T>(
@@ -53,7 +50,6 @@ export const HandleSorting = <T>(
   isStatusField?: boolean
 ): T[] => {
   if (fieldName) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sorted = data.sort((a: any, b: any) => {
       const item1 = !isStatusField ? a[fieldName] : StatusSortOrder(a[fieldName]);
       const item2 = !isStatusField ? b[fieldName] : StatusSortOrder(b[fieldName]);
