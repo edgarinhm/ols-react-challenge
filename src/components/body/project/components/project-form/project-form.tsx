@@ -76,7 +76,7 @@ const ProjectForm = () => {
             {Object.values(BackendTechnologyType).map((backend) => (
               <li
                 key={backend}
-                className={`${styles.dropdownOption} ${backendSelectValue.indexOf(backend) > -1 ? "selected" : ""}`}
+                className={`${styles.dropdownOption} ${backendSelectValue.indexOf(backend) > -1 ? styles.selected : ""}`}
                 onClick={() => handleBackendSelect(backend)}
               >
                 {backend}

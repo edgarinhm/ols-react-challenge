@@ -1,3 +1,14 @@
+@use "common/sass/styles/colors.module.scss" as colors;
 .row {
   margin-bottom: 1rem;
+}
+
+.dropdownOptions {
+  padding: 0.5rem 1rem;
+  list-style: none;
+}
+.dropdownOption {
+  &.selected {
+    background: colors.$very-light-grey;
+  }
 }
