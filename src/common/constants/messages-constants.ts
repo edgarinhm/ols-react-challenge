@@ -34,4 +34,6 @@ export const Messages = {
   AddProjectModalFormFrontend: "Frontend",
   AddProjectModalFormBackend: "Backend",
   AddProjectModalFormDatabases: "Bases de datos",
+  ProjectModalFormFrontendPlaceholder: "Que tecnología frontend se usa",
+  ProjectModalFormBackendPlaceholder: "Que tecnología backend se usa",
 };
