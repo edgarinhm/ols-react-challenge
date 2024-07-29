@@ -1,5 +1,6 @@
 @use "common/sass/styles/variables.scss" as vars;
 @use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
 
 .dropdown {
   overflow-y: auto;
@@ -22,6 +23,10 @@
 
 .dropdownLabel {
   margin-bottom: 0.5em;
+  font-size: base.$font-size-smaller;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: colors.$dark-grey;
 }
 
 .dropdownOptions {

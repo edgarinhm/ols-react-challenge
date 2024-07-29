@@ -70,32 +70,57 @@ const ProjectForm = () => {
   return (
     <>
       <div className={styles.row}>
-        <FormControl.Input type="text" label={Messages.AddProjectModalFormLabel} />
-      </div>
-      <div className={styles.row}>
-        <FormControl.Input type="text" label={Messages.AddProjectModalFormClient} />
+        <FormControl.Input
+          id={`${id}-project`}
+          type="text"
+          label={Messages.AddProjectModalFormProject}
+        />
       </div>
       <div className={styles.row}>
         <FormControl.Input
+          id={`${id}-client`}
+          type="text"
+          label={Messages.AddProjectModalFormClient}
+        />
+      </div>
+      <div className={styles.row}>
+        <FormControl.Input
+          id={`${id}-repository`}
           type="text"
           label={Messages.AddProjectModalFormRepository}
           placeholder="https://"
         />
       </div>
       <div className={styles.row}>
-        <FormControl.CheckInput type="checkbox" label={Messages.AddProjectModalFormCI} />
+        <FormControl.CheckInput
+          id={`${id}-ci`}
+          type="checkbox"
+          label={Messages.AddProjectModalFormCI}
+        />
       </div>
       <div className={styles.row}>
-        <FormControl.CheckInput type="checkbox" label={Messages.AddProjectModalFormCD} />
+        <FormControl.CheckInput
+          id={`${id}-cd`}
+          type="checkbox"
+          label={Messages.AddProjectModalFormCD}
+        />
       </div>
       <div className={styles.row}>
-        <FormControl.Input type="text" label={Messages.AddProjectModalFormDevelopers} />
+        <FormControl.Input
+          id={`${id}-developers`}
+          type="text"
+          label={Messages.AddProjectModalFormDevelopers}
+        />
       </div>
       <div className={styles.row}>
-        <label htmlFor="frontend" className={dropdownStyles.dropdownLabel}>
+        <div
+          aria-labelledby="frontend-multiple-checkbox-label"
+          className={dropdownStyles.dropdownLabel}
+        >
           {Messages.AddProjectModalFormFrontend}
-        </label>
+        </div>
         <FloatingLabelSelect
+          id={`${id}-frontend`}
           open={isFrontendSelectOpen}
           onClose={() => setIsFrontendSelectOpen(false)}
           onTogglePopover={() => setIsFrontendSelectOpen((state) => !state)}
@@ -110,7 +135,6 @@ const ProjectForm = () => {
             role="combobox"
             aria-expanded={isFrontendSelectOpen}
             aria-haspopup="listbox"
-            aria-labelledby="frontend-multiple-checkbox-label frontend-multiple-checkbox"
             id={`${id}-frontend-multiple-checkbox`}
           >
             <ul className={dropdownStyles.dropdownOptions}>
@@ -140,10 +164,14 @@ const ProjectForm = () => {
         </FloatingLabelSelect>
       </div>
       <div className={styles.row}>
-        <label htmlFor="backend" className={dropdownStyles.dropdownLabel}>
+        <div
+          aria-labelledby="backend-multiple-checkbox-label"
+          className={dropdownStyles.dropdownLabel}
+        >
           {Messages.AddProjectModalFormBackend}
-        </label>
+        </div>
         <FloatingLabelSelect
+          id={`${id}-backend`}
           open={isBackendSelectOpen}
           onClose={() => setIsBackendSelectOpen(false)}
           onTogglePopover={() => setIsBackendSelectOpen((state) => !state)}
@@ -158,7 +186,6 @@ const ProjectForm = () => {
             role="combobox"
             aria-expanded={isBackendSelectOpen}
             aria-haspopup="listbox"
-            aria-labelledby="backend-multiple-checkbox-label backend-multiple-checkbox"
             id={`${id}-backend-multiple-checkbox`}
           >
             <ul className={dropdownStyles.dropdownOptions}>
@@ -188,10 +215,14 @@ const ProjectForm = () => {
         </FloatingLabelSelect>
       </div>
       <div className={styles.row}>
-        <label htmlFor="database" className={dropdownStyles.dropdownLabel}>
+        <div
+          aria-labelledby="database-multiple-checkbox-label"
+          className={dropdownStyles.dropdownLabel}
+        >
           {Messages.AddProjectModalFormDatabases}
-        </label>
+        </div>
         <FloatingLabelSelect
+          id={`${id}-database`}
           open={isDatabaseSelectOpen}
           onClose={() => setIsDatabaseSelectOpen(false)}
           onTogglePopover={() => setIsDatabaseSelectOpen((state) => !state)}
@@ -206,7 +237,6 @@ const ProjectForm = () => {
             role="combobox"
             aria-expanded={isDatabaseSelectOpen}
             aria-haspopup="listbox"
-            aria-labelledby="database-multiple-checkbox-label database-multiple-checkbox"
             id={`${id}-database-multiple-checkbox`}
           >
             <ul className={dropdownStyles.dropdownOptions}>

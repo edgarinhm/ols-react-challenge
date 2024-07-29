@@ -25,7 +25,7 @@ export const Messages = {
   AddProjectModalTitle: "Creemos un nuevo projecto",
   AddProjectModalSubmit: "Save changes",
   AddProjectModalCancel: "Close",
-  AddProjectModalFormLabel: "Proyecto",
+  AddProjectModalFormProject: "Proyecto",
   AddProjectModalFormClient: "Cliente",
   AddProjectModalFormRepository: "Repositorio",
   AddProjectModalFormCI: "Tiene integración continua",

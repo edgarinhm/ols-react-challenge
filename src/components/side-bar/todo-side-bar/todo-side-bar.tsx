@@ -51,7 +51,11 @@ const TodoSideBar = () => {
       <div className={styles.addTodo}>
         <form noValidate autoComplete="off" onSubmit={handleOnSumit}>
           <div className={styles.addActionGroup}>
-            <FormControl.Input placeholder={"Que tienes pendiente?"} className={styles.todoInput} />
+            <FormControl.Input
+              id={`${id}-new-todo`}
+              placeholder={"Que tienes pendiente?"}
+              className={styles.todoInput}
+            />
             <button type="submit">{"Agregar"}</button>
           </div>
         </form>

@@ -18,6 +18,7 @@ interface FloatingLabelSelectProps {
   disabled?: boolean;
   error?: string;
   placeholder?: string;
+  id?: string;
 }
 
 const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
@@ -33,6 +34,7 @@ const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
     disabled,
     hasError,
     placeholder,
+    id,
     onTogglePopover,
   } = props;
   const selectContainerRef = useRef(null);
@@ -70,20 +72,23 @@ const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
         >
           {!placeholder && (
             <>
-              <label className={open || value ? styles.isFocused : ""}>
+              <div
+                aria-labelledby={`${id}-multiple-checkbox-label`}
+                className={`${styles.label} ${open || value ? styles.isFocused : ""}`}
+              >
                 {label}
                 {required ? "*" : ""}
-              </label>
+              </div>
               {!!value.length && <span className={styles.value}>{value}</span>}
             </>
           )}
           {placeholder && (
             <>
               {!value.length && (
-                <label>
+                <div className={styles.label} aria-labelledby={`${id}-multiple-checkbox-label`}>
                   {placeholder}
                   {required ? "*" : ""}
-                </label>
+                </div>
               )}
               {!!value.length && <span className={styles.value}>{value}</span>}
             </>
