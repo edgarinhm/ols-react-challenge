@@ -73,7 +73,9 @@ const ProjectForm = () => {
         <FormControl.Input type="text" label={Messages.AddProjectModalFormDevelopers} />
       </div>
       <div className={styles.row}>
-        <label htmlFor="frontend">{Messages.AddProjectModalFormFrontend}</label>
+        <label htmlFor="frontend" className={dropdownStyles.dropdownLabel}>
+          {Messages.AddProjectModalFormFrontend}
+        </label>
         <FloatingLabelSelect
           open={isFrontendSelectOpen}
           onClose={() => setIsFrontendSelectOpen(false)}
@@ -119,7 +121,9 @@ const ProjectForm = () => {
         </FloatingLabelSelect>
       </div>
       <div className={styles.row}>
-        <label htmlFor="backend">{Messages.AddProjectModalFormBackend}</label>
+        <label htmlFor="backend" className={dropdownStyles.dropdownLabel}>
+          {Messages.AddProjectModalFormBackend}
+        </label>
         <FloatingLabelSelect
           open={isBackendSelectOpen}
           onClose={() => setIsBackendSelectOpen(false)}
