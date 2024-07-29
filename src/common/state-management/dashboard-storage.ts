@@ -4,7 +4,8 @@ import { DashboardReportCommit } from "common/models/dashboard/dashboard-report-
 import { DashboardServerReportModel } from "common/models/dashboard/dashboard-server-report-model";
 import { TodoModel } from "common/models/todo-model";
 import { produce } from "immer";
-import { create } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
+import { shallow } from "zustand/shallow";
 
 export type DashboardStorageModel = {
   cards: DashboardCardModel | undefined;
@@ -15,7 +16,7 @@ export type DashboardStorageModel = {
   setState: (recipe: (state: DashboardStorageModel) => void) => void;
 };
 
-export const useDashboardStorage = create<DashboardStorageModel>()((set) => {
+export const useDashboardStorage = createWithEqualityFn<DashboardStorageModel>()((set) => {
   return {
     cards: undefined,
     serverReport: undefined,
@@ -24,4 +25,4 @@ export const useDashboardStorage = create<DashboardStorageModel>()((set) => {
     releaseResume: undefined,
     setState: (recipe) => set(produce(recipe)),
   };
-});
+}, shallow);

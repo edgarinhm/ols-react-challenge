@@ -5,7 +5,6 @@ import { GetSignInLogin, GetUser } from "common/services/login-service";
 import { useSharedStorage } from "common/state-management/shared-storage";
 import { useCallback } from "react";
 import { routes } from "routes";
-import { shallow } from "zustand/shallow";
 
 export const useAuthentication = (): {
   handleLoginRedirect: (redirectUrl: string) => Promise<void>;
@@ -13,13 +12,10 @@ export const useAuthentication = (): {
   handleLogout: () => void;
   validateAuthenticateUser: (username: string, password: string) => Promise<boolean>;
 } => {
-  const { authenticated, updateStorage } = useSharedStorage(
-    (state) => ({
-      authenticated: state.user?.id,
-      updateStorage: state.updateStorage,
-    }),
-    shallow
-  );
+  const { authenticated, updateStorage } = useSharedStorage((state) => ({
+    authenticated: state.user?.id,
+    updateStorage: state.updateStorage,
+  }));
 
   const clearStorage = (): void => {
     localStorage.clear();
@@ -66,11 +62,8 @@ export const useAuthentication = (): {
 };
 
 export const useIsAuthenticated = () => {
-  const { authenticated } = useSharedStorage(
-    (state) => ({
-      authenticated: state.user?.id,
-    }),
-    shallow
-  );
+  const { authenticated } = useSharedStorage((state) => ({
+    authenticated: state.user?.id,
+  }));
   return !!authenticated;
 };
