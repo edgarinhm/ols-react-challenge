@@ -11,12 +11,13 @@ interface FloatingLabelSelectProps {
   onTogglePopover: () => void;
   children: ReactNode;
   testId: string;
-  label: string;
+  label?: string;
   value: string;
   required?: boolean;
   hasError?: boolean;
   disabled?: boolean;
   error?: string;
+  placeholder?: string;
 }
 
 const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
@@ -31,6 +32,7 @@ const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
     required,
     disabled,
     hasError,
+    placeholder,
     onTogglePopover,
   } = props;
   const selectContainerRef = useRef(null);
@@ -66,11 +68,26 @@ const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
           tabIndex={0}
           data-qa={testId}
         >
-          <label className={open || value ? styles.isFocused : ""}>
-            {label}
-            {required ? "*" : ""}
-          </label>
-          {!!value.length && <span className={styles.value}>{value}</span>}
+          {!placeholder && (
+            <>
+              <label className={open || value ? styles.isFocused : ""}>
+                {label}
+                {required ? "*" : ""}
+              </label>
+              {!!value.length && <span className={styles.value}>{value}</span>}
+            </>
+          )}
+          {placeholder && (
+            <>
+              {!value.length && (
+                <label>
+                  {placeholder}
+                  {required ? "*" : ""}
+                </label>
+              )}
+              {!!value.length && <span className={styles.value}>{value}</span>}
+            </>
+          )}
           <FontAwesomeIcon icon={open ? faSortUp : faSortDown} />
         </div>
       </div>

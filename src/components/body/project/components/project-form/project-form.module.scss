@@ -1,14 +1,83 @@
+@use "common/sass/styles/variables.scss" as vars;
 @use "common/sass/styles/colors.module.scss" as colors;
+
 .row {
   margin-bottom: 1rem;
 }
 
-.dropdownOptions {
-  padding: 0.5rem 1rem;
-  list-style: none;
+.dropdown {
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 16px;
+  min-height: 16px;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 4px;
+  outline: 0px;
+
+  opacity: 1;
+  transform: none;
+  min-width: 300px;
+  max-height: 224px;
+  transition:
+    opacity 289ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 192ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: 150px 0px;
 }
+
+.dropdownOptions {
+  padding-right: 0px;
+  width: calc(100% + 0px);
+  list-style: none;
+  margin: 0px;
+  padding: 8px 0px;
+  position: relative;
+  outline: 0px;
+}
+
 .dropdownOption {
+  background-color: transparent;
+  outline: 0px;
+  border: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  cursor: pointer;
+  user-select: none;
+  vertical-align: middle;
+  appearance: none;
+  color: inherit;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
+  min-height: 48px;
+  padding: 6px 16px;
+  box-sizing: border-box;
+  white-space: nowrap;
+
   &.selected {
-    background: colors.$very-light-grey;
+    background-color: colors.$ghost-grey;
+    font-weight: bold;
+  }
+
+  &.disabled {
+    opacity: 0.38;
+    pointer-events: none;
+    cursor: default;
+  }
+}
+
+.dropdownOption:hover {
+  background-color: vars.$btn-primary-active-base;
+  color: colors.$white;
+}
+
+@media (min-width: 600px) {
+  .dropdownOption {
+    min-height: auto;
   }
 }
