@@ -6,14 +6,17 @@ import { FrontendTechnologyType } from "common/enums/frontend-technology-type";
 import { BackendTechnologyType } from "common/enums/backend-technology-type";
 import { useId, useMemo, useState } from "react";
 import { FloatingLabelSelect } from "common/components/form-control/floating-label-select/floating-label-select";
+import { DatabaseTechnologyType } from "common/enums/database-technology-type";
 
 const ProjectForm = () => {
   const id = useId();
   const [isBackendSelectOpen, setIsBackendSelectOpen] = useState(false);
   const [isFrontendSelectOpen, setIsFrontendSelectOpen] = useState(false);
+  const [isDatabaseSelectOpen, setIsDatabaseSelectOpen] = useState(false);
 
-  const [backendTechnology, setBackendTechnology] = useState<BackendTechnologyType[]>([]);
   const [frontendTechnology, setFrontendTechnology] = useState<FrontendTechnologyType[]>([]);
+  const [backendTechnology, setBackendTechnology] = useState<BackendTechnologyType[]>([]);
+  const [databaseTechnology, setDatabaseTechnology] = useState<DatabaseTechnologyType[]>([]);
 
   const backendSelectValue = useMemo(
     (): string => backendTechnology?.join(", "),
@@ -22,6 +25,10 @@ const ProjectForm = () => {
   const frontendSelectValue = useMemo(
     (): string => frontendTechnology?.join(", "),
     [frontendTechnology]
+  );
+  const databseSelectValue = useMemo(
+    (): string => databaseTechnology?.join(", "),
+    [databaseTechnology]
   );
 
   const handleBackendSelect = (value: BackendTechnologyType) => {
@@ -43,6 +50,18 @@ const ProjectForm = () => {
       setFrontendTechnology(frontendTechnologyUpdated);
     } else {
       setFrontendTechnology((state) => {
+        return [...state, value];
+      });
+    }
+  };
+
+  const handleDatabaseSelect = (value: DatabaseTechnologyType) => {
+    const index = databaseTechnology.indexOf(value);
+    if (index > -1) {
+      const databaseTechnologyUpdated = databaseTechnology.filter((database) => database !== value);
+      setDatabaseTechnology(databaseTechnologyUpdated);
+    } else {
+      setDatabaseTechnology((state) => {
         return [...state, value];
       });
     }
@@ -169,7 +188,52 @@ const ProjectForm = () => {
         </FloatingLabelSelect>
       </div>
       <div className={styles.row}>
-        <FormControl.Input type="text" label={Messages.AddProjectModalFormDatabases} />
+        <label htmlFor="database" className={dropdownStyles.dropdownLabel}>
+          {Messages.AddProjectModalFormDatabases}
+        </label>
+        <FloatingLabelSelect
+          open={isDatabaseSelectOpen}
+          onClose={() => setIsDatabaseSelectOpen(false)}
+          onTogglePopover={() => setIsDatabaseSelectOpen((state) => !state)}
+          value={databseSelectValue}
+          //error={errors.storagePackageTiers?.[index]?.storagePackageFeatures[0]}
+          hasError={false}
+          testId={`database-select`}
+          placeholder={Messages.ProjectModalFormDatabasePlaceholder}
+        >
+          <div
+            className={dropdownStyles.dropdown}
+            role="combobox"
+            aria-expanded={isDatabaseSelectOpen}
+            aria-haspopup="listbox"
+            aria-labelledby="database-multiple-checkbox-label database-multiple-checkbox"
+            id={`${id}-database-multiple-checkbox`}
+          >
+            <ul className={dropdownStyles.dropdownOptions}>
+              <li
+                className={`${dropdownStyles.dropdownOption} ${dropdownStyles.disabled}`}
+                tabIndex={0}
+                data-value={Messages.ProjectModalFormDatabasePlaceholder}
+                role="option"
+              >
+                <em>{Messages.ProjectModalFormDatabasePlaceholder}</em>
+              </li>
+              {Object.values(DatabaseTechnologyType).map((database) => (
+                <li
+                  tabIndex={-1}
+                  role="option"
+                  data-value={database}
+                  aria-selected={databseSelectValue.indexOf(database) > -1}
+                  key={database}
+                  className={`${dropdownStyles.dropdownOption} ${backendSelectValue.indexOf(database) > -1 ? dropdownStyles.selected : ""}`}
+                  onClick={() => handleDatabaseSelect(database)}
+                >
+                  {database}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </FloatingLabelSelect>
       </div>
     </>
   );

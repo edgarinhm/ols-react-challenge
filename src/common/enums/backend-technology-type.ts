@@ -1,7 +1,6 @@
 export enum BackendTechnologyType {
-  SQLServer = "SQLServer",
-  MongoDB = "MongoDB",
-  PosgresSQL = "PosgresSQL",
-  Oracle = "Oracle",
-  SQLite = "SQLite",
+  Net = ".Net",
+  Java = "Java",
+  Python = "Python",
+  NodeJS = "NodeJS",
 }
