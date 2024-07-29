@@ -1,3 +1,4 @@
+import dropdownStyles from "common/sass/modules/dropdown.module.scss";
 import { Messages } from "common/constants/messages-constants";
 import styles from "./project-form.module.scss";
 import { FormControl } from "common/components/form-control/form-control";
@@ -84,16 +85,16 @@ const ProjectForm = () => {
           placeholder={Messages.ProjectModalFormFrontendPlaceholder}
         >
           <div
-            className={styles.dropdown}
+            className={dropdownStyles.dropdown}
             role="combobox"
             aria-expanded={isFrontendSelectOpen}
             aria-haspopup="listbox"
             aria-labelledby="frontend-multiple-checkbox-label frontend-multiple-checkbox"
             id={`${id}-frontend-multiple-checkbox`}
           >
-            <ul className={styles.dropdownOptions}>
+            <ul className={dropdownStyles.dropdownOptions}>
               <li
-                className={`${styles.dropdownOption} ${styles.disabled}`}
+                className={`${dropdownStyles.dropdownOption} ${dropdownStyles.disabled}`}
                 tabIndex={0}
                 data-value={Messages.ProjectModalFormFrontendPlaceholder}
                 role="option"
@@ -107,7 +108,7 @@ const ProjectForm = () => {
                   data-value={frontend}
                   aria-selected={frontendSelectValue.indexOf(frontend) > -1}
                   key={frontend}
-                  className={`${styles.dropdownOption} ${frontendSelectValue.indexOf(frontend) > -1 ? styles.selected : ""}`}
+                  className={`${dropdownStyles.dropdownOption} ${frontendSelectValue.indexOf(frontend) > -1 ? dropdownStyles.selected : ""}`}
                   onClick={() => handleFrontendSelect(frontend)}
                 >
                   {frontend}
@@ -130,16 +131,16 @@ const ProjectForm = () => {
           placeholder={Messages.ProjectModalFormBackendPlaceholder}
         >
           <div
-            className={styles.dropdown}
+            className={dropdownStyles.dropdown}
             role="combobox"
             aria-expanded={isBackendSelectOpen}
             aria-haspopup="listbox"
             aria-labelledby="backend-multiple-checkbox-label backend-multiple-checkbox"
             id={`${id}-backend-multiple-checkbox`}
           >
-            <ul className={styles.dropdownOptions}>
+            <ul className={dropdownStyles.dropdownOptions}>
               <li
-                className={`${styles.dropdownOption} ${styles.disabled}`}
+                className={`${dropdownStyles.dropdownOption} ${dropdownStyles.disabled}`}
                 tabIndex={0}
                 data-value={Messages.ProjectModalFormBackendPlaceholder}
                 role="option"
@@ -153,7 +154,7 @@ const ProjectForm = () => {
                   data-value={backend}
                   aria-selected={backendSelectValue.indexOf(backend) > -1}
                   key={backend}
-                  className={`${styles.dropdownOption} ${backendSelectValue.indexOf(backend) > -1 ? styles.selected : ""}`}
+                  className={`${dropdownStyles.dropdownOption} ${backendSelectValue.indexOf(backend) > -1 ? dropdownStyles.selected : ""}`}
                   onClick={() => handleBackendSelect(backend)}
                 >
                   {backend}
