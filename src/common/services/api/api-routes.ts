@@ -37,4 +37,11 @@ export const DashboardReleaseResume = {
 
 export const Projects = {
   get: (): string => "/projects",
+  post: (): string => "/projects",
+  delete: (projectId: number): string => `/projects/${projectId}`,
+  put: (projectId: number): string => `/projects/${projectId}`,
+};
+
+export const ProjectById = {
+  get: (projectId: number): string => `/projects/${projectId}`,
 };

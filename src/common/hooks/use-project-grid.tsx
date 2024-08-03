@@ -8,7 +8,7 @@ import {
 import { GetCiCdIconClass } from "common/functions/table-functions";
 import { ProjectModel } from "common/models/project-model";
 import { CSSProperties } from "react";
-import { GetProyectStatusType } from "common/enums/project-status-type";
+import { GetProjectStatusType } from "common/enums/project-status-type";
 import { GetProjecStatusBadgeClass } from "common/functions/badge-classes";
 
 export const useProjectGrid = () => {
@@ -86,7 +86,7 @@ export const useProjectGrid = () => {
     const rowValue = row[rowName];
     return "status".includes(rowName) ? (
       <span
-        className={`${[GetProjecStatusBadgeClass(GetProyectStatusType(rowValue))]}`}
+        className={`${[GetProjecStatusBadgeClass(GetProjectStatusType(rowValue))]}`}
         style={{ textTransform: "capitalize", color: "black", fontWeight: "normal" }}
       >
         {rowValue}

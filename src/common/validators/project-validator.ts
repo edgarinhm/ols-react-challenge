@@ -23,18 +23,6 @@ export const ProjectValidator = {
 
     return errors;
   },
-  ci: (ci: boolean): string[] => {
-    const errors: string[] = [];
-    if (!ci) errors.push("Continous integration is required");
-
-    return errors;
-  },
-  cd: (cd: boolean): string[] => {
-    const errors: string[] = [];
-    if (!cd) errors.push("Continous deployment is required");
-
-    return errors;
-  },
   developers: (developers: string): string[] => {
     const errors: string[] = [];
     if (!developers) errors.push("Developers are required");

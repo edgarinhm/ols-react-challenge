@@ -22,7 +22,7 @@ export const Messages = {
   RegisterRedirectLogin: "Iniciar Sessión",
   ProjectListTitle: "Lista de proyectos registrados",
   ProjectListAddButton: "nuevo proyecto",
-  AddProjectModalTitle: "Creemos un nuevo projecto",
+  AddProjectModalTitle: "Creemos un nuevo proyecto",
   AddProjectModalSubmit: "Save changes",
   AddProjectModalCancel: "Close",
   AddProjectModalFormProject: "Proyecto",
@@ -37,4 +37,6 @@ export const Messages = {
   ProjectModalFormFrontendPlaceholder: "Que tecnología frontend se usa?",
   ProjectModalFormBackendPlaceholder: "Que tecnología backend se usa?",
   ProjectModalFormDatabasePlaceholder: "Que base de datos se usa?",
+  ProjectModalFormDeveloperPlaceholder: "Quienes son los responsables?",
+  UpdateProjectModalTitle: "Actualizar proyecto",
 };

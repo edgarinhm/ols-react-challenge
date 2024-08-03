@@ -4,11 +4,21 @@ import { FrontendTechnologyType } from "common/enums/frontend-technology-type";
 
 export const projectFields = {
   projectName: "",
+  developers: "",
   client: "",
   repoUrl: "",
-  developers: "",
   ci: "",
   cd: "",
+  deployCount: "",
+  errorsCount: "",
+  id: "",
+  percentageCompletion: "",
+  reportNc: "",
+  status: "",
+  warningCount: "",
+  frontend: "",
+  backend: "",
+  database: "",
 };
 
 export type ProjectFieldsModel = typeof projectFields;
@@ -24,3 +34,7 @@ export const technologyFields: TechnologyFieldsModel = {
   backend: [],
   database: [],
 };
+
+export type DevelopersFieldsModel = string[];
+
+export const developersFields = [];

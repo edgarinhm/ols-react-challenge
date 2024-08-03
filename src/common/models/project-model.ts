@@ -1,6 +1,3 @@
-import { BackendTechnologyType } from "common/enums/backend-technology-type";
-import { DatabaseTechnologyType } from "common/enums/database-technology-type";
-import { FrontendTechnologyType } from "common/enums/frontend-technology-type";
 import { ProjectStatusType } from "common/enums/project-status-type";
 
 export interface ProjectModel {
@@ -11,9 +8,9 @@ export interface ProjectModel {
   developers: string;
   ci: boolean;
   cd: boolean;
-  frontendTecnology: FrontendTechnologyType;
-  backendTecnology: BackendTechnologyType;
-  databases: DatabaseTechnologyType;
+  frontendTecnology: string;
+  backendTecnology: string;
+  databases: string;
   errorsCount: number;
   warningCount: number;
   deployCount: number;

@@ -5,6 +5,7 @@ import Login from "./login";
 import { LoginData, LoginResponseData } from "common/test/mocks/login-data";
 import { UserData } from "common/test/mocks/user-data";
 import * as LoginService from "common/services/login-service";
+import * as UserService from "common/services/user-service";
 import * as authentication from "common/authentication/authentication";
 
 const MockValidateAuthenticateUser = vi.fn();
@@ -20,7 +21,8 @@ vi.spyOn(authentication, "useAuthentication").mockReturnValue({
 vi.spyOn(LoginService, "GetSignInLogin").mockImplementation(() =>
   Promise.resolve(LoginResponseData)
 );
-vi.spyOn(LoginService, "GetUser").mockImplementation(() => Promise.resolve([UserData]));
+
+vi.spyOn(UserService, "GetUser").mockImplementation(() => Promise.resolve([UserData]));
 
 describe("Login", () => {
   it("should display required input texts when click submit", async () => {

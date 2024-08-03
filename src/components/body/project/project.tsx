@@ -2,7 +2,6 @@ import Card from "common/components/card/card";
 import styles from "./project.module.scss";
 import ProjectGrid from "./components/project-grid/project-grid";
 import { useEffect, useState } from "react";
-import AddProjectModal from "./components/add-project-modal/add-project-modal";
 import { Messages } from "common/constants/messages-constants";
 
 const Project = () => {
@@ -23,14 +22,13 @@ const Project = () => {
             </button>
           </div>
           <div className={styles.tableGridResponsive}>
-            <ProjectGrid />
+            <ProjectGrid
+              isProjectCreateModalOpen={isAddProjectModalOpen}
+              closeProjectCreateModal={() => setIsAddProjectModalOpen(false)}
+            />
           </div>
         </Card>
       </div>
-      <AddProjectModal
-        open={isAddProjectModalOpen}
-        onClose={() => setIsAddProjectModalOpen(false)}
-      />
     </div>
   );
 };

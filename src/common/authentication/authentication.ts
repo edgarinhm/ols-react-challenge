@@ -1,7 +1,8 @@
 import { basename } from "./../constants/basename-constants";
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { OpenWindow } from "common/functions/windows-funtions";
-import { GetSignInLogin, GetUser } from "common/services/login-service";
+import { GetSignInLogin } from "common/services/login-service";
+import { GetUser } from "common/services/user-service";
 import { useSharedStorage } from "common/state-management/shared-storage";
 import { useCallback } from "react";
 import { routes } from "routes";

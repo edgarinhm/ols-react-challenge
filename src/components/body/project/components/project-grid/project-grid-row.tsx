@@ -29,13 +29,12 @@ const ProjectGridRow = ({ row, children, handleOnDrawerOpen }: ProjectGridRowPro
   );
 };
 
-const Row = ({
-  value,
-  style,
-}: {
-  value: string | number | boolean;
-  style: CSSProperties | undefined;
-}): JSX.Element => {
+interface RowProps {
+  value: ReactNode;
+  style?: CSSProperties;
+}
+
+const Row = ({ value, style }: RowProps): JSX.Element => {
   return (
     <div className={`${tableStyles.column}`} style={style}>
       <div className={tableStyles.content}>
@@ -45,13 +44,12 @@ const Row = ({
   );
 };
 
-const CustomRowValue = ({
-  style,
-  children,
-}: {
+interface CustomRowValueProps {
   style: CSSProperties | undefined;
   children: ReactNode;
-}): JSX.Element => {
+}
+
+const CustomRowValue = ({ style, children }: CustomRowValueProps): JSX.Element => {
   return (
     <div className={`${tableStyles.column}`} style={style}>
       <div className={tableStyles.content}>{children}</div>
@@ -59,13 +57,12 @@ const CustomRowValue = ({
   );
 };
 
-const Actions = ({
-  onEdit,
-  onDelete,
-}: {
+interface ActionsProps {
   onEdit: () => void;
   onDelete: () => void;
-}): JSX.Element => {
+}
+
+const Actions = ({ onEdit, onDelete }: ActionsProps): JSX.Element => {
   return (
     <div className={tableStyles.actions} style={{ width: 100 }}>
       <div className={tableStyles.actionsInnerContainer}>
