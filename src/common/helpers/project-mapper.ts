@@ -2,6 +2,7 @@ import {
   GetProjectStatusId,
   GetProjectStatusType,
   ProjectStatusType,
+  ProjectStatusTypeId,
 } from "common/enums/project-status-type";
 import { ProjectModel } from "common/models/project-model";
 import { ProjectFieldsModel } from "components/body/project/components/project-form/initial-data";
@@ -25,8 +26,8 @@ export const MapProject = (projectFormFields: ProjectFieldsModel): ProjectModel 
       : 0,
     reportNc: projectFormFields.reportNc ? Number(projectFormFields.reportNc) : 0,
     status: projectFormFields.status
-      ? GetProjectStatusType(projectFormFields.status)
-      : ProjectStatusType.Pending,
+      ? GetProjectStatusId(projectFormFields.status as ProjectStatusType)
+      : ProjectStatusTypeId.Pending,
     warningCount: projectFormFields.warningCount ? Number(projectFormFields.warningCount) : 0,
   };
 };
@@ -47,7 +48,7 @@ export const MapProjectFields = (project: ProjectModel): ProjectFieldsModel => {
     errorsCount: `${project.deployCount}`,
     percentageCompletion: `${project.percentageCompletion}`,
     reportNc: `${project.reportNc}`,
-    status: GetProjectStatusId(project.status),
+    status: GetProjectStatusType(project.status),
     warningCount: `${project.warningCount}`,
   };
 };

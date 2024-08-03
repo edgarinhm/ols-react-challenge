@@ -5,32 +5,39 @@ export enum ProjectStatusType {
   Fixed = "Fixed",
 }
 
+export enum ProjectStatusTypeId {
+  InProgress = "En Desarrollo",
+  Completed = "Terminado",
+  Pending = "Pendiente",
+  Fixed = "Corregido",
+}
+
 export const GetProjectStatusType = (statusName: string) => {
-  switch (statusName.toLocaleLowerCase()) {
-    case "en desarrollo":
+  switch (statusName) {
+    case ProjectStatusTypeId.InProgress:
       return ProjectStatusType.InProgress;
-    case "terminado":
+    case ProjectStatusTypeId.Completed:
       return ProjectStatusType.Completed;
-    case "pendiente":
+    case ProjectStatusTypeId.Pending:
       return ProjectStatusType.Pending;
-    case "corregido":
+    case ProjectStatusTypeId.Fixed:
       return ProjectStatusType.Fixed;
     default:
       return ProjectStatusType.Pending;
   }
 };
 
-export const GetProjectStatusId = (statusName: ProjectStatusType) => {
-  switch (statusName.toLocaleLowerCase()) {
+export const GetProjectStatusId = (statusName: ProjectStatusType): ProjectStatusTypeId => {
+  switch (statusName) {
     case ProjectStatusType.InProgress:
-      return "en desarrollo";
+      return ProjectStatusTypeId.InProgress;
     case ProjectStatusType.Completed:
-      return "terminado";
+      return ProjectStatusTypeId.Completed;
     case ProjectStatusType.Pending:
-      return "pendiente";
+      return ProjectStatusTypeId.Pending;
     case ProjectStatusType.Fixed:
-      return "corregido";
+      return ProjectStatusTypeId.Fixed;
     default:
-      return "pendiente";
+      return ProjectStatusTypeId.Pending;
   }
 };

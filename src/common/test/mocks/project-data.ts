@@ -1,4 +1,4 @@
-import { ProjectStatusType } from "common/enums/project-status-type";
+import { ProjectStatusTypeId } from "common/enums/project-status-type";
 import { ProjectModel } from "common/models/project-model";
 
 export const ProjectsData: ProjectModel[] = [
@@ -18,6 +18,6 @@ export const ProjectsData: ProjectModel[] = [
     deployCount: 8,
     percentageCompletion: 62,
     reportNc: 125,
-    status: ProjectStatusType.InProgress,
+    status: ProjectStatusTypeId.InProgress,
   },
 ];

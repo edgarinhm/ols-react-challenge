@@ -132,6 +132,7 @@ const ProjectModal = ({
       try {
         const project = await GetProjectById(projectId);
         const projectFormFields = MapProjectFields(project);
+
         setProjectFormFields(projectFormFields);
         setTechnologiesFormFields({
           database: project.databases.split("|") as DatabaseTechnologyType[],
