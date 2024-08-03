@@ -2,20 +2,16 @@ import { GetEnvironmentFromLocationUrl } from "common/functions/environment";
 import styles from "./top-bar.module.scss";
 import logoImg from "/logo.png";
 import { useTopBarStorage } from "common/state-management/top-bar-storage";
-import { shallow } from "zustand/shallow";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Brand = () => {
   const { name: environmentName } = GetEnvironmentFromLocationUrl();
 
-  const { isMainSideBarOpen, setTopBarState } = useTopBarStorage(
-    (state) => ({
-      isMainSideBarOpen: state.isMainSideBarOpen,
-      setTopBarState: state.setState,
-    }),
-    shallow
-  );
+  const { isMainSideBarOpen, setTopBarState } = useTopBarStorage((state) => ({
+    isMainSideBarOpen: state.isMainSideBarOpen,
+    setTopBarState: state.setState,
+  }));
 
   const handleMainSideBar = (): void => {
     setTopBarState((state) => {

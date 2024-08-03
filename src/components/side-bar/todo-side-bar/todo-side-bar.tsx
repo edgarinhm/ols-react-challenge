@@ -1,4 +1,3 @@
-import { shallow } from "zustand/shallow";
 import styles from "./todo-side-bar.module.scss";
 import { useTopBarStorage } from "common/state-management/top-bar-storage";
 import { FormControl } from "common/components/form-control/form-control";
@@ -9,14 +8,11 @@ import { faSquare } from "@fortawesome/free-regular-svg-icons";
 
 const TodoSideBar = () => {
   const id = useId();
-  const { isTodoSideBarOpen, todos, setTodoState } = useTopBarStorage(
-    (state) => ({
-      isTodoSideBarOpen: state.isTodoSideBarOpen,
-      todos: state.todos,
-      setTodoState: state.setState,
-    }),
-    shallow
-  );
+  const { isTodoSideBarOpen, todos, setTodoState } = useTopBarStorage((state) => ({
+    isTodoSideBarOpen: state.isTodoSideBarOpen,
+    todos: state.todos,
+    setTodoState: state.setState,
+  }));
 
   const onCheckboxChange = (id: number): void => {
     setTodoState((state) => {
@@ -55,7 +51,11 @@ const TodoSideBar = () => {
       <div className={styles.addTodo}>
         <form noValidate autoComplete="off" onSubmit={handleOnSumit}>
           <div className={styles.addActionGroup}>
-            <FormControl.Input placeholder={"Que tienes pendiente?"} className={styles.todoInput} />
+            <FormControl.Input
+              id={`${id}-new-todo`}
+              placeholder={"Que tienes pendiente?"}
+              className={styles.todoInput}
+            />
             <button type="submit">{"Agregar"}</button>
           </div>
         </form>

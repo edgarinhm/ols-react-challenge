@@ -5,7 +5,6 @@ import Weather from "./weather";
 import Reports from "./reports";
 import { useEffect, useState } from "react";
 import { useDashboardStorage } from "common/state-management/dashboard-storage";
-import { shallow } from "zustand/shallow";
 import {
   GetDashboardCards,
   GetDashboardReleaseResume,
@@ -18,13 +17,10 @@ import { useTopBarStorage } from "common/state-management/top-bar-storage";
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const name = useSharedStorage((state) => state.user?.name);
-  const { setDashboardState, cards } = useDashboardStorage(
-    (state) => ({
-      cards: state.cards,
-      setDashboardState: state.setState,
-    }),
-    shallow
-  );
+  const { setDashboardState, cards } = useDashboardStorage((state) => ({
+    cards: state.cards,
+    setDashboardState: state.setState,
+  }));
 
   const alertCount = useTopBarStorage((state) => state.notifications?.length);
 

@@ -1,7 +1,8 @@
 import { TodoModel } from "common/models/todo-model";
 import { NotificationModel } from "common/models/notification-model";
 import { produce } from "immer";
-import { create } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
+import { shallow } from "zustand/shallow";
 
 export type TopBarStorageModel = {
   notifications: NotificationModel[];
@@ -11,7 +12,7 @@ export type TopBarStorageModel = {
   setState: (recipe: (state: TopBarStorageModel) => void) => void;
 };
 
-export const useTopBarStorage = create<TopBarStorageModel>()((set) => {
+export const useTopBarStorage = createWithEqualityFn<TopBarStorageModel>()((set) => {
   return {
     notifications: [],
     todos: [],
@@ -19,4 +20,4 @@ export const useTopBarStorage = create<TopBarStorageModel>()((set) => {
     isTodoSideBarOpen: false,
     setState: (recipe) => set(produce(recipe)),
   };
-});
+}, shallow);

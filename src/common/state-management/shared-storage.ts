@@ -2,7 +2,8 @@
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { ParseLocalStorageValue } from "common/functions/local-storage";
 import { LocalStorageModel } from "common/models/local-storage-model";
-import { create } from "zustand";
+import { createWithEqualityFn } from "zustand/traditional";
+import { shallow } from "zustand/shallow";
 
 export type SharedStorageModel = LocalStorageModel & {
   updateStorage: <
@@ -85,7 +86,7 @@ const addLocalStorageEventListener = (
   addEventListener("storage", storageListener);
 };
 
-export const useSharedStorage = create<SharedStorageModel>()((set, get) => {
+export const useSharedStorage = createWithEqualityFn<SharedStorageModel>()((set, get) => {
   const initialState = getStateFromLocalStorage();
 
   addLocalStorageEventListener(set, get);
@@ -112,4 +113,4 @@ export const useSharedStorage = create<SharedStorageModel>()((set, get) => {
       set((state: any) => clearState(state), true);
     },
   };
-});
+}, shallow);

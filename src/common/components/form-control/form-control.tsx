@@ -16,6 +16,8 @@ import { mergeRefs } from "common/functions/merge.refs";
 import { useOnClickOutside } from "common/hooks/on-click-out-side";
 import { Popover } from "../popover/popover";
 import { Tooltip, TooltipPlacement } from "../tooltip/tooltip";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendar, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 interface BaseControlProps {
   label?: string;
@@ -398,7 +400,7 @@ export const FormattedDateInput = forwardRef<DatePickerRef, DateInputProps>(
             data-qa={`date-input-icon-${id}`}
             type="button"
           >
-            <i className={"es-calendar"} />
+            <FontAwesomeIcon icon={faCalendar} />
           </button>
         </div>
         {displayNonDefault && (
@@ -540,7 +542,7 @@ export const CustomFormattedDateInput = forwardRef<DatePickerRef, DateInputProps
             data-qa={`date-input-icon-${id}`}
             type="button"
           >
-            <i className={"es-calendar"} />
+            <FontAwesomeIcon icon={faCalendar} />
           </button>
         </div>
         {displayNonDefault && (
@@ -830,7 +832,9 @@ const FloatingLabelInput = forwardRef<HTMLInputElement, InputControlProps>(
         >
           {`${label}${required ? "*" : ""}`}
         </label>
-        {value && <i onClick={handleOnClear} className={`es-times ${style.cross}`} />}
+        {value && (
+          <FontAwesomeIcon onClick={handleOnClear} icon={faTimes} className={style.cross} />
+        )}
         {displayError && <p data-qa={`input-error-${id}`}>{errors[0]}</p>}
       </div>
     );

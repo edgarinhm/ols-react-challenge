@@ -1,0 +1,114 @@
+@use "common/sass/styles/fonts.module.scss" as fonts;
+@use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/styles/base-style-and-scale.module.scss" as base;
+@use "common/sass/mixins/buttons.module.scss" as buttons;
+
+.container {
+  position: relative;
+}
+.selectContainer {
+  border: 1px solid colors.$royal-blue;
+  border-radius: 4px;
+  font-size: 16px;
+  height: 51px;
+
+  &:focus-within {
+    box-shadow: 0 0 0 1px colors.$royal-blue;
+  }
+
+  &.hasError {
+    border: none;
+    box-shadow: 0 0 0 1px colors.$red;
+
+    &:focus-within,
+    &:hover {
+      box-shadow: 0 0 0 1px colors.$red;
+    }
+  }
+
+  .inputContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    &:focus {
+      outline: 0;
+    }
+
+    .label {
+      position: absolute;
+      top: 15px;
+      left: 10px;
+      font-size: 15px;
+      transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+      text-transform: unset;
+      padding: 0 5px;
+      background-color: colors.$white;
+
+      &.isFocused {
+        transform: translate(-7px, -25px) scale(0.8);
+      }
+    }
+
+    i,
+    svg {
+      margin-left: auto;
+      font-size: base.$font-size-base;
+      font-weight: 100;
+    }
+
+    .value {
+      max-width: 220px;
+      margin: 4px 8px 0 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      color: colors.$light-black;
+    }
+  }
+
+  &.hasError {
+    & .inputContainer {
+      label {
+        color: colors.$red;
+      }
+    }
+  }
+}
+
+.disabled {
+  color: colors.$inactive-grey;
+  cursor: not-allowed;
+  border-color: colors.$inactive-grey;
+  background-color: colors.$white;
+  &:hover,
+  &:focus-within {
+    border-color: colors.$inactive-grey;
+    box-shadow: none;
+  }
+
+  label {
+    color: colors.$inactive-grey;
+    cursor: not-allowed;
+  }
+}
+
+.popoverContent {
+  width: 100%;
+  margin-top: 4px;
+  background-color: colors.$white;
+  border: 1px solid colors.$med-grey;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 40%);
+}
+
+div:has(> .popoverContent) {
+  width: 100%;
+}
+
+.error {
+  color: colors.$red;
+  font-size: base.$font-size-smaller;
+  margin: 5px 0 0 15px;
+}

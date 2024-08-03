@@ -5,7 +5,7 @@ export enum ProjectStatusType {
   Fixed = "Fixed",
 }
 
-export const GetProyectStatusType = (statusName: string) => {
+export const GetProjectStatusType = (statusName: string) => {
   switch (statusName.toLocaleLowerCase()) {
     case "en desarrollo":
       return ProjectStatusType.InProgress;
@@ -17,5 +17,20 @@ export const GetProyectStatusType = (statusName: string) => {
       return ProjectStatusType.Fixed;
     default:
       return ProjectStatusType.Pending;
+  }
+};
+
+export const GetProjectStatusId = (statusName: ProjectStatusType) => {
+  switch (statusName.toLocaleLowerCase()) {
+    case ProjectStatusType.InProgress:
+      return "en desarrollo";
+    case ProjectStatusType.Completed:
+      return "terminado";
+    case ProjectStatusType.Pending:
+      return "pendiente";
+    case ProjectStatusType.Fixed:
+      return "corregido";
+    default:
+      return "pendiente";
   }
 };
