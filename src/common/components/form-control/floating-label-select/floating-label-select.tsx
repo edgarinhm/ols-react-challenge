@@ -14,11 +14,11 @@ interface FloatingLabelSelectProps {
   label?: string;
   value: string;
   required?: boolean;
-  hasError?: boolean;
   disabled?: boolean;
-  error?: string;
+  errors?: string[];
   placeholder?: string;
   id?: string;
+  showErrors?: boolean;
 }
 
 const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
@@ -28,17 +28,18 @@ const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
     label,
     testId,
     value,
-    error,
+    errors,
     onClose,
     required,
     disabled,
-    hasError,
     placeholder,
     id,
+    showErrors,
     onTogglePopover,
   } = props;
   const selectContainerRef = useRef(null);
   const optionsRef = useRef<HTMLDivElement>(null);
+  const displayError = showErrors && !!errors?.length;
 
   useOnClickOutside(selectContainerRef, (event) => {
     if (open && !optionsRef?.current?.contains(event.target as Node)) {
@@ -49,7 +50,7 @@ const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
   return (
     <div className={styles.container}>
       <div
-        className={`${styles.selectContainer} ${hasError ? styles.hasError : ""} ${
+        className={`${styles.selectContainer} ${displayError ? styles.hasError : ""} ${
           disabled ? styles.disabled : ""
         }`}
       >
@@ -96,9 +97,9 @@ const FloatingLabelSelect = (props: FloatingLabelSelectProps): JSX.Element => {
           <FontAwesomeIcon icon={open ? faSortUp : faSortDown} />
         </div>
       </div>
-      {hasError && !open && (
+      {displayError && !open && (
         <p className={styles.error} data-qa={`${testId}-error`}>
-          {error}
+          {errors[0]}
         </p>
       )}
       {open && (

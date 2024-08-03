@@ -7,73 +7,74 @@ import { BackendTechnologyType } from "common/enums/backend-technology-type";
 import { useId, useMemo, useState } from "react";
 import { FloatingLabelSelect } from "common/components/form-control/floating-label-select/floating-label-select";
 import { DatabaseTechnologyType } from "common/enums/database-technology-type";
+import { useProjectValidator } from "./use-project-validator";
+import { ProjectFieldsModel, TechnologyFieldsModel } from "./initial-data";
+import { Modal } from "common/components/modal/modal";
 
-const ProjectForm = () => {
+const ProjectForm = ({
+  projectFields: projectFormFields,
+  submitted,
+  tecnologiesFields,
+  onProjectFormChange,
+  handleSubmit,
+  onClose,
+  onFrontendChange,
+  onDatabaseChange,
+  onBackendChage,
+}: {
+  projectFields: ProjectFieldsModel;
+  submitted: boolean;
+  tecnologiesFields: TechnologyFieldsModel;
+  onProjectFormChange: (name: string, value: string) => void;
+  handleSubmit: (validForm: boolean) => void;
+  onClose: () => void;
+  onFrontendChange: (value: FrontendTechnologyType) => void;
+  onDatabaseChange: (value: DatabaseTechnologyType) => void;
+  onBackendChage: (value: BackendTechnologyType) => void;
+}) => {
   const id = useId();
   const [isBackendSelectOpen, setIsBackendSelectOpen] = useState(false);
   const [isFrontendSelectOpen, setIsFrontendSelectOpen] = useState(false);
   const [isDatabaseSelectOpen, setIsDatabaseSelectOpen] = useState(false);
 
-  const [frontendTechnology, setFrontendTechnology] = useState<FrontendTechnologyType[]>([]);
-  const [backendTechnology, setBackendTechnology] = useState<BackendTechnologyType[]>([]);
-  const [databaseTechnology, setDatabaseTechnology] = useState<DatabaseTechnologyType[]>([]);
-
   const backendSelectValue = useMemo(
-    (): string => backendTechnology?.join(", "),
-    [backendTechnology]
+    (): string => tecnologiesFields.backend?.join(", "),
+    [tecnologiesFields.backend]
   );
   const frontendSelectValue = useMemo(
-    (): string => frontendTechnology?.join(", "),
-    [frontendTechnology]
+    (): string => tecnologiesFields.frontend?.join(", "),
+    [tecnologiesFields.frontend]
   );
   const databseSelectValue = useMemo(
-    (): string => databaseTechnology?.join(", "),
-    [databaseTechnology]
+    (): string => tecnologiesFields.database?.join(", "),
+    [tecnologiesFields.database]
   );
 
-  const handleBackendSelect = (value: BackendTechnologyType) => {
-    const index = backendTechnology.indexOf(value);
-    if (index > -1) {
-      const backendTechnologyUpdated = backendTechnology.filter((backend) => backend !== value);
-      setBackendTechnology(backendTechnologyUpdated);
-    } else {
-      setBackendTechnology((state) => {
-        return [...state, value];
-      });
-    }
-  };
-
-  const handleFrontendSelect = (value: FrontendTechnologyType) => {
-    const index = frontendTechnology.indexOf(value);
-    if (index > -1) {
-      const frontendTechnologyUpdated = frontendTechnology.filter((frontend) => frontend !== value);
-      setFrontendTechnology(frontendTechnologyUpdated);
-    } else {
-      setFrontendTechnology((state) => {
-        return [...state, value];
-      });
-    }
-  };
-
-  const handleDatabaseSelect = (value: DatabaseTechnologyType) => {
-    const index = databaseTechnology.indexOf(value);
-    if (index > -1) {
-      const databaseTechnologyUpdated = databaseTechnology.filter((database) => database !== value);
-      setDatabaseTechnology(databaseTechnologyUpdated);
-    } else {
-      setDatabaseTechnology((state) => {
-        return [...state, value];
-      });
-    }
-  };
+  const [hasError, errors] = useProjectValidator(
+    projectFormFields,
+    frontendSelectValue,
+    backendSelectValue,
+    databseSelectValue
+  );
 
   return (
-    <>
+    <form
+      noValidate
+      autoComplete="off"
+      className={styles.modalForm}
+      onSubmit={(event) => {
+        event.preventDefault();
+        handleSubmit(hasError);
+      }}
+    >
       <div className={styles.row}>
         <FormControl.Input
-          id={`${id}-project`}
+          id={`${id}-project-name`}
           type="text"
           label={Messages.AddProjectModalFormProject}
+          onChange={(event) => onProjectFormChange("projectName", event.target.value)}
+          errors={errors.projectName}
+          showErrors={submitted}
         />
       </div>
       <div className={styles.row}>
@@ -81,6 +82,9 @@ const ProjectForm = () => {
           id={`${id}-client`}
           type="text"
           label={Messages.AddProjectModalFormClient}
+          onChange={(event) => onProjectFormChange("client", event.target.value)}
+          errors={errors.client}
+          showErrors={submitted}
         />
       </div>
       <div className={styles.row}>
@@ -88,7 +92,10 @@ const ProjectForm = () => {
           id={`${id}-repository`}
           type="text"
           label={Messages.AddProjectModalFormRepository}
-          placeholder="https://"
+          placeholder={"https://"}
+          onChange={(event) => onProjectFormChange("repoUrl", event.target.value)}
+          errors={errors.repository}
+          showErrors={submitted}
         />
       </div>
       <div className={styles.row}>
@@ -96,6 +103,9 @@ const ProjectForm = () => {
           id={`${id}-ci`}
           type="checkbox"
           label={Messages.AddProjectModalFormCI}
+          onChange={(event) => onProjectFormChange("ci", `${event.target.checked}`)}
+          errors={errors.ci}
+          showErrors={submitted}
         />
       </div>
       <div className={styles.row}>
@@ -103,6 +113,9 @@ const ProjectForm = () => {
           id={`${id}-cd`}
           type="checkbox"
           label={Messages.AddProjectModalFormCD}
+          onChange={(event) => onProjectFormChange("cd", `${event.target.checked}`)}
+          errors={errors.cd}
+          showErrors={submitted}
         />
       </div>
       <div className={styles.row}>
@@ -110,6 +123,9 @@ const ProjectForm = () => {
           id={`${id}-developers`}
           type="text"
           label={Messages.AddProjectModalFormDevelopers}
+          onChange={(event) => onProjectFormChange("developers", event.target.value)}
+          errors={errors.developers}
+          showErrors={submitted}
         />
       </div>
       <div className={styles.row}>
@@ -125,8 +141,8 @@ const ProjectForm = () => {
           onClose={() => setIsFrontendSelectOpen(false)}
           onTogglePopover={() => setIsFrontendSelectOpen((state) => !state)}
           value={frontendSelectValue}
-          //error={errors.storagePackageTiers?.[index]?.storagePackageFeatures[0]}
-          hasError={false}
+          errors={errors.frontend}
+          showErrors={submitted}
           testId={`frontend-select`}
           placeholder={Messages.ProjectModalFormFrontendPlaceholder}
         >
@@ -154,7 +170,7 @@ const ProjectForm = () => {
                   aria-selected={frontendSelectValue.indexOf(frontend) > -1}
                   key={frontend}
                   className={`${dropdownStyles.dropdownOption} ${frontendSelectValue.indexOf(frontend) > -1 ? dropdownStyles.selected : ""}`}
-                  onClick={() => handleFrontendSelect(frontend)}
+                  onClick={() => onFrontendChange(frontend)}
                 >
                   {frontend}
                 </li>
@@ -176,8 +192,8 @@ const ProjectForm = () => {
           onClose={() => setIsBackendSelectOpen(false)}
           onTogglePopover={() => setIsBackendSelectOpen((state) => !state)}
           value={backendSelectValue}
-          //error={errors.storagePackageTiers?.[index]?.storagePackageFeatures[0]}
-          hasError={false}
+          errors={errors.backend}
+          showErrors={submitted}
           testId={`backend-select`}
           placeholder={Messages.ProjectModalFormBackendPlaceholder}
         >
@@ -205,7 +221,7 @@ const ProjectForm = () => {
                   aria-selected={backendSelectValue.indexOf(backend) > -1}
                   key={backend}
                   className={`${dropdownStyles.dropdownOption} ${backendSelectValue.indexOf(backend) > -1 ? dropdownStyles.selected : ""}`}
-                  onClick={() => handleBackendSelect(backend)}
+                  onClick={() => onBackendChage(backend)}
                 >
                   {backend}
                 </li>
@@ -227,8 +243,8 @@ const ProjectForm = () => {
           onClose={() => setIsDatabaseSelectOpen(false)}
           onTogglePopover={() => setIsDatabaseSelectOpen((state) => !state)}
           value={databseSelectValue}
-          //error={errors.storagePackageTiers?.[index]?.storagePackageFeatures[0]}
-          hasError={false}
+          errors={errors.database}
+          showErrors={submitted}
           testId={`database-select`}
           placeholder={Messages.ProjectModalFormDatabasePlaceholder}
         >
@@ -256,7 +272,7 @@ const ProjectForm = () => {
                   aria-selected={databseSelectValue.indexOf(database) > -1}
                   key={database}
                   className={`${dropdownStyles.dropdownOption} ${backendSelectValue.indexOf(database) > -1 ? dropdownStyles.selected : ""}`}
-                  onClick={() => handleDatabaseSelect(database)}
+                  onClick={() => onDatabaseChange(database)}
                 >
                   {database}
                 </li>
@@ -264,8 +280,17 @@ const ProjectForm = () => {
             </ul>
           </div>
         </FloatingLabelSelect>
+        <div className={styles.modalFormFooter}>
+          <Modal.Footer
+            onSubmit={() => handleSubmit(hasError)}
+            onCancel={onClose}
+            showCancel={true}
+            cancelText={Messages.AddProjectModalCancel}
+            submitText={Messages.AddProjectModalSubmit}
+          />
+        </div>
       </div>
-    </>
+    </form>
   );
 };
 
