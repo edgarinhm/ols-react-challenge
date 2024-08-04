@@ -5,6 +5,7 @@ export const Login = {
 
 export const Users = {
   get: (): string => `/users`,
+  delete: (userId: number): string => `/users/${userId}`,
 };
 
 export const WeatherFind = {
