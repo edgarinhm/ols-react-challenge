@@ -39,4 +39,6 @@ export const Messages = {
   ProjectModalFormDatabasePlaceholder: "Que base de datos se usa?",
   ProjectModalFormDeveloperPlaceholder: "Quienes son los responsables?",
   UpdateProjectModalTitle: "Actualizar proyecto",
+  UserPageTitle: "Usuarios",
+  UserPageAddButton: "Agregar Usuario",
 };

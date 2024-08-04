@@ -11,3 +11,8 @@ export const GetAllUsers = async (): Promise<UserModel[]> => {
   const url = Users.get();
   return (await axiosInstance.get<UserModel[]>(url)).data;
 };
+
+export const RemoveUser = async (userId: number): Promise<UserModel> => {
+  const url = Users.delete(userId);
+  return (await axiosInstance.delete<UserModel>(url)).data;
+};

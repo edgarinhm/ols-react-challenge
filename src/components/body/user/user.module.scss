@@ -1,0 +1,53 @@
+@use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/mixins/buttons.module.scss" as buttons;
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+
+  .addActionGroup {
+    display: flex;
+    margin-bottom: 1.5rem;
+    justify-content: end;
+
+    button {
+      @include buttons.btn;
+      border-radius: 15px;
+      text-transform: capitalize;
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+.tableGridResponsive {
+  margin: 0px 20px 20px 20px;
+  display: grid;
+  grid-template-areas: "body";
+  overflow-x: auto;
+}
+
+.stretchCard {
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+
+  & > div:first-child {
+    min-width: 100%;
+  }
+}
+
+.fullRow {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+@media (min-width: 992px) {
+  .fullRow {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

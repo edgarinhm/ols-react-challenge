@@ -1,0 +1,23 @@
+@use "common/sass/styles/colors.module.scss" as colors;
+@use "common/sass/mixins/buttons.module.scss" as buttons;
+
+.tableBody {
+  grid-area: body;
+  > div:nth-of-type(even) {
+    background: colors.$ghost-grey;
+  }
+}
+
+.projectGrid {
+  .theadLabel {
+    span {
+      text-transform: capitalize;
+      font-weight: bold;
+    }
+  }
+
+  .theadBottom {
+    vertical-align: bottom;
+    border-bottom: 2px solid colors.$very-light-grey;
+  }
+}

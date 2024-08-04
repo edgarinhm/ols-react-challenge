@@ -5,12 +5,13 @@ import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
 
 interface AvatarProps {
   url?: string;
+  alt?: string;
 }
 
-const Avatar = ({ url }: AvatarProps) => {
+const Avatar = ({ url, alt = "User Avatar" }: AvatarProps) => {
   return (
     <div className={styles.avatar}>
-      {url ? <img src={url} alt={"User Avatar"} /> : <FontAwesomeIcon icon={faCircleUser} />}
+      {url ? <img src={url} alt={alt} /> : <FontAwesomeIcon icon={faCircleUser} />}
     </div>
   );
 };

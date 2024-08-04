@@ -1,3 +1,4 @@
+import { UserRoleType } from "common/enums/user-roles";
 import { UserModel } from "common/models/user/user-model";
 
 export const UserData: UserModel = {
@@ -5,7 +6,7 @@ export const UserData: UserModel = {
   name: "test-name",
   lastName: "test-lastname",
   urlPhoto: "test-url-photo",
-  rol: 1,
+  rol: UserRoleType.Administrator,
   list: "VueJS|Angular|React",
   area: "test-soporte",
 };
