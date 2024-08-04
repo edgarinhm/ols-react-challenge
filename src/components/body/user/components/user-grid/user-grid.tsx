@@ -23,13 +23,9 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
   const [users, setusers] = useState<UserModel[]>([]);
   const [sortColumn, setSortColumn] = useState<UserModelKeys>("id");
   const [sortDescending, setSortDescending] = useState<boolean>(false);
-
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<number>();
-
   const [projects, setProjects] = useState<ProjectModel[]>();
-
-  console.log(isCreateUserModalOpen, isUpdateModalOpen, currentUserId, closeCreateUserModal);
 
   const { headers, projectGridRowFormatter } = useUserGrid();
 
@@ -160,6 +156,8 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
         </div>
       </div>
       <Spinner show={isLoading} text={"...Loading Users"} />
+      {isCreateUserModalOpen && <span onClick={closeCreateUserModal}></span>}
+      {isUpdateModalOpen && <span onClick={() => currentUserId}></span>}
     </div>
   );
 };

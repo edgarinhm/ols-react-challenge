@@ -5,7 +5,7 @@ import { Messages } from "common/constants/messages-constants";
 import UserGrid from "./components/user-grid/user-grid";
 
 const User = () => {
-  const [isAdduserModalOpen, setIsAdduserModalOpen] = useState(false);
+  const [isCreateUuserModalOpen, setIsCreateUserModalOpen] = useState(false);
 
   useEffect(() => {
     document.title = "OLS user";
@@ -17,14 +17,14 @@ const User = () => {
         <Card width="100%">
           <Card.Header title={Messages.UserPageTitle} />
           <div className={styles.addActionGroup}>
-            <button type="submit" onClick={() => setIsAdduserModalOpen(true)}>
+            <button type="submit" onClick={() => setIsCreateUserModalOpen(true)}>
               {Messages.UserPageAddButton}
             </button>
           </div>
           <div className={styles.tableGridResponsive}>
             <UserGrid
-              isCreateUserModalOpen={isAdduserModalOpen}
-              closeCreateUserModal={() => setIsAdduserModalOpen(false)}
+              isCreateUserModalOpen={isCreateUuserModalOpen}
+              closeCreateUserModal={() => setIsCreateUserModalOpen(false)}
             />
           </div>
         </Card>

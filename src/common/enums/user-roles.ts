@@ -5,8 +5,6 @@ export enum UserRoleType {
 }
 
 export const GetUserRoleType = (role: string): UserRoleType => {
-  console.log("role", role);
-
   switch (role) {
     case "1":
       return UserRoleType.Administrator;
