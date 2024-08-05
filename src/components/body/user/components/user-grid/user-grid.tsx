@@ -12,6 +12,7 @@ import UserGridRow from "./user-grid-row";
 import { UserModelKeys, useUserGrid } from "common/hooks/use-user-grid";
 import { ProjectModel } from "common/models/project-model";
 import { GetProjects } from "common/services/project-service";
+import { CreateUserModal } from "../user-modal/user-modal";
 
 interface UserGridProps {
   isCreateUserModalOpen: boolean;
@@ -156,7 +157,12 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
         </div>
       </div>
       <Spinner show={isLoading} text={"...Loading Users"} />
-      {isCreateUserModalOpen && <span onClick={closeCreateUserModal}></span>}
+
+      <CreateUserModal
+        open={isCreateUserModalOpen}
+        updateGrid={(user: UserModel) => user}
+        onClose={closeCreateUserModal}
+      />
       {isUpdateModalOpen && <span onClick={() => currentUserId}></span>}
     </div>
   );

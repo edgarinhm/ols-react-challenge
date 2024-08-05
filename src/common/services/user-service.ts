@@ -16,3 +16,8 @@ export const RemoveUser = async (userId: number): Promise<UserModel> => {
   const url = Users.delete(userId);
   return (await axiosInstance.delete<UserModel>(url)).data;
 };
+
+export const CreateUser = async (user: UserModel): Promise<UserModel> => {
+  const url = Users.post();
+  return (await axiosInstance.post<UserModel>(url, user)).data;
+};
