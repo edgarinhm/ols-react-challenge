@@ -10,6 +10,7 @@ import { DatabaseTechnologyType } from "common/enums/database-technology-type";
 import { useUserValidator } from "./use-user-validator";
 import { UserFieldsModel } from "./initial-data";
 import { Modal } from "common/components/modal/modal";
+import { UserRoleType } from "common/enums/user-roles";
 
 const UserForm = ({
   userFields,
@@ -108,10 +109,12 @@ const UserForm = ({
           errors={errors.rol}
           showErrors={submitted}
         >
-          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
-          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
-          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
-          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
+          {!userFields.rol && (
+            <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
+          )}
+          {Object.values(UserRoleType).map((role) => (
+            <FormControl.SelectOption key={role} value={role} />
+          ))}
         </FormControl.Select>
       </div>
       <div className={styles.row}>
