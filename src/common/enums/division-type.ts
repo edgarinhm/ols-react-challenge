@@ -1,8 +1,8 @@
 export enum DivisionType {
   Support = "Support",
   Staff = "Staff",
-  InternalApps = "InternalApps",
-  NotAsigned = "NotAsigned",
+  InternalApps = "Internal Apps",
+  NotAsigned = "Not Asigned",
 }
 
 export enum DivisionTypeId {

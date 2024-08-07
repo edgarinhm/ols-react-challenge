@@ -11,6 +11,7 @@ import { useUserValidator } from "./use-user-validator";
 import { UserFieldsModel } from "./initial-data";
 import { Modal } from "common/components/modal/modal";
 import { UserRoleType } from "common/enums/user-roles";
+import { DivisionType } from "common/enums/division-type";
 
 const UserForm = ({
   userFields,
@@ -170,15 +171,21 @@ const UserForm = ({
         </FloatingLabelSelect>
       </div>
       <div className={styles.row}>
-        <FormControl.Input
+        <FormControl.Select
           id={`${id}-division`}
-          type="text"
           label={Messages.UserModalDivision}
           value={userFields.area}
           onChange={(event) => onUserFormChange("area", event.target.value)}
           errors={errors.division}
           showErrors={submitted}
-        />
+        >
+          {!userFields.area && (
+            <FormControl.SelectOption value={Messages.UserModalDivisionPlaceHolder} />
+          )}
+          {Object.values(DivisionType).map((division) => (
+            <FormControl.SelectOption key={division} value={division} />
+          ))}
+        </FormControl.Select>
       </div>
       <div className={styles.modalFormFooter}>
         <Modal.Footer
