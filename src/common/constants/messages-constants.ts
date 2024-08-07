@@ -47,4 +47,5 @@ export const Messages = {
   UserModalRole: "Rol",
   UserModalTechnology: "Tecnologías",
   UserModalDivision: "Area",
+  UserModalRolePlaceHolder: "Que rol va a tener este usuario",
 };

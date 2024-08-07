@@ -99,7 +99,7 @@ const UserForm = ({
         />
       </div>
       <div className={styles.row}>
-        <FormControl.Input
+        <FormControl.Select
           id={`${id}-rol`}
           type="text"
           label={Messages.UserModalRole}
@@ -107,7 +107,12 @@ const UserForm = ({
           onChange={(event) => onUserFormChange("rol", event.target.value)}
           errors={errors.rol}
           showErrors={submitted}
-        />
+        >
+          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
+          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
+          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
+          <FormControl.SelectOption value={Messages.UserModalRolePlaceHolder} />
+        </FormControl.Select>
       </div>
       <div className={styles.row}>
         <div
@@ -126,6 +131,7 @@ const UserForm = ({
           showErrors={submitted}
           testId={`technology-select`}
           placeholder={Messages.ProjectModalFormDatabasePlaceholder}
+          label={Messages.UserModalTechnology}
         >
           <div
             className={dropdownStyles.dropdown}
@@ -159,26 +165,26 @@ const UserForm = ({
             </ul>
           </div>
         </FloatingLabelSelect>
-        <div className={styles.row}>
-          <FormControl.Input
-            id={`${id}-division`}
-            type="text"
-            label={Messages.UserModalDivision}
-            value={userFields.area}
-            onChange={(event) => onUserFormChange("area", event.target.value)}
-            errors={errors.division}
-            showErrors={submitted}
-          />
-        </div>
-        <div className={styles.modalFormFooter}>
-          <Modal.Footer
-            onSubmit={handleSubmit}
-            onCancel={handleCancel}
-            showCancel={true}
-            cancelText={Messages.AddProjectModalCancel}
-            submitText={Messages.AddProjectModalSubmit}
-          />
-        </div>
+      </div>
+      <div className={styles.row}>
+        <FormControl.Input
+          id={`${id}-division`}
+          type="text"
+          label={Messages.UserModalDivision}
+          value={userFields.area}
+          onChange={(event) => onUserFormChange("area", event.target.value)}
+          errors={errors.division}
+          showErrors={submitted}
+        />
+      </div>
+      <div className={styles.modalFormFooter}>
+        <Modal.Footer
+          onSubmit={handleSubmit}
+          onCancel={handleCancel}
+          showCancel={true}
+          cancelText={Messages.AddProjectModalCancel}
+          submitText={Messages.AddProjectModalSubmit}
+        />
       </div>
     </form>
   );
