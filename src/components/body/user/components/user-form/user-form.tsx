@@ -61,6 +61,7 @@ const UserForm = ({
         list: technologySelectValue.replaceAll(",", "|"),
       },
     });
+    handleCancel();
   };
 
   const handleCancel = (): void => {

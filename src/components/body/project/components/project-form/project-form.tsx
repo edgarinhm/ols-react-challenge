@@ -93,6 +93,7 @@ const ProjectForm = ({
         database: databseSelectValue,
       },
     });
+    handleCancel();
   };
 
   const handleCancel = (): void => {
