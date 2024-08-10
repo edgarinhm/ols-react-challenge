@@ -9,3 +9,12 @@ export interface UserModel {
   list: string;
   area: string;
 }
+
+export interface CreateUserRequestModel {
+  name: string;
+  lastName: string;
+  urlPhoto: string;
+  rol: number;
+  list: string;
+  area: string;
+}

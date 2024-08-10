@@ -21,9 +21,9 @@ interface UserGridProps {
 
 const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [users, setusers] = useState<UserModel[]>([]);
+  const [users, setUsers] = useState<UserModel[]>([]);
   const [sortColumn, setSortColumn] = useState<UserModelKeys>("id");
-  const [sortDescending, setSortDescending] = useState<boolean>(false);
+  const [sortDescending, setSortDescending] = useState<boolean>(true);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<number>();
   const [projects, setProjects] = useState<ProjectModel[]>();
@@ -57,7 +57,7 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
     setIsLoading(true);
     try {
       const users = await GetAllUsers();
-      setusers(users);
+      setUsers(users);
     } catch (error) {
       console.log("error");
     }
@@ -76,6 +76,17 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
   const handleUpdateModal = (userId: number): void => {
     setCurrentUserId(userId);
     setIsUpdateModalOpen(true);
+  };
+
+  const updateGrid = (currentUser: UserModel) => {
+    const user = users.find((user) => user.id === currentUser.id);
+
+    if (!user) {
+      return loadUsersData();
+    }
+    const currentCopy = users.filter((datum) => datum.id !== user.id);
+    currentCopy.push(currentUser);
+    setUsers(currentCopy);
   };
 
   useEffect(() => {
@@ -160,7 +171,7 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
 
       <CreateUserModal
         open={isCreateUserModalOpen}
-        updateGrid={(user: UserModel) => user}
+        updateGrid={updateGrid}
         onClose={closeCreateUserModal}
       />
       {isUpdateModalOpen && <span onClick={() => currentUserId}></span>}

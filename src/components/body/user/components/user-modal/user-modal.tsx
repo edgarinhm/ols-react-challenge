@@ -7,7 +7,7 @@ import UserForm from "../user-form/user-form";
 import { userFields, UserFieldsModel } from "../user-form/initial-data";
 import { UserModel } from "common/models/user/user-model";
 import { CreateUser } from "common/services/user-service";
-import { MapUser } from "common/helpers/user-mapper";
+import { MapCreateUserRequest } from "common/helpers/user-mapper";
 
 interface UserModalProps {
   open: boolean;
@@ -96,13 +96,10 @@ export const CreateUserModal = ({
   ): Promise<void> => {
     if (validForm) {
       setIsLoading(true);
-      console.log("newUser.userFormFields", newUser.userFormFields);
-
       try {
-        const User = MapUser(newUser.userFormFields);
-        console.log("User", User);
-        //const createdUser = await CreateUser(User);
-        //updateGrid(createdUser);
+        const User = MapCreateUserRequest(newUser.userFormFields);
+        const createdUser = await CreateUser(User);
+        updateGrid(createdUser);
         onClose();
       } catch (error) {
         console.log("CreateUserModal-Error");
