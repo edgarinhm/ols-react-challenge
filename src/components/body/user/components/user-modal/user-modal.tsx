@@ -1,7 +1,7 @@
 import { Modal } from "common/components/modal/modal";
 import { Messages } from "common/constants/messages-constants";
 import styles from "./user-modal.module.scss";
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { Spinner } from "common/components/spinner/spinner";
 import UserForm from "../user-form/user-form";
 import { userFields, UserFieldsModel } from "../user-form/initial-data";
@@ -22,7 +22,7 @@ interface UserModalProps {
   ) => Promise<void>;
 }
 
-const UserModal = ({ open, title, onClose, OnSubmit }: UserModalProps): JSX.Element => {
+const UserModal = ({ open, title, userId, onClose, OnSubmit }: UserModalProps): JSX.Element => {
   const id = useId();
   const [userFormFields, setUserFormFields] = useState<UserFieldsModel>(userFields);
   const [technologyFormFields, setTechnologyFormFields] = useState<string[]>([]);
@@ -49,6 +49,12 @@ const UserModal = ({ open, title, onClose, OnSubmit }: UserModalProps): JSX.Elem
     setUserFormFields(userFields);
     setTechnologyFormFields([]);
   };
+
+  useEffect(() => {
+    if (userId) {
+      setIsLoading(true);
+    }
+  }, [userId]);
 
   return (
     <>
