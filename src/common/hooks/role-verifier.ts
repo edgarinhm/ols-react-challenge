@@ -77,12 +77,30 @@ const roleSets = {
   [RoleSet.AdminPages]: expandRolesUpward(UserRoleType.ReadOnly),
   [RoleSet.Administrator]: [UserRoleType.Administrator],
   [RoleSet.ReadOnly]: [UserRoleType.ReadOnly],
-  [RoleSet.CanCreateProject]: getAllRolesWithExclusions([UserRoleType.ReadOnly]),
-  [RoleSet.CanUpdateProject]: getAllRolesWithExclusions([UserRoleType.ReadOnly]),
-  [RoleSet.CanRemoveProject]: getAllRolesWithExclusions([UserRoleType.ReadOnly]),
-  [RoleSet.CanCreateUser]: getAllRolesWithExclusions([UserRoleType.ReadOnly]),
-  [RoleSet.CanUpdateUser]: getAllRolesWithExclusions([UserRoleType.ReadOnly]),
-  [RoleSet.CanRemoveUser]: getAllRolesWithExclusions([UserRoleType.ReadOnly]),
+  [RoleSet.CanCreateProject]: getAllRolesWithExclusions([
+    UserRoleType.ReadOnly,
+    UserRoleType.Developer,
+  ]),
+  [RoleSet.CanUpdateProject]: getAllRolesWithExclusions([
+    UserRoleType.ReadOnly,
+    UserRoleType.Developer,
+  ]),
+  [RoleSet.CanRemoveProject]: getAllRolesWithExclusions([
+    UserRoleType.ReadOnly,
+    UserRoleType.Developer,
+  ]),
+  [RoleSet.CanCreateUser]: getAllRolesWithExclusions([
+    UserRoleType.ReadOnly,
+    UserRoleType.Developer,
+  ]),
+  [RoleSet.CanUpdateUser]: getAllRolesWithExclusions([
+    UserRoleType.ReadOnly,
+    UserRoleType.Developer,
+  ]),
+  [RoleSet.CanRemoveUser]: getAllRolesWithExclusions([
+    UserRoleType.ReadOnly,
+    UserRoleType.Developer,
+  ]),
 };
 
 /**

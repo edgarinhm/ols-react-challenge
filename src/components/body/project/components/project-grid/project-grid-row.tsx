@@ -58,16 +58,22 @@ const CustomRowValue = ({ style, children }: CustomRowValueProps): JSX.Element =
 };
 
 interface ActionsProps {
+  canEdit: boolean;
+  canDelete: boolean;
   onEdit: () => void;
   onDelete: () => void;
 }
 
-const Actions = ({ onEdit, onDelete }: ActionsProps): JSX.Element => {
+const Actions = ({ canEdit, canDelete, onEdit, onDelete }: ActionsProps): JSX.Element => {
   return (
     <div className={tableStyles.actions} style={{ width: 100 }}>
       <div className={tableStyles.actionsInnerContainer}>
-        <FontAwesomeIcon icon={faPenToSquare} style={{ padding: "0.125rem" }} onClick={onEdit} />
-        <FontAwesomeIcon icon={faEraser} style={{ padding: "0.125rem" }} onClick={onDelete} />
+        {canEdit && (
+          <FontAwesomeIcon icon={faPenToSquare} style={{ padding: "0.125rem" }} onClick={onEdit} />
+        )}
+        {canDelete && (
+          <FontAwesomeIcon icon={faEraser} style={{ padding: "0.125rem" }} onClick={onDelete} />
+        )}
       </div>
     </div>
   );

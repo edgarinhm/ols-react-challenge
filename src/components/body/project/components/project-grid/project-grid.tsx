@@ -11,6 +11,7 @@ import { SortObjects } from "common/functions/sort-functions";
 import ProjectGridRow from "./project-grid-row";
 import { useProjectGrid } from "common/hooks/use-project-grid";
 import { ProjectCreateModal, ProjectUpdateModal } from "../project-modal/project-modal";
+import { RoleSet, useRoleVerifier } from "common/hooks/role-verifier";
 
 type KeysProject = keyof ProjectModel;
 
@@ -29,6 +30,9 @@ const ProjectGrid = ({
 
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [currentProjectId, setCurrentProjectId] = useState<number>();
+
+  const canRemoveProjects = useRoleVerifier(RoleSet.Administrator);
+  const canUpdateProjects = useRoleVerifier(RoleSet.Administrator);
 
   const { headers } = useProjectGrid();
 
@@ -144,6 +148,8 @@ const ProjectGrid = ({
                   )
                 )}
                 <ProjectGridRow.Actions
+                  canEdit={canUpdateProjects}
+                  canDelete={canRemoveProjects}
                   onEdit={() => handleUpdateModal(row.id)}
                   onDelete={() => removeProject(row.id)}
                 />
