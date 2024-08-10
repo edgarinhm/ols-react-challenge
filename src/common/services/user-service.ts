@@ -1,4 +1,4 @@
-import { UserModel } from "common/models/user/user-model";
+import { UserModel, CreateUserRequestModel } from "common/models/user/user-model";
 import { axiosInstance } from "./api/api-base";
 import { Users } from "./api/api-routes";
 
@@ -15,4 +15,9 @@ export const GetAllUsers = async (): Promise<UserModel[]> => {
 export const RemoveUser = async (userId: number): Promise<UserModel> => {
   const url = Users.delete(userId);
   return (await axiosInstance.delete<UserModel>(url)).data;
+};
+
+export const CreateUser = async (user: CreateUserRequestModel): Promise<UserModel> => {
+  const url = Users.post();
+  return (await axiosInstance.post<UserModel>(url, user)).data;
 };

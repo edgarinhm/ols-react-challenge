@@ -41,4 +41,12 @@ export const Messages = {
   UpdateProjectModalTitle: "Actualizar proyecto",
   UserPageTitle: "Usuarios",
   UserPageAddButton: "Agregar Usuario",
+  CreateUserModalTitle: "Creemos un nuevo usuario",
+  UserModalName: "Nombre",
+  UserModalLastName: "Apellido",
+  UserModalRole: "Rol",
+  UserModalTechnology: "Tecnologías",
+  UserModalDivision: "Area",
+  UserModalRolePlaceHolder: "Que rol va a tener este usuario",
+  UserModalDivisionPlaceHolder: "A que area responde?",
 };

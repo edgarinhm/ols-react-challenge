@@ -2,18 +2,24 @@
 @use "common/sass/styles/colors.module.scss" as colors;
 @use "common/sass/styles/base-style-and-scale.module.scss" as base;
 @use "common/sass/mixins/buttons.module.scss" as buttons;
+@use "common/sass/mixins/popover.module.scss" as popover;
 
 .container {
   position: relative;
+  min-width: 120px;
 }
 .selectContainer {
-  border: 1px solid colors.$royal-blue;
-  border-radius: 4px;
-  font-size: 16px;
-  height: 51px;
+  height: 2.2em;
+  background-color: colors.$ghost-grey;
+  border: base.$base-border;
+  border-radius: base.$base-border-radius;
+  color: colors.$dark-grey;
 
   &:focus-within {
-    box-shadow: 0 0 0 1px colors.$royal-blue;
+    border-color: base.$base-focus-border;
+    box-shadow: base.$form-box-shadow-focus;
+    outline: none;
+    background-color: colors.$white;
   }
 
   &.hasError {
@@ -31,31 +37,33 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 16px;
+    padding: 0.5em 0.125em 0.5em 0.75em;
+    line-height: 1em;
     &:focus {
       outline: 0;
     }
 
     .label {
       position: absolute;
-      top: 15px;
+      top: 12px;
       left: 10px;
-      font-size: 15px;
       transition: 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
       text-transform: unset;
       padding: 0 5px;
-      background-color: colors.$white;
 
       &.isFocused {
-        transform: translate(-7px, -25px) scale(0.8);
+        transform: translate(-7px, -20px) scale(0.8);
+        background-color: colors.$white;
       }
     }
 
     i,
     svg {
       margin-left: auto;
-      font-size: base.$font-size-base;
-      font-weight: 100;
+      font-size: base.$font-size-smaller;
+      width: 1em;
+      height: 1em;
+      cursor: text;
     }
 
     .value {
@@ -64,7 +72,6 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
-      color: colors.$light-black;
     }
   }
 
@@ -95,12 +102,11 @@
 }
 
 .popoverContent {
-  width: 100%;
-  margin-top: 4px;
+  @include popover.content;
   background-color: colors.$white;
-  border: 1px solid colors.$med-grey;
-  border-radius: 4px;
-  box-shadow: 0 2px 6px rgb(0 0 0 / 40%);
+  div {
+    color: colors.$dark-grey;
+  }
 }
 
 div:has(> .popoverContent) {
