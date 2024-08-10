@@ -13,6 +13,7 @@ import { UserModelKeys, useUserGrid } from "common/hooks/use-user-grid";
 import { ProjectModel } from "common/models/project-model";
 import { GetProjects } from "common/services/project-service";
 import { CreateUserModal, UpdateUserModal } from "../user-modal/user-modal";
+import { RoleSet, useRoleVerifier } from "common/hooks/role-verifier";
 
 interface UserGridProps {
   isCreateUserModalOpen: boolean;
@@ -27,6 +28,9 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [currentUserId, setCurrentUserId] = useState<number>();
   const [projects, setProjects] = useState<ProjectModel[]>();
+
+  const canRemoveUser = useRoleVerifier(RoleSet.Administrator);
+  const canUpdateUser = useRoleVerifier(RoleSet.Administrator);
 
   const { headers, projectGridRowFormatter } = useUserGrid();
 
@@ -165,6 +169,8 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
                 style={{ minWidth: "150px" }}
               />
               <UserGridRow.Actions
+                canEdit={canUpdateUser}
+                canDelete={canRemoveUser}
                 onEdit={() => handleUpdateModal(row.id)}
                 onDelete={() => removeuser(row.id)}
               />

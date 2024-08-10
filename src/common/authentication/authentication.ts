@@ -1,3 +1,4 @@
+import { GetUserRoleType } from "./../enums/user-roles";
 import { basename } from "./../constants/basename-constants";
 import { LocalStorageKeys } from "common/enums/local-storage-keys";
 import { OpenWindow } from "common/functions/windows-funtions";
@@ -40,7 +41,11 @@ export const useAuthentication = (): {
       const user = loginData[0];
       if (user) {
         const userData = await GetUser(user.id);
-        updateStorage(LocalStorageKeys.user, userData[0]);
+
+        updateStorage(LocalStorageKeys.user, {
+          ...userData[0],
+          rol: GetUserRoleType(`${userData[0].rol}`),
+        });
         return true;
       } else {
         return false;
