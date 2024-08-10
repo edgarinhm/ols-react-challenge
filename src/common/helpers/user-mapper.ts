@@ -43,8 +43,6 @@ export const MapUserCapitalizeNames = (names: string): string => {
 };
 
 export const MapUserFieldsModel = (user: UserModel): UserFieldsModel => {
-  console.log("user.list", user.list);
-
   return {
     id: `${user.id}`,
     name: user.name,
