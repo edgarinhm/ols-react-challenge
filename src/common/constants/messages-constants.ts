@@ -49,4 +49,5 @@ export const Messages = {
   UserModalDivision: "Area",
   UserModalRolePlaceHolder: "Que rol va a tener este usuario",
   UserModalDivisionPlaceHolder: "A que area responde?",
+  UpdateUserModalTitle: "Actualizar usuario",
 };

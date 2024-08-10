@@ -12,7 +12,7 @@ import UserGridRow from "./user-grid-row";
 import { UserModelKeys, useUserGrid } from "common/hooks/use-user-grid";
 import { ProjectModel } from "common/models/project-model";
 import { GetProjects } from "common/services/project-service";
-import { CreateUserModal } from "../user-modal/user-modal";
+import { CreateUserModal, UpdateUserModal } from "../user-modal/user-modal";
 
 interface UserGridProps {
   isCreateUserModalOpen: boolean;
@@ -87,6 +87,11 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
     const currentCopy = users.filter((datum) => datum.id !== user.id);
     currentCopy.push(currentUser);
     setUsers(currentCopy);
+  };
+
+  const handleCloseUpdateModal = (): void => {
+    setCurrentUserId(undefined);
+    setIsUpdateModalOpen(false);
   };
 
   useEffect(() => {
@@ -174,7 +179,13 @@ const UserGrid = ({ isCreateUserModalOpen, closeCreateUserModal }: UserGridProps
         updateGrid={updateGrid}
         onClose={closeCreateUserModal}
       />
-      {isUpdateModalOpen && <span onClick={() => currentUserId}></span>}
+
+      <UpdateUserModal
+        userId={currentUserId}
+        open={isUpdateModalOpen}
+        updateGrid={updateGrid}
+        onClose={handleCloseUpdateModal}
+      />
     </div>
   );
 };

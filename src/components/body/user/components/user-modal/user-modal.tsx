@@ -6,8 +6,13 @@ import { Spinner } from "common/components/spinner/spinner";
 import UserForm from "../user-form/user-form";
 import { userFields, UserFieldsModel } from "../user-form/initial-data";
 import { UserModel } from "common/models/user/user-model";
-import { CreateUser } from "common/services/user-service";
-import { MapCreateUserRequest } from "common/helpers/user-mapper";
+import { CreateUser, GetUserById, UpdateUser } from "common/services/user-service";
+import {
+  MapCreateUserRequest,
+  MapUpdateUserRequest,
+  MapUserFieldsModel,
+  MapUserListFieldModel,
+} from "common/helpers/user-mapper";
 
 interface UserModalProps {
   open: boolean;
@@ -51,8 +56,19 @@ const UserModal = ({ open, title, userId, onClose, OnSubmit }: UserModalProps): 
   };
 
   useEffect(() => {
-    if (userId) {
+    const loadUserData = async (userId: number): Promise<void> => {
       setIsLoading(true);
+      try {
+        const user = await GetUserById(userId);
+        setUserFormFields(MapUserFieldsModel(user));
+        setTechnologyFormFields(MapUserListFieldModel(user.list));
+      } catch (error) {
+        console.log("loadUserData-Error");
+      }
+      setIsLoading(false);
+    };
+    if (userId) {
+      loadUserData(userId);
     }
   }, [userId]);
 
@@ -123,6 +139,54 @@ export const CreateUserModal = ({
         OnSubmit={handleSubmit}
       />
       <Spinner show={isLoading} text={"...Creating User"} />
+    </>
+  );
+};
+
+interface UpdateUserModalProps {
+  open: boolean;
+  userId?: number;
+  updateGrid: (createdUser: UserModel) => void;
+  onClose: () => void;
+}
+
+export const UpdateUserModal = ({
+  open,
+  userId,
+  updateGrid,
+  onClose,
+}: UpdateUserModalProps): JSX.Element => {
+  const [isLoading, setIsLoading] = useState(false);
+  const handleSubmit = async (
+    validForm: boolean,
+    newUser: {
+      userFormFields: UserFieldsModel;
+    }
+  ): Promise<void> => {
+    if (validForm) {
+      setIsLoading(true);
+      try {
+        const user = MapUpdateUserRequest(newUser.userFormFields);
+        const updatedUser = await UpdateUser(user);
+        updateGrid(updatedUser);
+        onClose();
+      } catch (error) {
+        console.log("UpdatedUserModal-Error");
+      }
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <UserModal
+        open={open}
+        title={Messages.UpdateUserModalTitle}
+        onClose={onClose}
+        OnSubmit={handleSubmit}
+        userId={userId}
+      />
+      <Spinner show={isLoading} text={"...Updating User"} />
     </>
   );
 };

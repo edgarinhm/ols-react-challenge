@@ -1,6 +1,10 @@
-import { DivisionType, GetDivisonTypeId } from "common/enums/division-type";
+import { DivisionType, GetDivisonType, GetDivisonTypeId } from "common/enums/division-type";
 import { GetUserRoleType, GetUserRoleTypeId, UserRoleType } from "common/enums/user-roles";
-import { UserModel, CreateUserRequestModel } from "common/models/user/user-model";
+import {
+  UserModel,
+  CreateUserRequestModel,
+  UpdateUserRequestModel,
+} from "common/models/user/user-model";
 import { UserFieldsModel } from "components/body/user/components/user-form/initial-data";
 
 export const MapUser = (userFields: UserFieldsModel): UserModel => {
@@ -36,4 +40,29 @@ export const MapUserPipeList = (list: string): string => {
 export const MapUserCapitalizeNames = (names: string): string => {
   const namesList = names.trim().split(" ");
   return namesList.map((name) => `${name.charAt(0).toUpperCase()}${name.slice(1)}`).join(" ");
+};
+
+export const MapUserFieldsModel = (user: UserModel): UserFieldsModel => {
+  console.log("user.list", user.list);
+
+  return {
+    id: `${user.id}`,
+    name: user.name,
+    lastName: user.lastName,
+    urlPhoto: user.urlPhoto,
+    list: user.list,
+    rol: GetUserRoleType(`${user.rol}`),
+    area: GetDivisonType(user.area),
+  };
+};
+
+export const MapUpdateUserRequest = (userFields: UserFieldsModel): UpdateUserRequestModel => {
+  return {
+    ...MapCreateUserRequest(userFields),
+    id: Number(userFields.id),
+  };
+};
+
+export const MapUserListFieldModel = (list: string): string[] => {
+  return list.split("|");
 };
