@@ -7,6 +7,7 @@ export const Users = {
   get: (): string => `/users`,
   delete: (userId: number): string => `/users/${userId}`,
   post: (): string => `/users`,
+  put: (userId: number): string => `/users/${userId}`,
 };
 
 export const WeatherFind = {

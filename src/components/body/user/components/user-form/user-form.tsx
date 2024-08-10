@@ -37,7 +37,6 @@ const UserForm = ({
 }) => {
   const id = useId();
   const [isTechnologySelectOpen, setIsTechnologySelectOpen] = useState(false);
-  //const [technology, setTechnology] = useState<TechnologyFieldsModel>();
   const [submitted, setSubmitted] = useState(false);
 
   const technologySelectValue = useMemo(
@@ -62,6 +61,7 @@ const UserForm = ({
         list: technologySelectValue.replaceAll(",", "|"),
       },
     });
+    handleCancel();
   };
 
   const handleCancel = (): void => {

@@ -18,3 +18,7 @@ export interface CreateUserRequestModel {
   list: string;
   area: string;
 }
+
+export interface UpdateUserRequestModel extends CreateUserRequestModel {
+  id: number;
+}
