@@ -1,4 +1,4 @@
-import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer, LegendProps, Label } from "recharts";
+import { PieChart, Pie, Tooltip, ResponsiveContainer, Label } from "recharts";
 import styles from "./release-chart.module.scss";
 
 interface ReleaseChartProps {
@@ -7,53 +7,57 @@ interface ReleaseChartProps {
 
 const ReleaseChart = ({ data }: ReleaseChartProps) => {
   return (
-    <ResponsiveContainer height={350}>
-      <PieChart>
-        <Tooltip />
-        <Legend
-          layout="vertical"
-          verticalAlign="bottom"
-          content={<CustomLegendText />}
-          align="left"
-        />
-        <Pie
-          cy="35%"
-          data={data}
-          dataKey="value"
-          outerRadius={120}
-          innerRadius={90}
-          strokeWidth={0}
-        >
-          <Label
-            width={30}
-            position="center"
-            value={data.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)}
-          />
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+    <div className={styles.container}>
+      <ResponsiveContainer height={"75%"}>
+        <PieChart>
+          <Tooltip />
+          <Pie
+            cx="50%"
+            cy="50%"
+            data={data}
+            dataKey="value"
+            outerRadius={"100%"}
+            innerRadius={"80%"}
+            strokeWidth={0}
+          >
+            <Label
+              width={30}
+              position="center"
+              value={data.reduce(
+                (accumulator, currentValue) => accumulator + currentValue.value,
+                0
+              )}
+            />
+          </Pie>
+        </PieChart>
+      </ResponsiveContainer>
+      <CustomLegendText data={data} />
+    </div>
   );
 };
 
-const CustomLegendText = ({ payload }: LegendProps) => {
+const CustomLegendText = ({ data }: ReleaseChartProps) => {
   return (
-    <div className={styles.legendText}>
-      {payload &&
-        payload.map((entry) => (
-          <div key={entry.value} className={styles.legend}>
+    <>
+      {data?.map((entry) => (
+        <div key={entry?.value} className={styles.legendText}>
+          <div className={styles.legend}>
             <div className={styles.iconGroup}>
               <div
                 className={styles.icon}
                 style={{
-                  backgroundColor: entry.color,
+                  backgroundColor: entry?.fill,
                 }}
               ></div>
-              <p className={styles.label}>{entry.value}</p>
+              <p className={styles.label}>{entry?.name}</p>
             </div>
-            <p className={styles.value}>{entry.payload?.value}</p>
           </div>
-        ))}
-    </div>
+          <div key={entry?.value} className={styles.legend}>
+            <p className={styles.value}>{entry?.value}</p>
+          </div>
+        </div>
+      ))}
+    </>
   );
 };
 
