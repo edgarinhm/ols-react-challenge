@@ -119,51 +119,47 @@ const Dashboard = () => {
             </h6>
           </div>
         </div>
-        <div className={styles.row}>
-          <div
-            className={`${styles.weatherRow} ${styles.twoColumns} ${styles.stretchCard} ${styles.marginColumn}`}
-          >
+        <div className={styles.firstRow}>
+          <div className={styles.lgWidth50}>
             <Weather />
           </div>
-          <div className={`${styles.twoColumns} ${styles.marginColumn}`}>
-            <div className={styles.row}>
-              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
-                <ActivityCard
-                  title={projectsCardData.title}
-                  bodyText={projectsCardData.message}
-                  count={projectsCardData.count}
-                  styleColor={"tale"}
-                />
-              </div>
-              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
-                <ActivityCard
-                  title={pendingNotificationsCardData.title}
-                  bodyText={pendingNotificationsCardData.message}
-                  count={pendingNotificationsCardData.count}
-                  styleColor={"lightBlue"}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
-                <ActivityCard
-                  title={projectsInDevCardData.title}
-                  bodyText={projectsInDevCardData.message}
-                  count={projectsInDevCardData.count}
-                  styleColor={"darkBlue"}
-                />
-              </div>
-              <div className={`${styles.twoColumns} ${styles.stretchCard} ${styles.card}`}>
-                <ActivityCard
-                  title={errorsDeployCardData.title}
-                  bodyText={errorsDeployCardData.message}
-                  count={errorsDeployCardData.count}
-                  styleColor={"lightDanger"}
-                />
-              </div>
+          <div className={styles.lgWidth50}>
+            <div
+              style={{
+                display: "flex",
+                gap: "1rem",
+                justifyContent: "space-between",
+                flexWrap: "wrap",
+              }}
+            >
+              <ActivityCard
+                title={projectsCardData.title}
+                bodyText={projectsCardData.message}
+                count={projectsCardData.count}
+                styleColor={"tale"}
+              />
+              <ActivityCard
+                title={projectsInDevCardData.title}
+                bodyText={projectsInDevCardData.message}
+                count={projectsInDevCardData.count}
+                styleColor={"darkBlue"}
+              />
+              <ActivityCard
+                title={pendingNotificationsCardData.title}
+                bodyText={pendingNotificationsCardData.message}
+                count={pendingNotificationsCardData.count}
+                styleColor={"lightBlue"}
+              />
+              <ActivityCard
+                title={errorsDeployCardData.title}
+                bodyText={errorsDeployCardData.message}
+                count={errorsDeployCardData.count}
+                styleColor={"lightDanger"}
+              />
             </div>
           </div>
         </div>
+
         <Reports />
       </div>
       <Spinner show={isLoading} text={"Loading Dashboard..."} />

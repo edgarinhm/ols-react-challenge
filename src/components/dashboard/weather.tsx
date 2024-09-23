@@ -24,7 +24,7 @@ const Weather = (): JSX.Element => {
   const weatherCity = weather?.list[0].name;
 
   return (
-    <Card>
+    <Card width={"100%"}>
       <Card.Header title={`WEATHER: ${weatherCity ?? ""}, ${weatherCondition ?? ""}`} />
       <div>
         <img
