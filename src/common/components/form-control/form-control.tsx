@@ -376,7 +376,7 @@ export const FormattedDateInput = forwardRef<DatePickerRef, DateInputProps>(
                 options: {
                   padding: ({ popper }: { popper: any }) => popper.width / 2,
                 },
-                fn(state) {
+                fn(state: any) {
                   return state;
                 },
               },
@@ -497,7 +497,7 @@ export const CustomFormattedDateInput = forwardRef<DatePickerRef, DateInputProps
                 options: {
                   padding: ({ popper }: { popper: any }) => popper.width / 2,
                 },
-                fn(state) {
+                fn(state: any) {
                   return state;
                 },
               },
