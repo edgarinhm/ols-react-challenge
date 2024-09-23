@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Vite](https://vitejs.dev/).
 
-- [React Project Manager Typescript Vite](#ols-react-challenge)
+- [React Project Manager + TypeScript + Vite](#react-project-manager--typescript--vite)
   - [In a nutshell](#in-a-nutshell)
   - [Usage](#usage)
     - [Development](#development)
@@ -14,14 +14,16 @@ This project was bootstrapped with [Vite](https://vitejs.dev/).
     - [`npm dev`](#npm-dev)
     - [`npm test`](#npm-test)
     - [`npm build`](#npm-build)
-    - [`npm lint`](#npm-lint)
-    - [`npm preview`](#npm-preview)
-    - [`npm deploy`](#npm-deploy)
   - [More info](#more-info)
-    - [React, Design, and Data Standards](#react,-design,-and-data-standards)
+    - [React, Design, and Data Standards](#react-design-and-data-standards)
+    - [Naming Conventions](#naming-conventions)
+    - [Date Standards](#date-standards)
+    - [CSS Standards](#css-standards)
+    - [Testing Standards](#testing-standards)
+      - [React Testing Library Good-to-Knows](#react-testing-library-good-to-knows)
     - [Folder structure](#folder-structure)
-    - [Deployment CI/CD](#deployment-ci/cd)
-    - [Demo](#demo)
+    - [Deployment CI/CD](#deployment-cicd)
+    - [Demo:](#demo)
 
 ## In a nutshell
 
@@ -29,7 +31,7 @@ This app works as a handmade template for React Typescript.
 
 - State management tool.
 
-Design can be found in: [FIGMA Page](https://www.figma.com).
+Design can be found in: [SKYDASH TEMPLATE](https://technext.github.io/skydash/index.html).
 
 ## Usage
 
